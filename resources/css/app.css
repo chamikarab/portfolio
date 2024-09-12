@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body {
+    background-color: black;
+    color: white;
+}
+
+.full-width-container {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#navbar {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#navbar.scrolled {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+#navbar.scrolled .logo-link {
+    color: white; 
+}
+
+#navbar.scrolled .nav-link {
+    color: white; 
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    color: #fcad03; 
+}
+
+#navbar.scrolled .nav-link.active,
+#navbar.scrolled .nav-link:hover {
+    color: #fcad03; 
+}
