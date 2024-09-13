@@ -40,7 +40,32 @@
     </div>
 </section>
 
+<div class="relative bg-cover bg-center w-full h-[400px]" style="background-image: url('/banner-1.jpg');">
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+    <div class="relative z-10 flex flex-col justify-center items-center h-full text-white text-center">
+        <h2 class="text-4xl font-bold mb-8">I Am Available For Freelancer</h2>
+        <a href="#" class="bg-red-500 text-white px-6 py-3 rounded-lg">Hire Me Now</a>
 
+        <div class="grid grid-cols-4 gap-8 mt-12 text-white text-center">
+            <div>
+                <h3 class="text-5xl font-bold counter" data-target="14">0+</h3>
+                <p class="text-xl">Years of Experience</p>
+            </div>
+            <div>
+                <h3 class="text-5xl font-bold counter" data-target="50">0+</h3>
+                <p class="text-xl">Projects Completed</p>
+            </div>
+            <div>
+                <h3 class="text-5xl font-bold counter" data-target="1500">0+</h3>
+                <p class="text-xl">Happy Clients</p>
+            </div>
+            <div>
+                <h3 class="text-5xl font-bold counter" data-target="14">0+</h3>
+                <p class="text-xl">Years of Experience</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -132,6 +157,49 @@
         backDelay: 2000 
     });
 </script>
+<script>
+  // animate the numbers
+  function animateCounter(counter) {
+    const target = +counter.getAttribute('data-target');
+    const increment = target / 80; 
+
+    let currentValue = 0;
+
+    const updateCounter = () => {
+      currentValue += increment;
+      if (currentValue < target) {
+        counter.innerText = `${Math.ceil(currentValue)}+`;
+        setTimeout(updateCounter, 10);
+      } else {
+        counter.innerText = `${target}+`;
+      }
+    };
+
+    updateCounter();
+  }
+
+
+  const counters = document.querySelectorAll('.counter');
+  const options = {
+    root: null, 
+    threshold: 0.5,
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target); 
+      }
+    });
+  }, options);
+
+  counters.forEach(counter => {
+    observer.observe(counter); 
+  });
+</script>
+
+
 
 
 @endsection

@@ -42,3 +42,17 @@ body {
 #navbar.scrolled .nav-link:hover {
     color: #fcad03; 
 }
+
+
+
+@media (min-width: 768px) {
+    .stats-section h2 {
+        font-size: 6rem; 
+    }
+}
+
+.counter {
+    transition: all 0.4s ease-in-out;
+  }
+
+  
