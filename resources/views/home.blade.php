@@ -166,6 +166,87 @@
     </div>
 </div>
 
+<!-- Skills Section -->
+<section id="skills" class="py-20 bg-dark text-white">
+    <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-20 text-center">
+            <span class="text-yellow-400">My</span>
+            <span class="border-b-4 border-yellow-400">Skills</span>
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+            <div class="skill-item">
+                <i class="fab fa-html5 text-6xl text-orange-500"></i>
+                <h4 class="mt-3">HTML</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-css3-alt text-6xl text-blue-500"></i>
+                <h4 class="mt-3">CSS</h4>
+            </div>
+            <div class="skill-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="Tailwind CSS Logo" class="h-11 mx-auto">
+                <h4 class="pt-4">Tailwind CSS</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-js-square text-6xl text-yellow-500"></i>
+                <h4 class="mt-3">JavaScript</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-php text-6xl text-blue-900"></i>
+                <h4 class="mt-3">PHP</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-laravel text-6xl text-red-600"></i>
+                <h4 class="mt-3">Laravel</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-database text-6xl text-green-600"></i>
+                <h4 class="mt-3">MongoDB</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-node text-6xl text-green-500"></i>
+                <h4 class="mt-3">Express JS</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-react text-6xl text-blue-400"></i>
+                <h4 class="mt-3">React JS</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-node-js text-6xl text-green-500"></i>
+                <h4 class="mt-3">Node JS</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-github text-6xl text-white"></i>
+                <h4 class="mt-3">GitHub</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-database text-6xl text-blue-600"></i>
+                <h4 class="mt-3">MySQL</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-server text-6xl text-red-500"></i>
+                <h4 class="mt-3">SQL Server</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-wordpress text-6xl text-blue-600"></i>
+                <h4 class="mt-3">WordPress</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-figma text-6xl text-pink-500"></i>
+                <h4 class="mt-3">Figma</h4>
+            </div>
+
+            <div class="skill-item">
+                <i class="fab fa-bootstrap text-6xl text-purple-500"></i>
+                <h4 class="mt-3">Bootstrap</h4>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
 
 <!-- Contact -->
 <section id="contact" class="py-20">
