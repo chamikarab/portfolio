@@ -40,7 +40,7 @@
     </div>
 </section>
 
-<div class="relative bg-cover bg-center w-full h-[400px]" style="background-image: url('/banner-1.jpg');">
+<div class="relative bg-cover bg-center w-full h-[400px]" style="background-image: url('/Banner-2.jpg');">
     <div class="absolute inset-0 bg-black bg-opacity-60"></div>
     <div class="relative z-10 flex flex-col justify-center items-center h-full text-white text-center">
         <h2 class="text-4xl font-bold mb-8">I Am Available For Freelancer</h2>
@@ -48,19 +48,19 @@
 
         <div class="grid grid-cols-4 gap-8 mt-12 text-white text-center">
             <div>
-                <h3 class="text-5xl font-bold counter" data-target="14">0+</h3>
+                <h3 class="text-5xl font-bold counter" data-target="8">0+</h3>
                 <p class="text-xl">Years of Experience</p>
             </div>
             <div>
-                <h3 class="text-5xl font-bold counter" data-target="50">0+</h3>
+                <h3 class="text-5xl font-bold counter" data-target="54">0+</h3>
                 <p class="text-xl">Projects Completed</p>
             </div>
             <div>
-                <h3 class="text-5xl font-bold counter" data-target="1500">0+</h3>
+                <h3 class="text-5xl font-bold counter" data-target="24">0+</h3>
                 <p class="text-xl">Happy Clients</p>
             </div>
             <div>
-                <h3 class="text-5xl font-bold counter" data-target="14">0+</h3>
+                <h3 class="text-5xl font-bold counter" data-target="3">0+</h3>
                 <p class="text-xl">Years of Experience</p>
             </div>
         </div>
@@ -104,18 +104,18 @@
             <span class="border-b-4 border-yellow-400">Projects</span>
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <img src="/product-image.jpg" alt="Project 1" class="w-full h-48 object-cover mb-4 rounded-lg">
+            <div class="p-6 rounded-lg shadow-lg">
+                <img src="/product-image.png" alt="Project 1" class="w-full h-48 object-cover mb-4 rounded-lg border border-red-600">
                 <h3 class="text-xl font-semibold mb-2">Project 1</h3>
                 <p>A brief description of the project.</p>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <img src="/product-image.jpg" alt="Project 2" class="w-full h-48 object-cover mb-4 rounded-lg">
+            <div class="p-6 rounded-lg shadow-lg">
+                <img src="/product-image.png" alt="Project 2" class="w-full h-48 object-cover mb-4 rounded-lg border border-red-600">
                 <h3 class="text-xl font-semibold mb-2">Project 2</h3>
                 <p>A brief description of the project.</p>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <img src="/product-image.jpg" alt="Project 2" class="w-full h-48 object-cover mb-4 rounded-lg">
+            <div class="p-6 rounded-lg shadow-lg">
+                <img src="/product-image.png" alt="Project 2" class="w-full h-48 object-cover mb-4 rounded-lg border border-red-600">
                 <h3 class="text-xl font-semibold mb-2">Project 3</h3>
                 <p>A brief description of the project.</p>
             </div>
@@ -123,11 +123,55 @@
     </div>
 </section>
 
+<!-- Experience Section -->
+<div class="container mx-auto py-12 px-4 text-white">
+    <h2 class="text-4xl font-bold text-center mb-12">Experience</h2>
+
+
+    <div class="relative">
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 bg-gray-600 h-full"></div>
+
+        <div class="mb-8 flex items-center justify-between w-full opacity-0 transition-opacity duration-1000 ease-out transform translate-y-4">
+            <div class="w-5/12 text-right">
+                <h3 class="text-2xl font-bold">Web Developer</h3>
+                <span class="text-yellow-500">Refectline(Pvt)Ltd | Full Time</span>
+                <p class="mt-2 text-gray-300">At Refectline, I specialize in developing WordPress websites and working with PHP for custom solutions. I also focus on frontend development, designing graphic posts, and editing videos. Over time, I have expanded my skills to include Laravel and the MERN stack, transitioning from WordPress to more advanced frameworks.</p>
+                <span class="text-gray-400">2020 - 2022</span>
+            </div>
+            <div class="relative w-10 h-10 bg-yellow-500 rounded-full z-10"></div>
+            <div class="w-5/12"></div>
+        </div>
+
+        <div class="mb-8 flex items-center justify-between w-full flex-row-reverse opacity-0 transition-opacity duration-1000 ease-out transform translate-y-4">
+            <div class="w-5/12 text-left">
+                <h3 class="text-2xl font-bold">System Maintainer & IT Operator</h3>
+                <span class="text-yellow-500">HQ Restaurant | Part Time</span>
+                <p class="mt-2 text-gray-300">As a system maintainer at HQ Restaurant, I managed technical operations, ensuring smooth functioning of IT systems. I resolved issues in the billing system and also contributed by creating digital content for promotional purposes.</p>
+                <span class="text-gray-400">2017 - 2020</span>
+            </div>
+            <div class="relative w-10 h-10 bg-yellow-500 rounded-full z-10"></div>
+            <div class="w-5/12"></div>
+        </div>
+
+        <div class="mb-8 flex items-center justify-between w-full opacity-0 transition-opacity duration-1000 ease-out transform translate-y-4">
+            <div class="w-5/12 text-right">
+                <h3 class="text-2xl font-bold">Web Developer & Graphic Designer</h3>
+                <span class="text-yellow-500">Recode99(Pvt)Ltd | Part Time</span>
+                <p class="mt-2 text-gray-300">I initially joined Recode99 for graphic design, video editing, and creating social media posts for various clients. Eventually, I extended my role to include web development, where I built and maintained WordPress websites.</p>
+                <span class="text-gray-400">2017 - 2019</span>
+            </div>
+            <div class="relative w-10 h-10 bg-yellow-500 rounded-full z-10"></div>
+            <div class="w-5/12"></div>
+        </div>
+    </div>
+</div>
+
+
 <!-- Contact -->
-<section id="contact" class="py-20 bg-gray-100">
+<section id="contact" class="py-20">
     <div class="container mx-auto">
         <h2 class="text-3xl font-bold mb-6 text-center">Get in Touch </h2>
-        <form action="{{ route('contact.submit') }}" method="POST" class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <form action="{{ route('contact.submit') }}" method="POST" class="max-w-lg mx-auto bg-black border border-white p-8 rounded-lg shadow-lg">
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-sm font-semibold mb-2">Name</label>
@@ -200,6 +244,28 @@
 </script>
 
 
+<script>
+    // animate the experience section
+  document.addEventListener("DOMContentLoaded", function() {
+    const items = document.querySelectorAll('.mb-8');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('opacity-100', 'translate-y-0');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1 
+    });
+
+    items.forEach(item => {
+        observer.observe(item);
+    });
+});
+
+</script>
 
 
 @endsection
