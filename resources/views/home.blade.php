@@ -123,6 +123,64 @@
     </div>
 </section>
 
+
+<!-- Education Section -->
+<section id="education" class="py-20 bg-dark text-white">
+    <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-20 text-center">
+            <span class="text-yellow-400">My</span>
+            <span class="border-b-4 border-yellow-400">Education</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="education-item bg-gray-900 p-6 rounded-lg">
+                <div class="flex items-center">
+                    <i class="fas fa-certificate text-6xl text-yellow-400"></i>
+                    <div class="ml-6 text-left">
+                        <h4 class="text-xl font-bold">Passed G.C.E Odinary Level</h4>
+                        <p class="text-gray-400">Kingswood College, Kandy</p>
+                        <p class="text-sm text-gray-500">2017</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="education-item bg-gray-900 p-6 rounded-lg">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap text-6xl text-yellow-400"></i>
+                    <div class="ml-6 text-left">
+                        <h4 class="text-xl font-bold">Diploma in PC Hardware Engineering & Network Administration</h4>
+                        <p class="text-gray-400">Esoft Metro Campus, Kandy</p>
+                        <p class="text-sm text-gray-500">2018</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="education-item bg-gray-900 p-6 rounded-lg">
+                <div class="flex items-center">
+                    <i class="fas fa-certificate text-6xl text-yellow-400"></i>
+                    <div class="ml-6 text-left">
+                        <h4 class="text-xl font-bold">Passed G.C.E Advanced Level</h4>
+                        <p class="text-gray-400">Kingswood College, Kandy</p>
+                        <p class="text-sm text-gray-500">2020</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="education-item bg-gray-900 p-6 rounded-lg">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap text-6xl text-yellow-400"></i>
+                    <div class="ml-6 text-left">
+                        <h4 class="text-xl font-bold">Undergraduate in Information Technology</h4>
+                        <p class="text-gray-400">Sri Lankan Institute of Information Technology(SLIIT)</p>
+                        <p class="text-sm text-gray-500">2022 - Present</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
 <!-- Experience Section -->
 <div class="container mx-auto py-12 px-4 text-white">
     <h2 class="text-4xl font-bold text-center mb-12">Experience</h2>
