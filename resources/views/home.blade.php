@@ -5,12 +5,12 @@
 @section('content')
 
 <!-- Hero -->
-<section id="hero" class="bg-cover bg-center h-screen" style="background-image: url('/hero-image.jpg');">
+<section id="hero" class="bg-cover bg-center h-screen" style="background-image: url('{{ asset('hero-image.jpg') }}');">
     <div class="container mx-auto flex items-center justify-start h-full">
         <div class="text-left">
             <h1 class="text-white text-3xl mb-4">HELLO, I'M</h1>
-            <h2 class="text-white text-5xl font-bold mb-4">CHAMIKARA BANDARA</h2>
-            <h3 class="text-white text-4xl font-bold mb-8 ">I'M <span class="typed-text" id="typed-text"></span></h3>
+            <h2 class="text-white text-2xl sm:text-5xl font-bold mb-4">CHAMIKARA BANDARA</h2>
+            <h3 class="text-white text-xl sm:text-4xl font-bold mb-8">I'M <span class="typed-text" id="typed-text"></span></h3>
             <a href="#contact" class="border border-red-600 text-red-700 hover:bg-red-700 hover:text-white py-3 px-6 rounded-lg transition-colors duration-300 font-bold">Contact Me</a>
 
         </div>
@@ -29,9 +29,6 @@
                 <img src="/chamikara_bandara.png" alt="Chamikara Bandara" class="w-3/5 h-auto object-cover rounded-lg mb-4">
             </div>
             <div class="pr-20">
-                <p class="mb-4">I'm a full-stack web developer with over 5 years of experience in building websites and web applications. I specialize in modern technologies like Laravel, Vue.js, and Tailwind CSS.</p>
-                <p class="mb-4">I'm passionate about creating beautiful and user-friendly interfaces that provide a seamless user experience. I'm always eager to learn new technologies and improve my skills.</p>
-                <p class="mb-4">I'm currently available for freelance work. If you have a project in mind or need a website, feel free to get in touch with me.</p>
                 <p class="mb-4">I'm a full-stack web developer with over 5 years of experience in building websites and web applications. I specialize in modern technologies like Laravel, Vue.js, and Tailwind CSS.</p>
                 <p class="mb-4">I'm passionate about creating beautiful and user-friendly interfaces that provide a seamless user experience. I'm always eager to learn new technologies and improve my skills.</p>
                 <p class="mb-4">I'm currently available for freelance work. If you have a project in mind or need a website, feel free to get in touch with me.</p>
@@ -60,8 +57,8 @@
                 <p class="text-xl">Happy Clients</p>
             </div>
             <div>
-                <h3 class="text-5xl font-bold counter" data-target="3">0+</h3>
-                <p class="text-xl">Years of Experience</p>
+                <h3 class="text-5xl font-bold counter" data-target="14">0+</h3>
+                <p class="text-xl">Satisfied Clients</p>
             </div>
         </div>
     </div>
@@ -233,99 +230,98 @@
         </h2>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="50">
                 <i class="fab fa-html5 text-6xl text-orange-500"></i>
                 <h4 class="mt-3">HTML</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
                 <i class="fab fa-css3-alt text-6xl text-blue-500"></i>
                 <h4 class="mt-3">CSS</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="150">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="Tailwind CSS Logo" class="h-11 mx-auto">
                 <h4 class="pt-4">Tailwind CSS</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
                 <i class="fab fa-js-square text-6xl text-yellow-500"></i>
                 <h4 class="mt-3">JavaScript</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="250">
                 <i class="fab fa-php text-6xl text-blue-900"></i>
                 <h4 class="mt-3">PHP</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="300">
                 <i class="fab fa-laravel text-6xl text-red-600"></i>
                 <h4 class="mt-3">Laravel</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="350">
                 <i class="fas fa-database text-6xl text-green-600"></i>
                 <h4 class="mt-3">MongoDB</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="400">
                 <i class="fab fa-node text-6xl text-green-500"></i>
                 <h4 class="mt-3">Express JS</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="450">
                 <i class="fab fa-react text-6xl text-blue-400"></i>
                 <h4 class="mt-3">React JS</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="500">
                 <i class="fab fa-node-js text-6xl text-green-500"></i>
                 <h4 class="mt-3">Node JS</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="550">
                 <i class="fab fa-github text-6xl text-white"></i>
                 <h4 class="mt-3">GitHub</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="600">
                 <i class="fas fa-database text-6xl text-blue-600"></i>
                 <h4 class="mt-3">MySQL</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="650">
                 <i class="fas fa-server text-6xl text-red-500"></i>
                 <h4 class="mt-3">SQL Server</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="700">
                 <i class="fab fa-wordpress text-6xl text-blue-600"></i>
                 <h4 class="mt-3">WordPress</h4>
             </div>
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="750">
                 <i class="fab fa-figma text-6xl text-pink-500"></i>
                 <h4 class="mt-3">Figma</h4>
             </div>
-
-            <div class="skill-item">
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="800">
                 <i class="fab fa-bootstrap text-6xl text-purple-500"></i>
                 <h4 class="mt-3">Bootstrap</h4>
             </div>
-            
         </div>
     </div>
 </section>
 
 
-
-
 <!-- Contact -->
 <section id="contact" class="py-20">
     <div class="container mx-auto">
-        <h2 class="text-3xl font-bold mb-6 text-center">Get in Touch </h2>
-        <form action="{{ route('contact.submit') }}" method="POST" class="max-w-lg mx-auto bg-black border border-white p-8 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-bold mb-20 text-center">
+            <span class="text-yellow-400">Get In</span>
+            <span class="border-b-4 border-yellow-400">Touch</span>
+        </h2>
+        <form action="{{ route('contact.submit') }}" method="POST" class="max-w-lg mx-auto">
             @csrf
             <div class="mb-4">
-                <label for="name" class="block text-sm font-semibold mb-2">Name</label>
-                <input type="text" name="name" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                <label for="name" class="block text-white">Your Name</label>
+                <input type="text" id="name" name="name" class="w-full px-4 py-2 rounded-lg border focus:outline-none" required>
             </div>
             <div class="mb-4">
-                <label for="email" class="block text-sm font-semibold mb-2">Email</label>
-                <input type="email" name="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                <label for="email" class="block text-white">Your Email</label>
+                <input type="email" id="email" name="email" class="w-full px-4 py-2 rounded-lg border focus:outline-none" required>
             </div>
             <div class="mb-4">
-                <label for="message" class="block text-sm font-semibold mb-2">Message</label>
-                <textarea name="message" id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required></textarea>
+                <label for="message" class="block text-white">Message</label>
+                <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 rounded-lg border focus:outline-none" required></textarea>
             </div>
             <div class="text-center">
-                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Send Message</button>
+                <button type="submit" class="bg-yellow-400 text-black px-6 py-3 rounded-lg">Send Message</button>
             </div>
         </form>
     </div>
