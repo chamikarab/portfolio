@@ -9,15 +9,25 @@ class ProjectController extends Controller
 {
     public function index()
     {
+
+    }
+
+    public function allProjects()
+    {
         $projects = Project::all();
-        return view('admin.projects', compact('projects'));
+        return view('admin.all-projects', compact('projects'));
+    }
+
+    public function create()
+    {
+        return view('admin.projects');
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'required',
+            'image' => 'required|image',
             'category' => 'required',
             'description' => 'required',
         ]);
@@ -31,7 +41,6 @@ class ProjectController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->back()->with('success', 'Project added successfully.');
+        return redirect()->route('admin.all-projects')->with('success', 'Project added successfully.');
     }
 }
-
