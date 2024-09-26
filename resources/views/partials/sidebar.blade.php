@@ -18,8 +18,8 @@
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="ti-pencil-alt"></i><span> Testimonials </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
-                        <li><a href="{{ url('/admin/testimonials') }}">Add Testimonials</a></li>
-                        <li><a href="{{ url('/admin/all-testimonials') }}">All Testimonials</a></li>
+                        <li><a href="{{ route('admin.testimonials.create') }}">Add Testimonials</a></li>
+                        <li><a href="{{ route('admin.all-testimonials') }}">All Testimonials</a></li>
                     </ul>
                 </li>
             </ul>
