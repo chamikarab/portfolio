@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    public function index()
-    {
-
-    }
-
     public function allProjects()
     {
         $projects = Project::all();
@@ -42,5 +37,19 @@ class ProjectController extends Controller
         ]);
 
         return redirect()->route('admin.all-projects')->with('success', 'Project added successfully.');
+    }
+
+
+    public function destroy($id)
+    {
+        $project = Project::findOrFail($id);
+
+        if ($project->image) {
+            \Storage::delete('public/' . $project->image);
+        }
+
+        $project->delete();
+
+        return redirect()->route('admin.all-projects')->with('success', 'Project deleted successfully.');
     }
 }
