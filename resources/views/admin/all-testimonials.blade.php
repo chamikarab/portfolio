@@ -29,7 +29,14 @@
                             <td>{{ $testimonial->testimonial }}</td>
                             <td class="actions">
                                 <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+
+                                <form action="{{ route('admin.testimonials.destroy', $testimonial->id) }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="on-default remove-row" onclick="return confirm('Are you sure you want to delete this project?')">
+                                        <i class="fa fa-trash-o"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
