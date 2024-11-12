@@ -93,33 +93,50 @@
     </div>
 </section>
 
-<!-- Projects -->
+
+
 <section id="projects" class="py-20">
+<div class="home-page-container bg-dark text-white py-20 px-10">
     <div class="container mx-auto">
-    <h2 class="text-3xl font-bold mb-20 text-center">
+     <h2 class="text-3xl font-bold mb-20 text-center">
             <span class="text-yellow-400">My</span>
             <span class="border-b-4 border-yellow-400">Projects</span>
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="p-6 rounded-lg shadow-lg">
-                <img src="/product-image.png" alt="Project 1" class="w-full h-48 object-cover mb-4 rounded-lg border border-red-600">
-                <h3 class="text-xl font-semibold mb-2">Project 1</h3>
-                <p>A brief description of the project.</p>
-            </div>
-            <div class="p-6 rounded-lg shadow-lg">
-                <img src="/product-image.png" alt="Project 2" class="w-full h-48 object-cover mb-4 rounded-lg border border-red-600">
-                <h3 class="text-xl font-semibold mb-2">Project 2</h3>
-                <p>A brief description of the project.</p>
-            </div>
-            <div class="p-6 rounded-lg shadow-lg">
-                <img src="/product-image.png" alt="Project 2" class="w-full h-48 object-cover mb-4 rounded-lg border border-red-600">
-                <h3 class="text-xl font-semibold mb-2">Project 3</h3>
-                <p>A brief description of the project.</p>
-            </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            @forelse ($projects as $project)
+                <div class="p-6 rounded-lg shadow-lg transition duration-300 ease-in-out project-card-2">
+                    <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->name }}" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h2 class="text-1xl font-semibold text-yellow-400 mb-2">{{ $project->name }}</h2>
+                    <p class="text-gray-400 mb-4">{{ Str::limit($project->description, 120) }}</p>
+                    <a href="{{ route('projects.show', $project->id) }}" class="inline-block text-yellow-400 hover:text-yellow-300 font-low">
+                        View Project &rarr;
+                    </a>
+                </div>
+            @empty
+                <p class="text-center col-span-3 text-gray-500">No recent projects available to display at the moment.</p>
+            @endforelse
         </div>
-    </div>
-</section>
 
+        <!-- Static example projects if $projects collection is empty -->
+        @if ($projects->isEmpty())
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
+                @for ($i = 1; $i <= 3; $i++)
+                    <div class="project-card bg-gray-800 hover:bg-gray-700 p-8 rounded-lg shadow-lg transition duration-300 ease-in-out">
+                        <div class="w-full h-48 bg-gray-700 rounded-lg mb-4"></div>
+                        <h2 class="text-2xl font-semibold text-yellow-400 mb-2">Project Title {{ $i }}</h2>
+                        <p class="text-gray-400 mb-4">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit enim debitis minus.
+                        </p>
+                        <a href="#" class="inline-block text-yellow-400 hover:text-yellow-300 font-medium">
+                            View Project &rarr;
+                        </a>
+                    </div>
+                @endfor
+            </div>
+        @endif
+    </div>
+</div>
+</section>
 
 <!-- Education Section -->
 <section id="education" class="py-20 bg-dark text-white">
