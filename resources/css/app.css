@@ -130,10 +130,18 @@ body {
 
 .project-card {
     background-color: #333;
-    padding: 1.5rem;
-    border-radius: 0.75rem;
+    padding: 1.3rem;
+    border-radius: 0.55rem;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
     transition: transform 0.3s ease;
+}
+
+.project-card-2 {
+    transition: transform 0.3s ease;
+}
+
+.project-card-2:hover {
+    transform: translateY(-10px);
 }
 
 .project-card:hover {
@@ -141,11 +149,11 @@ body {
 }
 
 .project-card h2 {
-    color: #FFD700;
+    color: #dbdbdb;
 }
 
 .project-card a {
-    color: #FFD700;
+    color: #b0b0b0;
     font-weight: bold;
 }
 
