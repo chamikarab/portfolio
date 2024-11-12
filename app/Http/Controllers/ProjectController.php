@@ -13,6 +13,24 @@ class ProjectController extends Controller
         return view('admin.all-projects', compact('projects'));
     }
 
+    public function index()
+    {
+        $projects = Project::all(); // Fetch all projects from the database
+        return view('projects', compact('projects')); // Pass the $projects variable to the view
+    }
+    
+    public function show($id)
+    {
+        $project = Project::findOrFail($id);
+        return view('projects.show', compact('project')); // A view to show individual project details
+    }
+
+    public function homeprojects()
+    {
+        $projects = Project::latest()->limit(3)->get();
+        return view('home', compact('projects'));
+    }
+
     public function create()
     {
         return view('admin.projects');
@@ -38,7 +56,6 @@ class ProjectController extends Controller
 
         return redirect()->route('admin.all-projects')->with('success', 'Project added successfully.');
     }
-
 
     public function destroy($id)
     {
