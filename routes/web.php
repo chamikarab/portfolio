@@ -15,10 +15,6 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/projects', function () {
-    return view('projects');
-})->name('projects');
-
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
@@ -33,11 +29,14 @@ Route::get('/admin/projects/create', [ProjectController::class, 'create'])->name
 Route::post('/admin/projects', [ProjectController::class, 'store'])->name('admin.projects.store');
 Route::get('/admin/all-projects', [ProjectController::class, 'allProjects'])->name('admin.all-projects');
 Route::delete('/admin/projects/{id}', [ProjectController::class, 'destroy'])->name('admin.projects.destroy');
+Route::get('/', [ProjectController::class, 'homeprojects'])->name('home');
 
+// Public project listing
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('projects.show');
 
 // Testimonial routes
 Route::get('/admin/testimonials/create', [TestimonialController::class, 'create'])->name('admin.testimonials.create');
 Route::post('/admin/testimonials', [TestimonialController::class, 'store'])->name('admin.testimonials.store');
-Route::get('/admin/all-testimonials', [TestimonialController::class, 'alltestimonials'])->name('admin.all-testimonials');
+Route::get('/admin/all-testimonials', [TestimonialController::class, 'allTestimonials'])->name('admin.all-testimonials');
 Route::delete('/admin/testimonials/{id}', [TestimonialController::class, 'destroy'])->name('admin.testimonials.destroy');
-
