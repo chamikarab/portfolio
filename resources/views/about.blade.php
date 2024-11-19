@@ -2,6 +2,10 @@
 
 @section('content')
 <div class="about-me-container bg-black text-white py-16 px-8">
+<h2 class="text-3xl font-bold mt-10 text-center">
+            <span class="border-b-4 border-yellow-400">About</span>
+            <span class="text-yellow-400">Me</span>
+        </h2>
     <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between">
 
         <div class="lg:w-2/3 mt-20">
