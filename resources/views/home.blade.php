@@ -37,7 +37,7 @@
     </div>
 </section>
 
-<div class="relative bg-cover bg-center w-full h-[400px]" style="background-image: url('/Banner-2.jpg');">
+<div class="relative bg-cover bg-center w-full h-[400px]" style="background-image: url('/video.mp4');">
     <div class="absolute inset-0 bg-black bg-opacity-60"></div>
     <div class="relative z-10 flex flex-col justify-center items-center h-full text-white text-center">
         <h2 class="text-4xl font-bold mb-8">I Am Available For Freelancer</h2>
@@ -69,22 +69,22 @@
 <!-- Services -->
 <section id="services" class="py-20">
     <div class="container mx-auto">
-    <h2 class="text-3xl font-bold mb-20 text-center">
+        <h2 class="text-3xl font-bold mb-20 text-center">
             <span class="text-yellow-400">My</span>
             <span class="border-b-4 border-yellow-400">Services</span>
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="border border-white hover:border-yellow-400 p-6 rounded-lg shadow-lg text-center transition-all duration-300 ease-in-out">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 service-hover">
+            <div class="border p-6 rounded-lg shadow-lg text-center">
                 <i class="fas fa-code text-4xl text-blue-500 mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">Web Development</h3>
                 <p>Building responsive and dynamic websites with modern technologies.</p>
             </div>
-            <div class="border border-white hover:border-yellow-400 p-6 rounded-lg shadow-lg text-center transition-all duration-300 ease-in-out">
+            <div class="border p-6 rounded-lg shadow-lg text-center">
                 <i class="fas fa-paint-brush text-4xl text-blue-500 mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">UI/UX Design</h3>
                 <p>Designing user-friendly interfaces and experiences.</p>
             </div>
-            <div class="border border-white hover:border-yellow-400 p-6 rounded-lg shadow-lg text-center transition-all duration-300 ease-in-out">
+            <div class="border p-6 rounded-lg shadow-lg text-center">
                 <i class="fas fa-server text-4xl text-blue-500 mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">Backend Development</h3>
                 <p>Creating scalable backend systems with robust APIs.</p>
@@ -94,7 +94,7 @@
 </section>
 
 
-
+<!-- Projects -->
 <section id="projects" class="py-20">
 <div class="home-page-container bg-dark text-white py-20 px-10">
     <div class="container mx-auto">
@@ -238,13 +238,21 @@
     </div>
 </div>
 
-<!-- Skills Section -->
-<section id="skills" class="py-20 bg-dark text-white">
-    <div class="container mx-auto text-center">
-        <h2 class="text-3xl font-bold mb-20 text-center">
-            <span class="text-yellow-400">My</span>
-            <span class="border-b-4 border-yellow-400">Skills</span>
-        </h2>
+<!--Skills Section-->
+
+<div class="relative w-full h-screen overflow-hidden">
+    <video id="bg-video" autoplay muted loop>
+        <source src="{{ asset('video5.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <section id="skills" class="py-20 text-white relative z-10">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-20 text-center">
+                <span class="text-yellow-400">My</span>
+                <span class="border-b-4 border-yellow-400">Skills</span>
+            </h2>
+            <!-- Skills Content -->
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
             <div class="skill-item" data-aos="fade-up" data-aos-delay="50">
@@ -311,38 +319,11 @@
                 <i class="fab fa-bootstrap text-6xl text-purple-500"></i>
                 <h4 class="mt-3">Bootstrap</h4>
             </div>
-        </div>
-    </div>
-</section>
+            </div>
+    </section>
+</div>
 
 
-<!-- Contact -->
-<section id="contact" class="py-20">
-    <div class="container mx-auto">
-        <h2 class="text-3xl font-bold mb-20 text-center">
-            <span class="text-yellow-400">Get In</span>
-            <span class="border-b-4 border-yellow-400">Touch</span>
-        </h2>
-        <form action="{{ route('contact.submit') }}" method="POST" class="max-w-lg mx-auto">
-            @csrf
-            <div class="mb-4">
-                <label for="name" class="block text-white">Your Name</label>
-                <input type="text" id="name" name="name" class="w-full px-4 py-2 rounded-lg border focus:outline-none" required>
-            </div>
-            <div class="mb-4">
-                <label for="email" class="block text-white">Your Email</label>
-                <input type="email" id="email" name="email" class="w-full px-4 py-2 rounded-lg border focus:outline-none" required>
-            </div>
-            <div class="mb-4">
-                <label for="message" class="block text-white">Message</label>
-                <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 rounded-lg border focus:outline-none" required></textarea>
-            </div>
-            <div class="text-center">
-                <button type="submit" class="bg-yellow-400 text-black px-6 py-3 rounded-lg">Send Message</button>
-            </div>
-        </form>
-    </div>
-</section>
 
 <script>
     var typed = new Typed('#typed-text', {
@@ -417,6 +398,16 @@
     });
 });
 
+</script>
+
+
+
+<script>
+    // animate the skills section
+    document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("bg-video");
+        video.playbackRate = 0.7;
+    });
 </script>
 
 
