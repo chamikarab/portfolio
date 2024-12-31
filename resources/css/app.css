@@ -55,6 +55,22 @@ body {
     transition: all 0.4s ease-in-out;
   }
 
+/* services section */
+
+/* services section */
+.service-hover > div {
+    border: 3px solid white; 
+    border-radius: 20px; 
+    transition: all 0.6s ease-in-out;
+}
+
+.service-hover > div:hover {
+    border-color: #fcad03; 
+    border-radius: 0px;
+    transition: all 1s ease-in-out;
+    transform: scale(1.05); /* Scales up by 0.5 */
+}
+
 /* Experience Section */
 
 .fade-in {
@@ -77,6 +93,24 @@ body {
 }
 
 /* Skills Section */
+#bg-video {
+    opacity: 0.3; 
+    pointer-events: none; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    z-index: -1; 
+}
+
+/* Section Content */
+#skills {
+    position: relative;
+    z-index: 10;
+}
+
 .skill-item {
     text-align: center;
 }
@@ -136,27 +170,70 @@ body {
     transition: transform 0.3s ease;
 }
 
+.project-card-2 img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
 .project-card-2 {
     transition: transform 0.3s ease;
 }
 
 .project-card-2:hover {
-    transform: translateY(-10px);
+    transition: all 1s ease-in-out;
+    transform: scale(1.05); /* Scales up by 0.5 */
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
+    transition: all 1s ease-in-out;
+    transform: scale(1.05); /* Scales up by 0.5 */
 }
 
 .project-card h2 {
     color: #dbdbdb;
 }
 
-.project-card a {
+.project-card-2 a {
     color: #b0b0b0;
     font-weight: bold;
 }
 
-.project-card a:hover {
+.project-card-2 a:hover {
     color: #FFC107;
+}
+
+/* Contact Section */
+#contact {
+    background-color: #000; 
+}
+
+.contact-item {
+    background-color: #000; 
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.contact-item a {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: #fcad03;
+}
+
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+.contact-item a:hover {
+    transform: scale(1.1);
+}
+
+.contact-item i {
+    color: #fcad03; 
 }
