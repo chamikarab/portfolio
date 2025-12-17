@@ -7,9 +7,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TestimonialController;
 
 // Home and About routes
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [ProjectController::class, 'homeprojects'])->name('home');
 
 Route::get('/about', function () {
     return view('about');
@@ -29,7 +27,6 @@ Route::get('/admin/projects/create', [ProjectController::class, 'create'])->name
 Route::post('/admin/projects', [ProjectController::class, 'store'])->name('admin.projects.store');
 Route::get('/admin/all-projects', [ProjectController::class, 'allProjects'])->name('admin.all-projects');
 Route::delete('/admin/projects/{id}', [ProjectController::class, 'destroy'])->name('admin.projects.destroy');
-Route::get('/', [ProjectController::class, 'homeprojects'])->name('home');
 
 // Public project listing
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
