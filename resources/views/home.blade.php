@@ -96,63 +96,102 @@
 <!-- About Section -->
 <section id="about" class="py-14 sm:py-18 md:py-22 lg:py-28 relative">
     <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-        <h2 class="section-title fade-in-up mb-8 sm:mb-10 md:mb-14">
-            <span>About</span> <span>Me</span>
-        </h2>
-        <div class="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-8 md:gap-10 lg:gap-14 items-center">
-            <div class="fade-in-up order-2 lg:order-1">
-                <div class="glass-dark rounded-3xl border border-white/10 p-6 sm:p-8 md:p-10 lg:p-12 shadow-[0_18px_60px_rgba(15,23,42,0.85)]">
-                    <p class="text-slate-200 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-5">
-                        I’m a <span class="gradient-text font-semibold">full‑stack developer</span> who moves comfortably between design systems, frontend craft, and backend architecture.
-                        I care about interfaces that feel <span class="font-semibold">intentional, accessible, and fast</span>.
-                    </p>
-                    <p class="text-slate-300/90 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-5">
-                        Over the last years I’ve worked across agency and product teams, shipping websites, dashboards, and internal tools using
-                        Laravel, React, Node, and modern CSS. I enjoy taking fuzzy ideas and turning them into clear user journeys.
-                    </p>
-                    <p class="text-slate-300/90 text-sm sm:text-base md:text-lg leading-relaxed">
-                        Right now I’m open to <span class="font-semibold text-slate-50">freelance collaborations, remote roles, and product partnerships</span>.
-                        If you’re exploring a new product or redesign, I’d love to hear what you’re building.
-                    </p>
-                    <div class="mt-6 flex flex-wrap gap-3 text-xs sm:text-sm text-slate-300/90">
-                        <span class="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-3 py-1.5">
-                            <i class="fa-solid fa-shield-heart text-emerald-300 text-xs"></i>
-                            Human‑centric UX
-                        </span>
-                        <span class="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/5 px-3 py-1.5">
-                            <i class="fa-solid fa-bolt text-sky-300 text-xs"></i>
-                            Performance‑first builds
-                        </span>
-                        <span class="inline-flex items-center gap-2 rounded-full border border-fuchsia-400/30 bg-fuchsia-400/5 px-3 py-1.5">
-                            <i class="fa-solid fa-layer-group text-fuchsia-300 text-xs"></i>
-                            Design systems & component libraries
-                        </span>
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-8 sm:mb-10 md:mb-14 fade-in-up">
+                <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
+                    <span>About</span> <span>Me</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base text-slate-300">
+                    A developer who cares as much about the **feeling** of an interface as the architecture behind it —
+                    blending design, code, and systems thinking.
+                </p>
+            </div>
+
+            <div class="grid gap-6 md:gap-7 lg:gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.9fr)] items-start">
+                <!-- Story -->
+                <div class="fade-in-up">
+                    <div class="glass-dark rounded-3xl border border-white/10 p-6 sm:p-8 md:p-9 shadow-[0_18px_60px_rgba(15,23,42,0.85)]">
+                        <p class="text-slate-200 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-5">
+                            I’m <span class="gradient-text font-semibold">Chamikara Bandara</span>, a full‑stack developer with a soft spot
+                            for clean UI and calm experiences. I enjoy turning messy ideas into products that feel obvious to use.
+                        </p>
+                        <p class="text-slate-300/90 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-5">
+                            I’ve worked with agencies and product teams on websites, dashboards, and internal tools using
+                            Laravel, React, Node, and modern CSS. My favorite projects live at the intersection of brand,
+                            interaction, and performance.
+                        </p>
+                        <p class="text-slate-300/90 text-sm sm:text-base md:text-lg leading-relaxed">
+                            Outside of client work, I’m usually refining components, exploring new design patterns, or learning
+                            how other teams ship great products. I’m currently open to **remote roles, freelance projects, and long‑term
+                            collaborations**.
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-3 text-[11px] sm:text-xs text-slate-300/90">
+                            <span class="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-3 py-1.5">
+                                <i class="fa-solid fa-heart text-emerald-300 text-xs"></i>
+                                Empathy‑first collaboration
+                            </span>
+                            <span class="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/5 px-3 py-1.5">
+                                <i class="fa-solid fa-gauge-high text-sky-300 text-xs"></i>
+                                Performance & accessibility
+                            </span>
+                            <span class="inline-flex items-center gap-2 rounded-full border border-fuchsia-400/30 bg-fuchsia-400/5 px-3 py-1.5">
+                                <i class="fa-solid fa-diagram-project text-fuchsia-300 text-xs"></i>
+                                Systems & design thinking
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="fade-in-up order-1 lg:order-2">
-                <div class="relative max-w-md mx-auto lg:mx-0">
-                    <div class="absolute -inset-6 rounded-[2.5rem] bg-[conic-gradient(from_220deg_at_50%_50%,rgba(129,140,248,0.35),rgba(236,72,153,0.0),rgba(56,189,248,0.4),rgba(236,72,153,0.55),rgba(129,140,248,0.35))] opacity-70 blur-3xl"></div>
-                    <div class="relative rounded-[2rem] border border-white/10 bg-slate-950/60 p-5">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="col-span-2 rounded-xl bg-slate-900/80 p-4 border border-white/5">
-                                <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-slate-400 mb-1.5">Profile</p>
-                                <p class="text-sm font-semibold text-slate-100">Full‑Stack Developer & Visual Storyteller</p>
-                                <p class="mt-2 text-xs text-slate-400">
-                                    Based in Sri Lanka, collaborating remotely with teams worldwide.
+
+                <!-- Snapshot -->
+                <div class="fade-in-up">
+                    <div class="relative max-w-md mx-auto lg:mx-0">
+                        <div class="absolute -inset-6 rounded-[2.5rem] bg-[conic-gradient(from_220deg_at_50%_50%,rgba(129,140,248,0.35),rgba(236,72,153,0.0),rgba(56,189,248,0.4),rgba(236,72,153,0.55),rgba(129,140,248,0.35))] opacity-70 blur-3xl"></div>
+                        <div class="relative rounded-[2rem] border border-white/10 bg-slate-950/70 p-5 sm:p-6">
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="h-14 w-14 rounded-2xl overflow-hidden border border-white/10">
+                                    <img
+                                        src="{{ asset('chamikara_bandara.PNG') }}"
+                                        alt="Chamikara Bandara"
+                                        class="h-full w-full object-cover"
+                                    >
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold text-slate-100">Chamikara Bandara</p>
+                                    <p class="text-[11px] text-slate-400">Full‑Stack Developer · Sri Lanka</p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-4">
+                                <div class="rounded-xl bg-slate-900/80 p-3 sm:p-4 border border-white/5">
+                                    <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-slate-400 mb-1.5">Focus</p>
+                                    <p class="text-xs text-slate-200">
+                                        Design‑driven web apps, portfolios, dashboards, and product sites.
+                                    </p>
+                                </div>
+                                <div class="rounded-xl bg-slate-900/80 p-3 sm:p-4 border border-white/5">
+                                    <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-slate-400 mb-1.5">Working with</p>
+                                    <p class="text-xs text-slate-200">
+                                        Laravel, React, Tailwind, Node.js, WordPress.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="rounded-xl bg-slate-900/80 p-3 sm:p-4 border border-white/5 mb-4">
+                                <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-slate-400 mb-1.5">Currently</p>
+                                <p class="text-xs text-slate-200">
+                                    Undergraduate in Information Technology (SLIIT) and working on client projects and personal experiments.
                                 </p>
                             </div>
-                            <div class="rounded-xl bg-slate-900/80 p-4 border border-white/5 flex flex-col justify-between">
-                                <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-slate-400 mb-1.5">Focus</p>
-                                <p class="text-xs text-slate-200">
-                                    Design‑driven engineering for digital products, marketing sites, and dashboards.
-                                </p>
-                            </div>
-                            <div class="rounded-xl bg-slate-900/80 p-4 border border-white/5 flex flex-col justify-between">
-                                <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-slate-400 mb-1.5">Stack</p>
-                                <p class="text-xs text-slate-200">
-                                    Laravel, React, Tailwind, REST APIs, SQL / NoSQL, WordPress.
-                                </p>
+
+                            <div class="flex flex-wrap gap-2 text-[11px] text-slate-300">
+                                <span class="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-2.5 py-1 border border-white/10">
+                                    <i class="fa-solid fa-earth-asia text-slate-400 text-[10px]"></i>
+                                    Remote‑friendly
+                                </span>
+                                <span class="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-2.5 py-1 border border-white/10">
+                                    <i class="fa-solid fa-people-group text-slate-400 text-[10px]"></i>
+                                    Enjoys small, focused teams
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -162,41 +201,91 @@
     </div>
 </section>
 
-<!-- Stats / Social proof Section -->
+<!-- Social Proof Section -->
 <section class="stats-section relative overflow-hidden py-14 sm:py-18 md:py-22 lg:py-26">
-    <div class="absolute inset-0 bg-gradient-to-r from-indigo-950/60 via-slate-950/40 to-sky-950/60"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"></div>
     <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
-        <div class="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-10 lg:gap-16 items-center">
-            <div class="space-y-4 sm:space-y-6 fade-in-up">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-50">
-                    I join teams as a <span class="gradient-text">long‑term product partner</span>, not just a ticket taker.
-                </h2>
-                <p class="max-w-xl text-sm sm:text-base md:text-lg text-slate-200/90">
-                    From marketing sites to internal tools, I help teams ship consistently — clarifying scope, reducing complexity,
-                    and keeping the experience cohesive across devices.
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-8 sm:mb-10 md:mb-12 fade-in-up">
+                <p class="inline-flex items-center gap-2 rounded-full bg-slate-900/70 border border-slate-600/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.24em] text-slate-300 mb-3">
+                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(16,185,129,0.4)]"></span>
+                    Proof of work
                 </p>
-                <a href="#contact" class="btn-primary inline-flex items-center gap-2 text-sm sm:text-base">
-                    Let’s talk about your roadmap
-                    <i class="fa-solid fa-calendar-days text-xs"></i>
-                </a>
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-semibold tracking-tight text-slate-50 mb-3">
+                    Not just portfolios<br><span class="gradient-text text-xl sm:text-2xl md:text-5xl align-baseline">shipped, lived‑in products</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-slate-200/90">
+                    I’ve been helping teams launch, maintain, and iterate on real products for years — from
+                    restaurant systems to agency sites and digital brands.
+                </p>
             </div>
 
-            <div class="grid grid-cols-2 gap-4 sm:gap-6 md:gap-7 max-w-lg lg:max-w-none mx-auto lg:mx-0">
-                <div class="stat-card fade-in-up">
-                    <div class="stat-number counter" data-target="8">0+</div>
-                    <p class="text-slate-200 text-xs sm:text-sm md:text-base mt-1.5">Years crafting digital experiences</p>
+            <div class="grid gap-5 sm:gap-6 md:gap-7 lg:grid-cols-[1.3fr_minmax(0,1.1fr)] items-start">
+                <!-- Stats cards -->
+                <div class="grid grid-cols-2 gap-4 sm:gap-5 md:gap-6 fade-in-up">
+                    <div class="stat-card glass-dark rounded-2xl p-4 sm:p-5">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">Experience</span>
+                            <i class="fa-solid fa-clock text-slate-400 text-xs"></i>
+                        </div>
+                        <div class="stat-number counter" data-target="8">0+</div>
+                        <p class="text-slate-200 text-xs sm:text-sm mt-1.5">Years crafting digital experiences</p>
+                    </div>
+
+                    <div class="stat-card glass-dark rounded-2xl p-4 sm:p-5">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">Projects</span>
+                            <i class="fa-solid fa-layer-group text-slate-400 text-xs"></i>
+                        </div>
+                        <div class="stat-number counter" data-target="54">0+</div>
+                        <p class="text-slate-200 text-xs sm:text-sm mt-1.5">Websites, dashboards & internal tools</p>
+                    </div>
+
+                    <div class="stat-card glass-dark rounded-2xl p-4 sm:p-5">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">Clients</span>
+                            <i class="fa-solid fa-user-group text-slate-400 text-xs"></i>
+                        </div>
+                        <div class="stat-number counter" data-target="24">0+</div>
+                        <p class="text-slate-200 text-xs sm:text-sm mt-1.5">Brands, teams, and founders partnered with</p>
+                    </div>
+
+                    <div class="stat-card glass-dark rounded-2xl p-4 sm:p-5">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">Domains</span>
+                            <i class="fa-solid fa-globe text-slate-400 text-xs"></i>
+                        </div>
+                        <div class="stat-number counter" data-target="14">0+</div>
+                        <p class="text-slate-200 text-xs sm:text-sm mt-1.5">Industries touched so far</p>
+                    </div>
                 </div>
-                <div class="stat-card fade-in-up">
-                    <div class="stat-number counter" data-target="54">0+</div>
-                    <p class="text-slate-200 text-xs sm:text-sm md:text-base mt-1.5">Projects shipped across sectors</p>
-                </div>
-                <div class="stat-card fade-in-up">
-                    <div class="stat-number counter" data-target="24">0+</div>
-                    <p class="text-slate-200 text-xs sm:text-sm md:text-base mt-1.5">Clients I’ve collaborated with</p>
-                </div>
-                <div class="stat-card fade-in-up">
-                    <div class="stat-number counter" data-target="14">0+</div>
-                    <p class="text-slate-200 text-xs sm:text-sm md:text-base mt-1.5">Industries touched so far</p>
+
+                <!-- Testimonial-style blurb -->
+                <div class="fade-in-up">
+                    <div class="glass-dark rounded-3xl border border-white/10 p-6 sm:p-7 md:p-8 h-full flex flex-col justify-between">
+                        <div>
+                            <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-emerald-300/80 mb-3">
+                                How I usually fit into a team
+                            </p>
+                            <p class="text-sm sm:text-base md:text-lg text-slate-100 leading-relaxed mb-4">
+                                “Chamikara connects design and engineering. He’s comfortable owning a feature from
+                                wireframe to production, and cares a lot about polish and performance.”
+                            </p>
+                            <p class="text-[11px] sm:text-xs text-slate-400">
+                                — A typical way collaborators describe how I work on cross‑functional teams
+                            </p>
+                        </div>
+                        <div class="mt-5 flex flex-wrap items-center gap-3 text-[11px] sm:text-xs text-slate-300">
+                            <a href="#projects" class="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-3 py-1 border border-white/10">
+                                <i class="fa-solid fa-arrow-trend-up text-[10px] text-emerald-300"></i>
+                                See selected work
+                            </a>
+                            <a href="#contact" class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 border border-emerald-400/40 text-emerald-200">
+                                <i class="fa-solid fa-calendar-days text-[10px]"></i>
+                                Book a collaboration chat
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
