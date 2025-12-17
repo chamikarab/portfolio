@@ -9,7 +9,7 @@
 
     <!-- Typography & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SHNbvNvC3HxWbCyb2KpCq7nQwRZ0vV8XgFJ6U0x4W9yC0qcyB5m8+8yRfWgZgLZbW9C6F9X6X8yG2JDv5O4V3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
     <!-- Typed text (hero) -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>

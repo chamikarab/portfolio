@@ -18,13 +18,20 @@
                 </p>
 
                 <div class="space-y-3 sm:space-y-4">
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-tight">
-                        <span class="block text-slate-100">Designer–minded</span>
-                        <span class="block gradient-text-accent">Full‑Stack Engineer</span>
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight">
+                        <span class="block text-xs sm:text-sm md:text-base text-slate-300 uppercase tracking-[0.3em] mb-1">Hello, I’m</span>
+                        <span class="block gradient-text-accent">Chamikara Bandara</span>
                     </h1>
                     <p class="max-w-xl mx-auto lg:mx-0 text-sm sm:text-base md:text-lg text-slate-300/90">
-                        I help brands and teams ship interfaces that feel <span class="font-semibold text-slate-100">calm, fast, and timeless</span> —
-                        from design systems to production‑ready web apps.
+                        <span class="text-slate-300">I’m a </span>
+                        <span class="font-semibold text-slate-100">
+                            <span id="typed-text"></span>
+                        </span>
+                    </p>
+                    <p class="max-w-xl mx-auto lg:mx-0 text-xs sm:text-sm md:text-base text-slate-400 leading-relaxed">
+                        I design and build web experiences that blend clean code, thoughtful interfaces, and visual storytelling. 
+                        With expertise spanning full‑stack development, UI/UX design, graphic design, and video editing, I help 
+                        brands and teams turn ideas into polished, user‑focused digital products.
                     </p>
                 </div>
 
@@ -37,18 +44,6 @@
                         <span>Explore selected work</span>
                         <i class="fa-regular fa-circle-play text-xs"></i>
                     </a>
-                </div>
-
-                <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 pt-2 sm:pt-3 text-left">
-                    <div class="flex -space-x-3">
-                        <div class="h-8 w-8 rounded-full border border-slate-900/80 bg-[url('{{ asset('chamikara_bandara.PNG') }}')] bg-cover bg-center"></div>
-                        <div class="h-8 w-8 rounded-full border border-slate-900/80 bg-gradient-to-tr from-indigo-500 to-sky-400"></div>
-                        <div class="h-8 w-8 rounded-full border border-slate-900/80 bg-gradient-to-tr from-fuchsia-500 to-rose-500"></div>
-                    </div>
-                    <p class="max-w-xs text-xs sm:text-sm text-slate-400">
-                        Partnered with startups and teams across SaaS, e‑commerce, and education to ship products used by
-                        <span class="font-medium text-slate-200">5k+ users</span>.
-                    </p>
                 </div>
             </div>
 
@@ -295,44 +290,110 @@
 <!-- Services Section -->
 <section id="services" class="py-14 sm:py-18 md:py-22 lg:py-28 relative">
     <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-        <h2 class="section-title fade-in-up mb-8 sm:mb-12 md:mb-16">
-            <span>My</span> <span>Services</span>
-        </h2>
-        <div class="grid md:grid-cols-3 gap-6 sm:gap-7 md:gap-8 max-w-6xl mx-auto">
-            <div class="service-card fade-in-up text-left">
-                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-500/15 text-indigo-300 border border-indigo-400/30">
-                    <i class="fas fa-code text-lg"></i>
-                </div>
-                <h3 class="text-lg sm:text-xl font-semibold mb-2.5 text-white">Product‑grade web apps</h3>
-                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                    From MVPs to production systems using Laravel, React, and modern tooling. I care about maintainable architecture,
-                    clean code, and readable components.
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-8 sm:mb-10 md:mb-14 fade-in-up">
+                <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
+                    <span>How</span> <span>I Help</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base text-slate-300">
+                    From first idea to live product, I plug into your team where it matters most — strategy, design,
+                    engineering, or all three.
                 </p>
             </div>
-            <div class="service-card fade-in-up text-left">
-                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-fuchsia-500/15 text-fuchsia-300 border border-fuchsia-400/30">
-                    <i class="fas fa-paint-brush text-lg"></i>
-                </div>
-                <h3 class="text-lg sm:text-xl font-semibold mb-2.5 text-white">Interface & experience design</h3>
-                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                    Translating strategy and brand into UI that feels minimal, clear, and expressive — with reusable design tokens and
-                    a consistent component language.
-                </p>
-            </div>
-            <div class="service-card fade-in-up text-left md:col-span-3 lg:col-span-1 md:flex md:flex-col md:justify-between">
-                <div>
-                    <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-300 border border-emerald-400/30">
-                        <i class="fas fa-server text-lg"></i>
+
+            <div class="grid gap-6 sm:gap-7 md:gap-8 md:grid-cols-3">
+                <!-- Service 1 -->
+                <article class="glass-dark rounded-3xl border border-white/10 p-6 sm:p-7 fade-in-up flex flex-col">
+                    <div class="flex items-start justify-between gap-3 mb-4">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-500/20 text-indigo-200">
+                                <i class="fas fa-code text-sm"></i>
+                            </span>
+                            <div>
+                                <p class="text-[11px] font-medium uppercase tracking-[0.22em] text-indigo-300/80">01 · Build</p>
+                                <h3 class="text-sm sm:text-base md:text-lg font-semibold text-slate-50">
+                                    Product‑grade web apps
+                                </h3>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-semibold mb-2.5 text-white">Systems, APIs & automation</h3>
-                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        Designing APIs, data models, and integrations that are simple to consume and easy to extend — from auth flows
-                        to dashboards and content pipelines.
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed flex-1">
+                        Designing and building full‑stack web apps with Laravel, React, and modern tooling — from MVPs to
+                        long‑running products. I focus on clear architectures, readable components, and maintainable code.
                     </p>
-                </div>
-                <p class="mt-4 text-xs sm:text-sm text-slate-400">
-                    I’m comfortable joining at any stage: from early discovery and prototypes to mature products that need refactors.
-                </p>
+                    <ul class="mt-4 space-y-1.5 text-[11px] sm:text-xs text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                            Feature implementation & refactors
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                            Dashboards, portals, internal tools
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- Service 2 -->
+                <article class="glass-dark rounded-3xl border border-white/10 p-6 sm:p-7 fade-in-up flex flex-col">
+                    <div class="flex items-start justify-between gap-3 mb-4">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-fuchsia-500/20 text-fuchsia-200">
+                                <i class="fas fa-pen-nib text-sm"></i>
+                            </span>
+                            <div>
+                                <p class="text-[11px] font-medium uppercase tracking-[0.22em] text-fuchsia-300/80">02 · Design</p>
+                                <h3 class="text-sm sm:text-base md:text-lg font-semibold text-slate-50">
+                                    Interfaces & experience
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed flex-1">
+                        Turning goals and content into clear, expressive interfaces — from wireframes to high‑fidelity
+                        UI. I design systems that scale: components, tokens, and patterns that stay consistent.
+                    </p>
+                    <ul class="mt-4 space-y-1.5 text-[11px] sm:text-xs text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                            UX flows, wireframes, and UI design
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                            Design systems & component libraries
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- Service 3 -->
+                <article class="glass-dark rounded-3xl border border-white/10 p-6 sm:p-7 fade-in-up flex flex-col">
+                    <div class="flex items-start justify-between gap-3 mb-4">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500/20 text-emerald-200">
+                                <i class="fas fa-diagram-project text-sm"></i>
+                            </span>
+                            <div>
+                                <p class="text-[11px] font-medium uppercase tracking-[0.22em] text-emerald-300/80">03 · Systems</p>
+                                <h3 class="text-sm sm:text-base md:text-lg font-semibold text-slate-50">
+                                    Systems, APIs & optimisation
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed flex-1">
+                        Designing the glue that keeps products healthy: APIs, data models, performance, and automation.
+                        I help simplify complexity so teams can ship faster without losing quality.
+                    </p>
+                    <ul class="mt-4 space-y-1.5 text-[11px] sm:text-xs text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                            REST APIs, integrations, and auth
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                            Performance passes & cleanup phases
+                        </li>
+                    </ul>
+                </article>
             </div>
         </div>
     </div>
@@ -590,14 +651,8 @@
 </section>
 
 <!-- Skills Section -->
-<section id="skills" class="py-14 sm:py-18 md:py-22 lg:py-28 relative overflow-hidden">
-    <div class="absolute inset-0">
-        <video id="bg-video" autoplay muted loop playsinline>
-            <source src="{{ asset('video5.mp4') }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+<section id="skills" class="py-14 sm:py-18 md:py-22 lg:py-28 relative">
+    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <div class="flex flex-col items-center text-center gap-4 sm:gap-5 mb-8 sm:mb-10 md:mb-12">
             <div class="fade-in-up">
                 <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
@@ -923,14 +978,20 @@
 </section>
 
 <script>
-    // Typed.js initialization (kept subtle for 2026 aesthetic)
+    // Typed.js initialization for hero subtitle
     if (document.getElementById('typed-text')) {
         new Typed('#typed-text', {
-            strings: ["Full‑Stack Developer", "Interface Engineer", "Product Partner"],
-            typeSpeed: 55,
-            backSpeed: 40,
+            strings: [
+                "Web Developer",
+                "Software Developer",
+                "Video Editor",
+                "Graphic Designer",
+                "UI/UX Designer"
+            ],
+            typeSpeed: 60,
+            backSpeed: 35,
             loop: true,
-            backDelay: 2200,
+            backDelay: 2000,
             smartBackspace: true,
         });
     }
