@@ -4,411 +4,911 @@
 
 @section('content')
 
-<!-- Hero -->
-<section id="hero" class="bg-cover bg-center h-screen" style="background-image: url('{{ asset('hero-image.jpg') }}');">
-    <div class="container mx-auto flex items-center justify-start h-full">
-        <div class="text-left">
-            <h1 class="text-white text-3xl mb-4">HELLO, I'M</h1>
-            <h2 class="text-white text-2xl sm:text-5xl font-bold mb-4">CHAMIKARA BANDARA</h2>
-            <h3 class="text-white text-xl sm:text-4xl font-bold mb-8">I'M <span class="typed-text" id="typed-text"></span></h3>
-            <a href="#contact" class="border border-red-600 text-red-700 hover:bg-red-700 hover:text-white py-3 px-6 rounded-lg transition-colors duration-300 font-bold">Contact Me</a>
+<!-- Hero Section -->
+<section
+    id="hero"
+    class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 sm:pt-28 pb-16 sm:pb-20"
+>
+    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+        <div class="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-10 lg:gap-14 items-center">
+            <div class="text-center lg:text-left space-y-6 sm:space-y-7 fade-in-up order-2 lg:order-1">
+                <p class="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-3 py-1 text-[11px] sm:text-xs font-medium uppercase tracking-[0.25em] text-emerald-200">
+                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(16,185,129,0.45)]"></span>
+                    Available for new projects
+                </p>
 
-        </div>
-    </div>
-</section>
+                <div class="space-y-3 sm:space-y-4">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-tight">
+                        <span class="block text-slate-100">Designer–minded</span>
+                        <span class="block gradient-text-accent">Full‑Stack Engineer</span>
+                    </h1>
+                    <p class="max-w-xl mx-auto lg:mx-0 text-sm sm:text-base md:text-lg text-slate-300/90">
+                        I help brands and teams ship interfaces that feel <span class="font-semibold text-slate-100">calm, fast, and timeless</span> —
+                        from design systems to production‑ready web apps.
+                    </p>
+                </div>
 
-<!-- About -->
-<section id="about" class="py-20">
-    <div class="container mx-auto">
-        <h2 class="text-3xl font-bold mb-20 text-center">
-            <span class="border-b-4 border-yellow-400">About</span>
-            <span class="text-yellow-400">Me</span>
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div class="flex justify-end">
-                <img src="/chamikara_bandara.png" alt="Chamikara Bandara" class="w-3/5 h-auto object-cover rounded-lg mb-4">
-            </div>
-            <div class="pr-20">
-                <p class="mb-4">I'm a full-stack web developer with over 5 years of experience in building websites and web applications. I specialize in modern technologies like Laravel, Vue.js, and Tailwind CSS.</p>
-                <p class="mb-4">I'm passionate about creating beautiful and user-friendly interfaces that provide a seamless user experience. I'm always eager to learn new technologies and improve my skills.</p>
-                <p class="mb-4">I'm currently available for freelance work. If you have a project in mind or need a website, feel free to get in touch with me.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="relative bg-cover bg-center w-full h-[400px]" style="background-image: url('/video.mp4');">
-    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-    <div class="relative z-10 flex flex-col justify-center items-center h-full text-white text-center">
-        <h2 class="text-4xl font-bold mb-8">I Am Available For Freelancer</h2>
-        <a href="#" class="bg-red-500 text-white px-6 py-3 rounded-lg">Hire Me Now</a>
-
-        <div class="grid grid-cols-4 gap-8 mt-12 text-white text-center">
-            <div>
-                <h3 class="text-5xl font-bold counter" data-target="8">0+</h3>
-                <p class="text-xl">Years of Experience</p>
-            </div>
-            <div>
-                <h3 class="text-5xl font-bold counter" data-target="54">0+</h3>
-                <p class="text-xl">Projects Completed</p>
-            </div>
-            <div>
-                <h3 class="text-5xl font-bold counter" data-target="24">0+</h3>
-                <p class="text-xl">Happy Clients</p>
-            </div>
-            <div>
-                <h3 class="text-5xl font-bold counter" data-target="14">0+</h3>
-                <p class="text-xl">Satisfied Clients</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<!-- Services -->
-<section id="services" class="py-20">
-    <div class="container mx-auto">
-        <h2 class="text-3xl font-bold mb-20 text-center">
-            <span class="text-yellow-400">My</span>
-            <span class="border-b-4 border-yellow-400">Services</span>
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 service-hover">
-            <div class="border p-6 rounded-lg shadow-lg text-center">
-                <i class="fas fa-code text-4xl text-blue-500 mb-4"></i>
-                <h3 class="text-xl font-semibold mb-2">Web Development</h3>
-                <p>Building responsive and dynamic websites with modern technologies.</p>
-            </div>
-            <div class="border p-6 rounded-lg shadow-lg text-center">
-                <i class="fas fa-paint-brush text-4xl text-blue-500 mb-4"></i>
-                <h3 class="text-xl font-semibold mb-2">UI/UX Design</h3>
-                <p>Designing user-friendly interfaces and experiences.</p>
-            </div>
-            <div class="border p-6 rounded-lg shadow-lg text-center">
-                <i class="fas fa-server text-4xl text-blue-500 mb-4"></i>
-                <h3 class="text-xl font-semibold mb-2">Backend Development</h3>
-                <p>Creating scalable backend systems with robust APIs.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- Projects -->
-<section id="projects" class="py-20">
-<div class="home-page-container bg-dark text-white py-20 px-10">
-    <div class="container mx-auto">
-     <h2 class="text-3xl font-bold mb-20 text-center">
-            <span class="text-yellow-400">My</span>
-            <span class="border-b-4 border-yellow-400">Projects</span>
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            @forelse ($projects as $project)
-                <div class="p-6 rounded-lg shadow-lg transition duration-300 ease-in-out project-card-2">
-                    <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->name }}" class="w-full h-48 object-cover rounded-lg mb-4">
-                    <h2 class="text-1xl font-semibold text-yellow-400 mb-2">{{ $project->name }}</h2>
-                    <p class="text-gray-400 mb-4">{{ Str::limit($project->description, 120) }}</p>
-                    <a href="{{ route('projects.show', $project->id) }}" class="inline-block text-yellow-400 hover:text-yellow-300 font-low">
-                        View Project &rarr;
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-center">
+                    <a href="#contact" class="btn-primary inline-flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto">
+                        <span>Book a collaboration call</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                    <a href="#projects" class="btn-secondary inline-flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto">
+                        <span>Explore selected work</span>
+                        <i class="fa-regular fa-circle-play text-xs"></i>
                     </a>
                 </div>
-            @empty
-                <p class="text-center col-span-3 text-gray-500">No recent projects available to display at the moment.</p>
-            @endforelse
-        </div>
 
-        <!-- Static example projects if $projects collection is empty -->
-        @if ($projects->isEmpty())
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
-                @for ($i = 1; $i <= 3; $i++)
-                    <div class="project-card bg-gray-800 hover:bg-gray-700 p-8 rounded-lg shadow-lg transition duration-300 ease-in-out">
-                        <div class="w-full h-48 bg-gray-700 rounded-lg mb-4"></div>
-                        <h2 class="text-2xl font-semibold text-yellow-400 mb-2">Project Title {{ $i }}</h2>
-                        <p class="text-gray-400 mb-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit enim debitis minus.
-                        </p>
-                        <a href="#" class="inline-block text-yellow-400 hover:text-yellow-300 font-medium">
-                            View Project &rarr;
+                <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 pt-2 sm:pt-3 text-left">
+                    <div class="flex -space-x-3">
+                        <div class="h-8 w-8 rounded-full border border-slate-900/80 bg-[url('{{ asset('chamikara_bandara.PNG') }}')] bg-cover bg-center"></div>
+                        <div class="h-8 w-8 rounded-full border border-slate-900/80 bg-gradient-to-tr from-indigo-500 to-sky-400"></div>
+                        <div class="h-8 w-8 rounded-full border border-slate-900/80 bg-gradient-to-tr from-fuchsia-500 to-rose-500"></div>
+                    </div>
+                    <p class="max-w-xs text-xs sm:text-sm text-slate-400">
+                        Partnered with startups and teams across SaaS, e‑commerce, and education to ship products used by
+                        <span class="font-medium text-slate-200">5k+ users</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex justify-center lg:justify-end order-1 lg:order-2 mb-6 lg:mb-0">
+                <div class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80">
+                    <div class="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-sky-400 opacity-30 blur-3xl animate-pulse"></div>
+                    <div class="relative h-full w-full rounded-[2.2rem] glass-dark border border-white/10 p-[2px]">
+                        <div class="relative h-full w-full overflow-hidden rounded-[2rem] bg-slate-900/80">
+                            <img
+                                src="{{ asset('chamikara_bandara.PNG') }}"
+                                alt="Chamikara Bandara"
+                                class="h-full w-full object-cover object-center scale-105"
+                            >
+                            <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.12),_transparent_60%)] mix-blend-soft-light"></div>
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent px-4 pb-4 pt-10">
+                                <p class="text-[11px] font-medium uppercase tracking-[0.25em] text-slate-300/80">
+                                    Currently crafting with
+                                </p>
+                                <div class="mt-2 flex flex-wrap gap-1.5 text-[11px] text-slate-200/90">
+                                    <span class="inline-flex items-center gap-1 rounded-full bg-slate-900/80 px-2 py-1 border border-white/10">
+                                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span> Laravel
+                                    </span>
+                                    <span class="inline-flex items-center gap-1 rounded-full bg-slate-900/80 px-2 py-1 border border-white/10">
+                                        <span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span> Tailwind
+                                    </span>
+                                    <span class="inline-flex items-center gap-1 rounded-full bg-slate-900/80 px-2 py-1 border border-white/10">
+                                        <span class="h-1.5 w-1.5 rounded-full bg-fuchsia-400"></span> React
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 animate-bounce hidden sm:flex flex-col items-center gap-2 text-[11px] text-slate-400">
+        <span class="uppercase tracking-[0.25em]">Scroll</span>
+        <div class="h-9 w-[1px] bg-gradient-to-b from-transparent via-slate-500/70 to-slate-100"></div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-14 sm:py-18 md:py-22 lg:py-28 relative">
+    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <h2 class="section-title fade-in-up mb-8 sm:mb-10 md:mb-14">
+            <span>About</span> <span>Me</span>
+        </h2>
+        <div class="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-8 md:gap-10 lg:gap-14 items-center">
+            <div class="fade-in-up order-2 lg:order-1">
+                <div class="glass-dark rounded-3xl border border-white/10 p-6 sm:p-8 md:p-10 lg:p-12 shadow-[0_18px_60px_rgba(15,23,42,0.85)]">
+                    <p class="text-slate-200 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-5">
+                        I’m a <span class="gradient-text font-semibold">full‑stack developer</span> who moves comfortably between design systems, frontend craft, and backend architecture.
+                        I care about interfaces that feel <span class="font-semibold">intentional, accessible, and fast</span>.
+                    </p>
+                    <p class="text-slate-300/90 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-5">
+                        Over the last years I’ve worked across agency and product teams, shipping websites, dashboards, and internal tools using
+                        Laravel, React, Node, and modern CSS. I enjoy taking fuzzy ideas and turning them into clear user journeys.
+                    </p>
+                    <p class="text-slate-300/90 text-sm sm:text-base md:text-lg leading-relaxed">
+                        Right now I’m open to <span class="font-semibold text-slate-50">freelance collaborations, remote roles, and product partnerships</span>.
+                        If you’re exploring a new product or redesign, I’d love to hear what you’re building.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-3 text-xs sm:text-sm text-slate-300/90">
+                        <span class="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-3 py-1.5">
+                            <i class="fa-solid fa-shield-heart text-emerald-300 text-xs"></i>
+                            Human‑centric UX
+                        </span>
+                        <span class="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/5 px-3 py-1.5">
+                            <i class="fa-solid fa-bolt text-sky-300 text-xs"></i>
+                            Performance‑first builds
+                        </span>
+                        <span class="inline-flex items-center gap-2 rounded-full border border-fuchsia-400/30 bg-fuchsia-400/5 px-3 py-1.5">
+                            <i class="fa-solid fa-layer-group text-fuchsia-300 text-xs"></i>
+                            Design systems & component libraries
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="fade-in-up order-1 lg:order-2">
+                <div class="relative max-w-md mx-auto lg:mx-0">
+                    <div class="absolute -inset-6 rounded-[2.5rem] bg-[conic-gradient(from_220deg_at_50%_50%,rgba(129,140,248,0.35),rgba(236,72,153,0.0),rgba(56,189,248,0.4),rgba(236,72,153,0.55),rgba(129,140,248,0.35))] opacity-70 blur-3xl"></div>
+                    <div class="relative rounded-[2rem] border border-white/10 bg-slate-950/60 p-5">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="col-span-2 rounded-xl bg-slate-900/80 p-4 border border-white/5">
+                                <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-slate-400 mb-1.5">Profile</p>
+                                <p class="text-sm font-semibold text-slate-100">Full‑Stack Developer & Visual Storyteller</p>
+                                <p class="mt-2 text-xs text-slate-400">
+                                    Based in Sri Lanka, collaborating remotely with teams worldwide.
+                                </p>
+                            </div>
+                            <div class="rounded-xl bg-slate-900/80 p-4 border border-white/5 flex flex-col justify-between">
+                                <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-slate-400 mb-1.5">Focus</p>
+                                <p class="text-xs text-slate-200">
+                                    Design‑driven engineering for digital products, marketing sites, and dashboards.
+                                </p>
+                            </div>
+                            <div class="rounded-xl bg-slate-900/80 p-4 border border-white/5 flex flex-col justify-between">
+                                <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-slate-400 mb-1.5">Stack</p>
+                                <p class="text-xs text-slate-200">
+                                    Laravel, React, Tailwind, REST APIs, SQL / NoSQL, WordPress.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats / Social proof Section -->
+<section class="stats-section relative overflow-hidden py-14 sm:py-18 md:py-22 lg:py-26">
+    <div class="absolute inset-0 bg-gradient-to-r from-indigo-950/60 via-slate-950/40 to-sky-950/60"></div>
+    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+        <div class="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-10 lg:gap-16 items-center">
+            <div class="space-y-4 sm:space-y-6 fade-in-up">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-50">
+                    I join teams as a <span class="gradient-text">long‑term product partner</span>, not just a ticket taker.
+                </h2>
+                <p class="max-w-xl text-sm sm:text-base md:text-lg text-slate-200/90">
+                    From marketing sites to internal tools, I help teams ship consistently — clarifying scope, reducing complexity,
+                    and keeping the experience cohesive across devices.
+                </p>
+                <a href="#contact" class="btn-primary inline-flex items-center gap-2 text-sm sm:text-base">
+                    Let’s talk about your roadmap
+                    <i class="fa-solid fa-calendar-days text-xs"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 sm:gap-6 md:gap-7 max-w-lg lg:max-w-none mx-auto lg:mx-0">
+                <div class="stat-card fade-in-up">
+                    <div class="stat-number counter" data-target="8">0+</div>
+                    <p class="text-slate-200 text-xs sm:text-sm md:text-base mt-1.5">Years crafting digital experiences</p>
+                </div>
+                <div class="stat-card fade-in-up">
+                    <div class="stat-number counter" data-target="54">0+</div>
+                    <p class="text-slate-200 text-xs sm:text-sm md:text-base mt-1.5">Projects shipped across sectors</p>
+                </div>
+                <div class="stat-card fade-in-up">
+                    <div class="stat-number counter" data-target="24">0+</div>
+                    <p class="text-slate-200 text-xs sm:text-sm md:text-base mt-1.5">Clients I’ve collaborated with</p>
+                </div>
+                <div class="stat-card fade-in-up">
+                    <div class="stat-number counter" data-target="14">0+</div>
+                    <p class="text-slate-200 text-xs sm:text-sm md:text-base mt-1.5">Industries touched so far</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="py-14 sm:py-18 md:py-22 lg:py-28 relative">
+    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <h2 class="section-title fade-in-up mb-8 sm:mb-12 md:mb-16">
+            <span>My</span> <span>Services</span>
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6 sm:gap-7 md:gap-8 max-w-6xl mx-auto">
+            <div class="service-card fade-in-up text-left">
+                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-500/15 text-indigo-300 border border-indigo-400/30">
+                    <i class="fas fa-code text-lg"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-semibold mb-2.5 text-white">Product‑grade web apps</h3>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    From MVPs to production systems using Laravel, React, and modern tooling. I care about maintainable architecture,
+                    clean code, and readable components.
+                </p>
+            </div>
+            <div class="service-card fade-in-up text-left">
+                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-fuchsia-500/15 text-fuchsia-300 border border-fuchsia-400/30">
+                    <i class="fas fa-paint-brush text-lg"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-semibold mb-2.5 text-white">Interface & experience design</h3>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    Translating strategy and brand into UI that feels minimal, clear, and expressive — with reusable design tokens and
+                    a consistent component language.
+                </p>
+            </div>
+            <div class="service-card fade-in-up text-left md:col-span-3 lg:col-span-1 md:flex md:flex-col md:justify-between">
+                <div>
+                    <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-300 border border-emerald-400/30">
+                        <i class="fas fa-server text-lg"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2.5 text-white">Systems, APIs & automation</h3>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Designing APIs, data models, and integrations that are simple to consume and easy to extend — from auth flows
+                        to dashboards and content pipelines.
+                    </p>
+                </div>
+                <p class="mt-4 text-xs sm:text-sm text-slate-400">
+                    I’m comfortable joining at any stage: from early discovery and prototypes to mature products that need refactors.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-14 sm:py-18 md:py-22 lg:py-28 relative bg-gray-900/40">
+    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <h2 class="section-title fade-in-up mb-8 sm:mb-12 md:mb-16">
+            <span>My</span> <span>Projects</span>
+        </h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 md:gap-8">
+            @forelse ($projects as $project)
+                <div class="project-card-modern fade-in-up">
+                    <div class="overflow-hidden rounded-t-2xl">
+                        <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->name }}" 
+                             class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">{{ $project->name }}</h3>
+                        <p class="text-gray-400 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">{{ Str::limit($project->description, 100) }}</p>
+                        <a href="{{ route('projects.show', $project->id) }}" 
+                           class="text-purple-400 hover:text-purple-300 font-semibold text-sm sm:text-base transition-colors duration-300 inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>
-                @endfor
-            </div>
-        @endif
+                </div>
+            @empty
+                <div class="col-span-full text-center py-12">
+                    <p class="text-gray-400 text-lg">No projects available at the moment.</p>
+                </div>
+            @endforelse
+        </div>
+        <div class="text-center mt-8 sm:mt-10 md:mt-12">
+            <a href="/projects" class="btn-secondary">View All Projects</a>
+        </div>
     </div>
-</div>
 </section>
 
 <!-- Education Section -->
-<section id="education" class="py-20 bg-dark text-white">
-    <div class="container mx-auto text-center">
-        <h2 class="text-3xl font-bold mb-20 text-center">
-            <span class="text-yellow-400">My</span>
-            <span class="border-b-4 border-yellow-400">Education</span>
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div class="education-item bg-gray-900 p-6 rounded-lg">
-                <div class="flex items-center">
-                    <i class="fas fa-certificate text-6xl text-yellow-400"></i>
-                    <div class="ml-6 text-left">
-                        <h4 class="text-xl font-bold">Passed G.C.E Odinary Level</h4>
-                        <p class="text-gray-400">Kingswood College, Kandy</p>
-                        <p class="text-sm text-gray-500">2017</p>
-                    </div>
-                </div>
+<section id="education" class="py-14 sm:py-18 md:py-22 lg:py-26 relative">
+    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-8 sm:mb-10 md:mb-14 fade-in-up">
+                <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
+                    <span>My</span> <span>Education</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base text-slate-300">
+                    A brief timeline of the studies and certifications that shaped how I think about technology and problem‑solving.
+                </p>
             </div>
 
-            <div class="education-item bg-gray-900 p-6 rounded-lg">
-                <div class="flex items-center">
-                    <i class="fas fa-graduation-cap text-6xl text-yellow-400"></i>
-                    <div class="ml-6 text-left">
-                        <h4 class="text-xl font-bold">Diploma in PC Hardware Engineering & Network Administration</h4>
-                        <p class="text-gray-400">Esoft Metro Campus, Kandy</p>
-                        <p class="text-sm text-gray-500">2018</p>
+            <div class="grid gap-4 sm:gap-5 md:gap-6 md:grid-cols-2">
+                <!-- O/L -->
+                <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-white/10 fade-in-up">
+                    <div class="flex items-center justify-between gap-3 mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-tr from-emerald-500 to-sky-500 text-white">
+                                <i class="fas fa-certificate text-xs sm:text-sm"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs sm:text-sm font-semibold text-slate-50">G.C.E Ordinary Level</p>
+                                <p class="text-[11px] sm:text-xs text-slate-400">
+                                    Kingswood College, Kandy
+                                </p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-slate-800/80 px-2.5 py-1 text-[10px] font-medium text-slate-200 border border-slate-500/60 whitespace-nowrap">
+                            2017
+                        </span>
                     </div>
-                </div>
-            </div>
+                    <p class="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
+                        Built a strong foundation in core subjects and first explored computers and technology.
+                    </p>
+                </article>
 
-            <div class="education-item bg-gray-900 p-6 rounded-lg">
-                <div class="flex items-center">
-                    <i class="fas fa-certificate text-6xl text-yellow-400"></i>
-                    <div class="ml-6 text-left">
-                        <h4 class="text-xl font-bold">Passed G.C.E Advanced Level</h4>
-                        <p class="text-gray-400">Kingswood College, Kandy</p>
-                        <p class="text-sm text-gray-500">2020</p>
+                <!-- Diploma -->
+                <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-white/10 fade-in-up">
+                    <div class="flex items-center justify-between gap-3 mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-500 text-white">
+                                <i class="fas fa-graduation-cap text-xs sm:text-sm"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs sm:text-sm font-semibold text-slate-50">
+                                    Diploma in PC Hardware Engineering & Network Administration
+                                </p>
+                                <p class="text-[11px] sm:text-xs text-slate-400">
+                                    Esoft Metro Campus, Kandy
+                                </p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-slate-800/80 px-2.5 py-1 text-[10px] font-medium text-slate-200 border border-slate-500/60 whitespace-nowrap">
+                            2018
+                        </span>
                     </div>
-                </div>
-            </div>
+                    <p class="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
+                        Learned how computers and networks work under the hood, which still helps when building and deploying systems.
+                    </p>
+                </article>
 
-            <div class="education-item bg-gray-900 p-6 rounded-lg">
-                <div class="flex items-center">
-                    <i class="fas fa-graduation-cap text-6xl text-yellow-400"></i>
-                    <div class="ml-6 text-left">
-                        <h4 class="text-xl font-bold">Undergraduate in Information Technology</h4>
-                        <p class="text-gray-400">Sri Lankan Institute of Information Technology(SLIIT)</p>
-                        <p class="text-sm text-gray-500">2022 - Present</p>
+                <!-- A/L -->
+                <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-white/10 fade-in-up">
+                    <div class="flex items-center justify-between gap-3 mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-tr from-amber-500 to-rose-500 text-white">
+                                <i class="fas fa-certificate text-xs sm:text-sm"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs sm:text-sm font-semibold text-slate-50">G.C.E Advanced Level</p>
+                                <p class="text-[11px] sm:text-xs text-slate-400">
+                                    Kingswood College, Kandy
+                                </p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-slate-800/80 px-2.5 py-1 text-[10px] font-medium text-slate-200 border border-slate-500/60 whitespace-nowrap">
+                            2020
+                        </span>
                     </div>
-                </div>
+                    <p class="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
+                        Deepened analytical thinking and discipline, which now feeds directly into how I approach engineering work.
+                    </p>
+                </article>
+
+                <!-- Undergraduate -->
+                <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-white/10 fade-in-up">
+                    <div class="flex items-center justify-between gap-3 mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-tr from-purple-500 to-indigo-500 text-white">
+                                <i class="fas fa-user-graduate text-xs sm:text-sm"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs sm:text-sm font-semibold text-slate-50">
+                                    BSc (Hons) in Information Technology · Undergraduate
+                                </p>
+                                <p class="text-[11px] sm:text-xs text-slate-400">
+                                    Sri Lanka Institute of Information Technology (SLIIT)
+                                </p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-emerald-500/15 px-2.5 py-1 text-[10px] font-medium text-emerald-200 border border-emerald-400/60 whitespace-nowrap">
+                            2022 – Present
+                        </span>
+                    </div>
+                    <p class="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
+                        Currently formalizing my knowledge across software engineering, networking, and modern technologies while
+                        building real‑world projects alongside my studies.
+                    </p>
+                </article>
             </div>
         </div>
     </div>
 </section>
 
-
-
 <!-- Experience Section -->
-<div class="container mx-auto py-12 px-4 text-white">
-    <h2 class="text-4xl font-bold text-center mb-12">Experience</h2>
-
-
-    <div class="relative">
-        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 bg-gray-600 h-full"></div>
-
-        <div class="mb-8 flex items-center justify-between w-full opacity-0 transition-opacity duration-1000 ease-out transform translate-y-4">
-            <div class="w-5/12 text-right">
-                <h3 class="text-2xl font-bold">Web Developer</h3>
-                <span class="text-yellow-500">Refectline(Pvt)Ltd | Full Time</span>
-                <p class="mt-2 text-gray-300">At Refectline, I specialize in developing WordPress websites and working with PHP for custom solutions. I also focus on frontend development, designing graphic posts, and editing videos. Over time, I have expanded my skills to include Laravel and the MERN stack, transitioning from WordPress to more advanced frameworks.</p>
-                <span class="text-gray-400">2020 - 2022</span>
+<section id="experience" class="py-14 sm:py-18 md:py-22 lg:py-26 relative bg-gray-900/35">
+    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-8 sm:mb-10 md:mb-14 fade-in-up">
+                <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
+                    <span>My</span> <span>Experience</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base text-slate-300">
+                    Roles where I’ve blended design, development, and systems thinking to support teams and ship real products.
+                </p>
             </div>
-            <div class="relative w-10 h-10 bg-yellow-500 rounded-full z-10"></div>
-            <div class="w-5/12"></div>
-        </div>
 
-        <div class="mb-8 flex items-center justify-between w-full flex-row-reverse opacity-0 transition-opacity duration-1000 ease-out transform translate-y-4">
-            <div class="w-5/12 text-left">
-                <h3 class="text-2xl font-bold">System Maintainer & IT Operator</h3>
-                <span class="text-yellow-500">HQ Restaurant | Part Time</span>
-                <p class="mt-2 text-gray-300">As a system maintainer at HQ Restaurant, I managed technical operations, ensuring smooth functioning of IT systems. I resolved issues in the billing system and also contributed by creating digital content for promotional purposes.</p>
-                <span class="text-gray-400">2017 - 2020</span>
-            </div>
-            <div class="relative w-10 h-10 bg-yellow-500 rounded-full z-10"></div>
-            <div class="w-5/12"></div>
-        </div>
+            <div class="space-y-5 sm:space-y-6 md:space-y-7">
+                <!-- Refectline -->
+                <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/10 fade-in-up">
+                    <div class="flex items-start justify-between gap-3 mb-3">
+                        <div class="flex items-start gap-3">
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-r from-indigo-500 to-fuchsia-500 text-white">
+                                <i class="fas fa-briefcase text-sm"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-100">Web Developer</p>
+                                <p class="text-[11px] sm:text-xs text-slate-400">
+                                    Refectline (Pvt) Ltd · Full Time
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[11px] font-medium text-slate-300">2020 – 2022</p>
+                            <span class="mt-1 inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40 whitespace-nowrap">
+                                Web & WordPress
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Built and maintained marketing sites and landing pages in WordPress and PHP, while also creating visuals,
+                        posts, and video content for campaigns. Gradually introduced Laravel and modern JavaScript practices to
+                        improve performance, maintainability, and handoff between design and development.
+                    </p>
+                </article>
 
-        <div class="mb-8 flex items-center justify-between w-full opacity-0 transition-opacity duration-1000 ease-out transform translate-y-4">
-            <div class="w-5/12 text-right">
-                <h3 class="text-2xl font-bold">Web Developer & Graphic Designer</h3>
-                <span class="text-yellow-500">Recode99(Pvt)Ltd | Part Time</span>
-                <p class="mt-2 text-gray-300">I initially joined Recode99 for graphic design, video editing, and creating social media posts for various clients. Eventually, I extended my role to include web development, where I built and maintained WordPress websites.</p>
-                <span class="text-gray-400">2017 - 2019</span>
+                <!-- HQ Restaurant -->
+                <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/10 fade-in-up">
+                    <div class="flex items-start justify-between gap-3 mb-3">
+                        <div class="flex items-start gap-3">
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 text-white">
+                                <i class="fas fa-laptop-code text-sm"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-100">System Maintainer & IT Operator</p>
+                                <p class="text-[11px] sm:text-xs text-slate-400">
+                                    HQ Restaurant · Part Time
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[11px] font-medium text-slate-300">2017 – 2020</p>
+                            <span class="mt-1 inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40 whitespace-nowrap">
+                                IT operations
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Maintained core IT systems and billing software, troubleshooting issues in a live environment and keeping
+                        operations stable. Also contributed digital content for promotions, which helped me understand how
+                        infrastructure, tools, and user‑facing experiences fit together.
+                    </p>
+                </article>
+
+                <!-- Recode99 -->
+                <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/10 fade-in-up">
+                    <div class="flex items-start justify-between gap-3 mb-3">
+                        <div class="flex items-start gap-3">
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-r from-fuchsia-500 to-rose-500 text-white">
+                                <i class="fas fa-palette text-sm"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-100">Web Developer & Graphic Designer</p>
+                                <p class="text-[11px] sm:text-xs text-slate-400">
+                                    Recode99 (Pvt) Ltd · Part Time
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[11px] font-medium text-slate-300">2017 – 2019</p>
+                            <span class="mt-1 inline-flex items-center rounded-full bg-fuchsia-400/10 px-2.5 py-1 text-[10px] font-medium text-fuchsia-300 border border-fuchsia-400/40 whitespace-nowrap">
+                                Design & web
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Started with social media graphics and video editing, then took on building and maintaining WordPress
+                        sites for clients. This role is where I first connected visual design, content, and code into cohesive
+                        digital experiences.
+                    </p>
+                </article>
             </div>
-            <div class="relative w-10 h-10 bg-yellow-500 rounded-full z-10"></div>
-            <div class="w-5/12"></div>
         </div>
     </div>
-</div>
+</section>
 
-<!--Skills Section-->
+<!-- Skills Section -->
+<section id="skills" class="py-14 sm:py-18 md:py-22 lg:py-28 relative overflow-hidden">
+    <div class="absolute inset-0">
+        <video id="bg-video" autoplay muted loop playsinline>
+            <source src="{{ asset('video5.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+        <div class="flex flex-col items-center text-center gap-4 sm:gap-5 mb-8 sm:mb-10 md:mb-12">
+            <div class="fade-in-up">
+                <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
+                    <span>My</span> <span>Skills</span>
+                </h2>
+                <p class="max-w-xl mx-auto text-sm sm:text-base text-slate-200/90">
+                    A snapshot of the tools and technologies I use most often — from interface craft to backend systems
+                    and the workflow glue that holds everything together.
+                </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-3 text-[11px] sm:text-xs text-slate-300/90 fade-in-up">
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-3 py-1 border border-emerald-400/40">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                    Primary stack
+                </span>
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-sky-400/10 px-3 py-1 border border-sky-400/40">
+                    <span class="h-2 w-2 rounded-full bg-sky-400"></span>
+                    Production experience
+                </span>
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-fuchsia-400/10 px-3 py-1 border border-fuchsia-400/40">
+                    <span class="h-2 w-2 rounded-full bg-fuchsia-400"></span>
+                    Exploring & refining
+                </span>
+            </div>
+        </div>
 
-<div class="relative w-full h-screen overflow-hidden">
-    <video id="bg-video" autoplay muted loop>
-        <source src="{{ asset('video5.mp4') }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+        <div class="grid gap-6 md:gap-7 lg:gap-9 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+            <!-- Frontend Column -->
+            <div class="glass-dark rounded-3xl border border-white/10 p-5 sm:p-6 fade-in-up">
+                <div class="flex items-center justify-between mb-5">
+                    <div>
+                        <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-emerald-300/80">Frontend</p>
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-50 mt-1">Interfaces & user experience</h3>
+                    </div>
+                    <div class="h-9 w-9 rounded-full bg-gradient-to-tr from-emerald-400/30 to-sky-400/40 flex items-center justify-center text-emerald-100 border border-emerald-400/40">
+                        <i class="fas fa-magic text-xs"></i>
+                    </div>
+                </div>
 
-    <section id="skills" class="py-20 text-white relative z-10">
-        <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-20 text-center">
-                <span class="text-yellow-400">My</span>
-                <span class="border-b-4 border-yellow-400">Skills</span>
-            </h2>
-            <!-- Skills Content -->
+                <ul class="space-y-3.5">
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-orange-500/15">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                                     alt="HTML5"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">HTML</p>
+                                <p class="text-[11px] text-slate-400">Semantic, accessible markup</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
+                            Primary
+                        </span>
+                    </li>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="50">
-                <i class="fab fa-html5 text-6xl text-orange-500"></i>
-                <h4 class="mt-3">HTML</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
-                <i class="fab fa-css3-alt text-6xl text-blue-500"></i>
-                <h4 class="mt-3">CSS</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="150">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="Tailwind CSS Logo" class="h-11 mx-auto">
-                <h4 class="pt-4">Tailwind CSS</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
-                <i class="fab fa-js-square text-6xl text-yellow-500"></i>
-                <h4 class="mt-3">JavaScript</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="250">
-                <i class="fab fa-php text-6xl text-blue-900"></i>
-                <h4 class="mt-3">PHP</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="300">
-                <i class="fab fa-laravel text-6xl text-red-600"></i>
-                <h4 class="mt-3">Laravel</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="350">
-                <i class="fas fa-database text-6xl text-green-600"></i>
-                <h4 class="mt-3">MongoDB</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="400">
-                <i class="fab fa-node text-6xl text-green-500"></i>
-                <h4 class="mt-3">Express JS</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="450">
-                <i class="fab fa-react text-6xl text-blue-400"></i>
-                <h4 class="mt-3">React JS</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="500">
-                <i class="fab fa-node-js text-6xl text-green-500"></i>
-                <h4 class="mt-3">Node JS</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="550">
-                <i class="fab fa-github text-6xl text-white"></i>
-                <h4 class="mt-3">GitHub</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="600">
-                <i class="fas fa-database text-6xl text-blue-600"></i>
-                <h4 class="mt-3">MySQL</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="650">
-                <i class="fas fa-server text-6xl text-red-500"></i>
-                <h4 class="mt-3">SQL Server</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="700">
-                <i class="fab fa-wordpress text-6xl text-blue-600"></i>
-                <h4 class="mt-3">WordPress</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="750">
-                <i class="fab fa-figma text-6xl text-pink-500"></i>
-                <h4 class="mt-3">Figma</h4>
-            </div>
-            <div class="skill-item" data-aos="fade-up" data-aos-delay="800">
-                <i class="fab fa-bootstrap text-6xl text-purple-500"></i>
-                <h4 class="mt-3">Bootstrap</h4>
-            </div>
-            </div>
-    </section>
-</div>
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-blue-500/15">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                                     alt="CSS3"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">CSS</p>
+                                <p class="text-[11px] text-slate-400">Utility‑first, responsive, animations</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
+                            Primary
+                        </span>
+                    </li>
 
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-yellow-500/15">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                     alt="JavaScript"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">JavaScript</p>
+                                <p class="text-[11px] text-slate-400">Interactions, state, async flows</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40 whitespace-nowrap">
+                            In production
+                        </span>
+                    </li>
 
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-sky-500/15">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                                     alt="React"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">React</p>
+                                <p class="text-[11px] text-slate-400">Component‑driven UIs</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40 whitespace-nowrap">
+                            In production
+                        </span>
+                    </li>
+
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-pink-500/15">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"
+                                     alt="Figma"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">Figma</p>
+                                <p class="text-[11px] text-slate-400">Wireframes & design systems</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-fuchsia-400/10 px-2.5 py-1 text-[10px] font-medium text-fuchsia-300 border border-fuchsia-400/40">
+                            Exploring
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Backend Column -->
+            <div class="glass-dark rounded-3xl border border-white/10 p-5 sm:p-6 fade-in-up">
+                <div class="flex items-center justify-between mb-5">
+                    <div>
+                        <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-sky-300/80">Backend</p>
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-50 mt-1">APIs, data & business logic</h3>
+                    </div>
+                    <div class="h-9 w-9 rounded-full bg-gradient-to-tr from-sky-400/30 to-indigo-400/40 flex items-center justify-center text-sky-100 border border-sky-400/40">
+                        <i class="fas fa-database text-xs"></i>
+                    </div>
+                </div>
+
+                <ul class="space-y-3.5">
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-sky-500/15">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+                                     alt="PHP"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">PHP</p>
+                                <p class="text-[11px] text-slate-400">APIs, controllers, business rules</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40 whitespace-nowrap">
+                            In production
+                        </span>
+                    </li>
+
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-red-500/15">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg"
+                                     alt="Laravel"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">Laravel</p>
+                                <p class="text-[11px] text-slate-400">REST APIs, auth, dashboards</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
+                            Primary
+                        </span>
+                    </li>
+
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-emerald-500/15">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                                     alt="Node.js"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">Node.js & Express</p>
+                                <p class="text-[11px] text-slate-400">APIs & services</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40">
+                            In production
+                        </span>
+                    </li>
+
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-blue-500/15">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                                     alt="MySQL"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">MySQL & SQL Server</p>
+                                <p class="text-[11px] text-slate-400">Relational schema & queries</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40">
+                            In production
+                        </span>
+                    </li>
+
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-emerald-500/15">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                                     alt="MongoDB"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">MongoDB</p>
+                                <p class="text-[11px] text-slate-400">Document‑based data models</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-fuchsia-400/10 px-2.5 py-1 text-[10px] font-medium text-fuchsia-300 border border-fuchsia-400/40">
+                            Exploring
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Tooling Column -->
+            <div class="glass-dark rounded-3xl border border-white/10 p-5 sm:p-6 fade-in-up">
+                <div class="flex items-center justify-between mb-5">
+                    <div>
+                        <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-fuchsia-300/80">Tooling</p>
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-50 mt-1">Workflow, platform & ops</h3>
+                    </div>
+                    <div class="h-9 w-9 rounded-full bg-gradient-to-tr from-fuchsia-400/30 to-amber-400/40 flex items-center justify-center text-fuchsia-100 border border-fuchsia-400/40">
+                        <i class="fas fa-compass-drafting text-xs"></i>
+                    </div>
+                </div>
+
+                <ul class="space-y-3.5">
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-700/70">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                                     alt="GitHub"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">Git & GitHub</p>
+                                <p class="text-[11px] text-slate-400">Version control & collaboration</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
+                            Primary
+                        </span>
+                    </li>
+
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-sky-500/20">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg"
+                                     alt="WordPress"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">WordPress</p>
+                                <p class="text-[11px] text-slate-400">Custom themes & CMS setups</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40">
+                            In production
+                        </span>
+                    </li>
+
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-600/60 text-slate-100">
+                                <i class="fas fa-terminal text-lg"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">CLI & automation</p>
+                                <p class="text-[11px] text-slate-400">Dev tooling & scripts</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40">
+                            In production
+                        </span>
+                    </li>
+
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-indigo-500/20 text-indigo-200">
+                                <i class="fas fa-layer-group text-lg"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">Component systems</p>
+                                <p class="text-[11px] text-slate-400">Reusable UI libraries</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-fuchsia-400/10 px-2.5 py-1 text-[10px] font-medium text-fuchsia-300 border border-fuchsia-400/40">
+                            Exploring
+                        </span>
+                    </li>
+
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-emerald-500/20 text-emerald-200">
+                                <i class="fas fa-gauge-high text-lg"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">Performance & monitoring</p>
+                                <p class="text-[11px] text-slate-400">Lighthouse, bundle analysis</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
+                            Primary
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
 <script>
-    var typed = new Typed('#typed-text', {
-        strings: ["PROGRAMMER", "CODER", "GRAPHIC DESIGNER", "VIDEO EDITOR", "WEB DEVELOPER"],
-        typeSpeed: 50, 
-        backSpeed: 50,
-        loop: true, 
-        backDelay: 2000 
-    });
-</script>
-<script>
-  // animate the numbers
-  function animateCounter(counter) {
-    const target = +counter.getAttribute('data-target');
-    const increment = target / 80; 
+    // Typed.js initialization (kept subtle for 2026 aesthetic)
+    if (document.getElementById('typed-text')) {
+        new Typed('#typed-text', {
+            strings: ["Full‑Stack Developer", "Interface Engineer", "Product Partner"],
+            typeSpeed: 55,
+            backSpeed: 40,
+            loop: true,
+            backDelay: 2200,
+            smartBackspace: true,
+        });
+    }
 
-    let currentValue = 0;
+    // Counter animation
+    function animateCounter(counter) {
+        const target = +counter.getAttribute('data-target');
+        const increment = target / 80;
+        let currentValue = 0;
 
-    const updateCounter = () => {
-      currentValue += increment;
-      if (currentValue < target) {
-        counter.innerText = `${Math.ceil(currentValue)}+`;
-        setTimeout(updateCounter, 10);
-      } else {
-        counter.innerText = `${target}+`;
-      }
+        const updateCounter = () => {
+            currentValue += increment;
+            if (currentValue < target) {
+                counter.innerText = `${Math.ceil(currentValue)}+`;
+                setTimeout(updateCounter, 10);
+            } else {
+                counter.innerText = `${target}+`;
+            }
+        };
+        updateCounter();
+    }
+
+    const counters = document.querySelectorAll('.counter');
+    const observerOptions = {
+        root: null,
+        threshold: 0.5,
     };
 
-    updateCounter();
-  }
-
-
-  const counters = document.querySelectorAll('.counter');
-  const options = {
-    root: null, 
-    threshold: 0.5,
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        observer.unobserve(entry.target); 
-      }
-    });
-  }, options);
-
-  counters.forEach(counter => {
-    observer.observe(counter); 
-  });
-</script>
-
-
-<script>
-    // animate the experience section
-  document.addEventListener("DOMContentLoaded", function() {
-    const items = document.querySelectorAll('.mb-8');
-
-    const observer = new IntersectionObserver(entries => {
+    const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('opacity-100', 'translate-y-0');
-                observer.unobserve(entry.target);
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.1 
+    }, observerOptions);
+
+    counters.forEach(counter => {
+        counterObserver.observe(counter);
     });
 
-    items.forEach(item => {
-        observer.observe(item);
+    // Fade in animation on scroll
+    const fadeElements = document.querySelectorAll('.fade-in-up');
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                fadeObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        fadeObserver.observe(el);
     });
-});
 
-</script>
-
-
-
-<script>
-    // animate the skills section
+    // Video playback rate
     document.addEventListener("DOMContentLoaded", function () {
         const video = document.getElementById("bg-video");
-        video.playbackRate = 0.7;
+        if (video) {
+            video.playbackRate = 0.7;
+        }
     });
 </script>
-
 
 @endsection
