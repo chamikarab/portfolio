@@ -12,61 +12,66 @@
 @endphp
 
 {{-- Top hero / welcome --}}
-<div class="admin-card mb-5">
+<div class="admin-card mb-4 sm:mb-5">
     <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-            <p class="text-xs font-medium uppercase tracking-[0.18em] text-slate-500 mb-1">Overview</p>
-            <h2 class="text-xl md:text-2xl font-semibold tracking-tight text-slate-900">
+        <div class="min-w-0 flex-1">
+            <p class="text-[10px] sm:text-xs font-medium uppercase tracking-[0.18em] text-slate-500 mb-1">Overview</p>
+            <h2 class="text-lg sm:text-xl md:text-2xl font-semibold tracking-tight text-slate-900">
                 Welcome back, {{ auth()->user()->name ?? 'Chamikara' }}
             </h2>
-            <p class="mt-1 text-xs md:text-sm text-slate-600 max-w-xl">
+            <p class="mt-1 text-[11px] sm:text-xs md:text-sm text-slate-600 max-w-xl">
                 Quickly see how your portfolio content is performing and jump into the tasks that matter most.
             </p>
         </div>
-        <div class="flex flex-wrap gap-2 text-sm">
-            <a href="{{ route('admin.projects.create') }}" class="admin-btn-primary">
-                <i class="fa-solid fa-circle-plus text-[11px]"></i>
-                <span>New project</span>
+        <div class="flex flex-wrap gap-2 sm:flex-nowrap">
+            <a href="{{ route('admin.projects.create') }}" class="admin-btn-primary flex-1 sm:flex-none">
+                <i class="fa-solid fa-circle-plus text-[10px] sm:text-[11px]"></i>
+                <span class="hidden sm:inline">New project</span>
+                <span class="sm:hidden">New</span>
             </a>
-            <a href="{{ route('admin.testimonials.create') }}" class="admin-btn-ghost">
-                <i class="fa-solid fa-quote-left text-[11px]"></i>
-                <span>New testimonial</span>
+            <a href="{{ route('admin.testimonials.create') }}" class="admin-btn-ghost flex-1 sm:flex-none">
+                <i class="fa-solid fa-quote-left text-[10px] sm:text-[11px]"></i>
+                <span class="hidden sm:inline">New testimonial</span>
+                <span class="sm:hidden">Testimonial</span>
             </a>
-            <a href="{{ route('home') }}" class="admin-btn-ghost">
-                <i class="fa-solid fa-globe text-[11px]"></i>
-                <span>View site</span>
+            <a href="{{ route('home') }}" class="admin-btn-ghost flex-1 sm:flex-none">
+                <i class="fa-solid fa-globe text-[10px] sm:text-[11px]"></i>
+                <span class="hidden sm:inline">View site</span>
+                <span class="sm:hidden">Site</span>
             </a>
         </div>
     </div>
 </div>
 
 {{-- KPI cards --}}
-<div class="grid gap-4 md:grid-cols-3 mb-6">
+<div class="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-4 sm:mb-6">
     {{-- Projects --}}
     <div class="admin-card">
         <div class="admin-card-header">
-            <div>
-                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Projects</p>
-                <p class="mt-1 text-3xl font-semibold text-slate-900">
+            <div class="min-w-0 flex-1">
+                <p class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Projects</p>
+                <p class="mt-1 text-2xl sm:text-3xl font-semibold text-slate-900">
                     {{ $projectsCount }}
                 </p>
             </div>
-            <span class="admin-badge-pill">
-                <i class="fa-solid fa-briefcase text-xs mr-1"></i>
-                Portfolio
+            <span class="admin-badge-pill shrink-0">
+                <i class="fa-solid fa-briefcase text-[10px] sm:text-xs mr-1"></i>
+                <span class="hidden sm:inline">Portfolio</span>
+                <span class="sm:hidden">Proj</span>
             </span>
         </div>
-        <p class="text-xs text-slate-600">
+        <p class="text-[11px] sm:text-xs text-slate-600">
             All projects currently visible on your public portfolio.
         </p>
-        <div class="mt-4 flex items-center justify-between text-[11px]">
+        <div class="mt-3 sm:mt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-0 text-[10px] sm:text-[11px]">
             <a href="{{ route('admin.all-projects') }}" class="inline-flex items-center gap-1 text-indigo-600 hover:text-indigo-500 font-medium">
-                <span>Manage projects</span>
-                <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                <span class="truncate">Manage projects</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[8px] sm:text-[9px] shrink-0"></i>
             </a>
-            <a href="{{ route('admin.projects.create') }}" class="admin-btn-ghost px-3 py-1">
-                <i class="fa-solid fa-circle-plus text-[10px] mr-1"></i>
-                <span>New project</span>
+            <a href="{{ route('admin.projects.create') }}" class="admin-btn-ghost px-2 sm:px-3 py-1 text-[10px] sm:text-[11px]">
+                <i class="fa-solid fa-circle-plus text-[9px] sm:text-[10px] mr-1"></i>
+                <span class="hidden sm:inline">New project</span>
+                <span class="sm:hidden">New</span>
             </a>
         </div>
     </div>
@@ -74,62 +79,64 @@
     {{-- Testimonials --}}
     <div class="admin-card">
         <div class="admin-card-header">
-            <div>
-                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Testimonials</p>
-                <p class="mt-1 text-3xl font-semibold text-slate-900">
+            <div class="min-w-0 flex-1">
+                <p class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Testimonials</p>
+                <p class="mt-1 text-2xl sm:text-3xl font-semibold text-slate-900">
                     {{ $testimonialsCount }}
                 </p>
             </div>
-            <span class="admin-badge-pill">
-                <i class="fa-solid fa-comment-dots text-xs mr-1"></i>
-                Social proof
+            <span class="admin-badge-pill shrink-0">
+                <i class="fa-solid fa-comment-dots text-[10px] sm:text-xs mr-1"></i>
+                <span class="hidden sm:inline">Social proof</span>
+                <span class="sm:hidden">Proof</span>
             </span>
         </div>
-        <p class="text-xs text-slate-600">
+        <p class="text-[11px] sm:text-xs text-slate-600">
             Client quotes that add credibility to your work.
         </p>
-        <div class="mt-4 flex items-center justify-between text-[11px]">
+        <div class="mt-3 sm:mt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-0 text-[10px] sm:text-[11px]">
             <a href="{{ route('admin.all-testimonials') }}" class="inline-flex items-center gap-1 text-indigo-600 hover:text-indigo-500 font-medium">
-                <span>View all testimonials</span>
-                <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                <span class="truncate">View all testimonials</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[8px] sm:text-[9px] shrink-0"></i>
             </a>
-            <a href="{{ route('admin.testimonials.create') }}" class="admin-btn-ghost px-3 py-1">
-                <i class="fa-solid fa-square-plus text-[10px] mr-1"></i>
-                <span>New testimonial</span>
+            <a href="{{ route('admin.testimonials.create') }}" class="admin-btn-ghost px-2 sm:px-3 py-1 text-[10px] sm:text-[11px]">
+                <i class="fa-solid fa-square-plus text-[9px] sm:text-[10px] mr-1"></i>
+                <span class="hidden sm:inline">New testimonial</span>
+                <span class="sm:hidden">New</span>
             </a>
         </div>
     </div>
 
     {{-- Activity snapshot --}}
-    <div class="admin-card">
+    <div class="admin-card sm:col-span-2 lg:col-span-1">
         <div class="admin-card-header">
-            <div>
-                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Today</p>
-                <p class="mt-1 text-sm font-semibold text-slate-900">Activity snapshot</p>
+            <div class="min-w-0 flex-1">
+                <p class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Today</p>
+                <p class="mt-1 text-xs sm:text-sm font-semibold text-slate-900">Activity snapshot</p>
             </div>
         </div>
-        <ul class="mt-1 space-y-1.5 text-xs text-slate-600">
-            <li class="flex items-center gap-2">
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+        <ul class="mt-1 space-y-1.5 text-[11px] sm:text-xs text-slate-600">
+            <li class="flex items-start gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0"></span>
                 <span><strong class="font-semibold text-slate-900">{{ $projectsCount }}</strong> total projects in your portfolio.</span>
             </li>
-            <li class="flex items-center gap-2">
-                <span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span>
+            <li class="flex items-start gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-sky-400 mt-1.5 shrink-0"></span>
                 <span><strong class="font-semibold text-slate-900">{{ $testimonialsCount }}</strong> testimonials from clients.</span>
             </li>
-            <li class="flex items-center gap-2">
-                <span class="h-1.5 w-1.5 rounded-full bg-indigo-400"></span>
+            <li class="flex items-start gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0"></span>
                 <span>Keep things fresh by adding new content regularly.</span>
             </li>
         </ul>
-        <div class="mt-4 flex items-center justify-between text-[11px] text-slate-500">
-            <span>Tip: aim to add at least one new project each month.</span>
+        <div class="mt-3 sm:mt-4 text-[10px] sm:text-[11px] text-slate-500">
+            <span class="block sm:inline">Tip: aim to add at least one new project each month.</span>
         </div>
     </div>
 </div>
 
 {{-- Main grid: recent activity + highlights --}}
-<div class="grid gap-4 lg:grid-cols-[minmax(0,2.1fr)_minmax(0,1.4fr)]">
+<div class="grid gap-4 grid-cols-1 lg:grid-cols-[minmax(0,2.1fr)_minmax(0,1.4fr)]">
     {{-- Recent activity --}}
     <div class="space-y-4">
         <div class="admin-card">
@@ -148,42 +155,42 @@
                 @endif
 
                 @foreach($recentProjects as $project)
-                    <div class="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5">
-                        <div class="mt-0.5">
-                            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500 text-[11px] text-white shadow-sm">
+                    <div class="flex items-start gap-2 sm:gap-3 rounded-xl border border-slate-200 bg-slate-50 px-2 sm:px-3 py-2 sm:py-2.5">
+                        <div class="mt-0.5 shrink-0">
+                            <span class="inline-flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-indigo-500 text-[10px] sm:text-[11px] text-white shadow-sm">
                                 <i class="fa-solid fa-briefcase"></i>
                             </span>
                         </div>
                         <div class="min-w-0 flex-1">
-                            <p class="truncate text-sm font-medium text-slate-900">
+                            <p class="truncate text-xs sm:text-sm font-medium text-slate-900">
                                 New project: {{ $project->name }}
                             </p>
-                            <p class="text-xs text-slate-500 truncate">
+                            <p class="text-[10px] sm:text-xs text-slate-500 truncate">
                                 {{ $project->category ?? 'Uncategorized' }}
                             </p>
                         </div>
-                        <p class="whitespace-nowrap text-[11px] text-slate-500">
+                        <p class="whitespace-nowrap text-[10px] sm:text-[11px] text-slate-500 shrink-0 ml-1">
                             {{ $project->created_at?->diffForHumans() }}
                         </p>
                     </div>
                 @endforeach
 
                 @foreach($recentTestimonials as $testimonial)
-                    <div class="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5">
-                        <div class="mt-0.5">
-                            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-[11px] text-white shadow-sm">
+                    <div class="flex items-start gap-2 sm:gap-3 rounded-xl border border-slate-200 bg-slate-50 px-2 sm:px-3 py-2 sm:py-2.5">
+                        <div class="mt-0.5 shrink-0">
+                            <span class="inline-flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-emerald-500 text-[10px] sm:text-[11px] text-white shadow-sm">
                                 <i class="fa-solid fa-quote-left"></i>
                             </span>
                         </div>
                         <div class="min-w-0 flex-1">
-                            <p class="truncate text-sm font-medium text-slate-900">
+                            <p class="truncate text-xs sm:text-sm font-medium text-slate-900">
                                 New testimonial from {{ $testimonial->client_name }}
                             </p>
-                            <p class="mt-0.5 text-xs text-slate-600 line-clamp-2">
+                            <p class="mt-0.5 text-[10px] sm:text-xs text-slate-600 line-clamp-2">
                                 “{{ $testimonial->testimonial }}”
                             </p>
                         </div>
-                        <p class="whitespace-nowrap text-[11px] text-slate-500">
+                        <p class="whitespace-nowrap text-[10px] sm:text-[11px] text-slate-500 shrink-0 ml-1">
                             {{ $testimonial->created_at?->diffForHumans() }}
                         </p>
                     </div>
@@ -199,38 +206,38 @@
             <div class="admin-card-header">
                 <h2 class="admin-card-title">Quick actions</h2>
             </div>
-            <ul class="mt-1 space-y-2 text-sm text-slate-700">
+            <ul class="mt-1 space-y-2 text-xs sm:text-sm text-slate-700">
                 <li>
-                    <a href="{{ route('admin.projects.create') }}" class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 hover:border-indigo-500/60 hover:bg-indigo-50 transition">
-                        <div class="flex items-center gap-2">
-                            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500 text-[11px] text-white">
+                    <a href="{{ route('admin.projects.create') }}" class="flex items-center justify-between gap-2 sm:gap-3 rounded-xl border border-slate-200 bg-slate-50 px-2 sm:px-3 py-2 hover:border-indigo-500/60 hover:bg-indigo-50 transition">
+                        <div class="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
+                            <span class="inline-flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-indigo-500 text-[10px] sm:text-[11px] text-white shrink-0">
                                 <i class="fa-solid fa-circle-plus"></i>
                             </span>
-                            <span>Add a featured project</span>
+                            <span class="truncate">Add a featured project</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                        <i class="fa-solid fa-chevron-right text-[9px] sm:text-[10px] text-slate-500 shrink-0"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.testimonials.create') }}" class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 hover:border-indigo-500/60 hover:bg-indigo-50 transition">
-                        <div class="flex items-center gap-2">
-                            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-[11px] text-white">
+                    <a href="{{ route('admin.testimonials.create') }}" class="flex items-center justify-between gap-2 sm:gap-3 rounded-xl border border-slate-200 bg-slate-50 px-2 sm:px-3 py-2 hover:border-indigo-500/60 hover:bg-indigo-50 transition">
+                        <div class="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
+                            <span class="inline-flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-emerald-500 text-[10px] sm:text-[11px] text-white shrink-0">
                                 <i class="fa-solid fa-quote-left"></i>
                             </span>
-                            <span>Capture a new testimonial</span>
+                            <span class="truncate">Capture a new testimonial</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                        <i class="fa-solid fa-chevron-right text-[9px] sm:text-[10px] text-slate-500 shrink-0"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('home') }}" class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 hover:border-indigo-500/60 hover:bg-indigo-50 transition">
-                        <div class="flex items-center gap-2">
-                            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-[11px] text-white">
+                    <a href="{{ route('home') }}" class="flex items-center justify-between gap-2 sm:gap-3 rounded-xl border border-slate-200 bg-slate-50 px-2 sm:px-3 py-2 hover:border-indigo-500/60 hover:bg-indigo-50 transition">
+                        <div class="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
+                            <span class="inline-flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-sky-500 text-[10px] sm:text-[11px] text-white shrink-0">
                                 <i class="fa-solid fa-globe"></i>
                             </span>
-                            <span>Preview live portfolio</span>
+                            <span class="truncate">Preview live portfolio</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                        <i class="fa-solid fa-chevron-right text-[9px] sm:text-[10px] text-slate-500 shrink-0"></i>
                     </a>
                 </li>
             </ul>

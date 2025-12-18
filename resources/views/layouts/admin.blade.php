@@ -36,15 +36,30 @@
                 0 18px 40px rgba(15, 23, 42, 0.12),
                 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
             backdrop-filter: blur(14px);
-            padding: 1.5rem;
+            padding: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .admin-card {
+                padding: 1.5rem;
+            }
         }
 
         .admin-card-header {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
             margin-bottom: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .admin-card-header {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+            }
         }
 
         .admin-card-title {
@@ -75,17 +90,26 @@
         .admin-btn-primary {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             border-radius: 9999px;
             background-color: #4f46e5;
             color: #ffffff;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             font-weight: 500;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.875rem;
             box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
             border: none;
             cursor: pointer;
             transition: all 0.15s ease-out;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 640px) {
+            .admin-btn-primary {
+                font-size: 0.875rem;
+                padding: 0.5rem 1rem;
+            }
         }
 
         .admin-btn-primary:hover {
@@ -97,16 +121,25 @@
         .admin-btn-ghost {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             border-radius: 9999px;
             border: 1px solid #d1d5db;
             background-color: #ffffff;
             color: #374151;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             font-weight: 500;
-            padding: 0.375rem 0.75rem;
+            padding: 0.375rem 0.625rem;
             cursor: pointer;
             transition: all 0.15s ease-out;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 640px) {
+            .admin-btn-ghost {
+                font-size: 0.875rem;
+                padding: 0.375rem 0.75rem;
+            }
         }
 
         .admin-btn-ghost:hover {
@@ -145,6 +178,17 @@
             color: #111827;
             border-collapse: separate;
             border-spacing: 0;
+        }
+
+        @media (max-width: 640px) {
+            .admin-table {
+                font-size: 0.75rem;
+            }
+            
+            .admin-table th,
+            .admin-table td {
+                padding: 0.5rem 0.75rem;
+            }
         }
 
         .admin-table thead {
@@ -349,7 +393,7 @@
                     <p class="truncate text-slate-300">{{ auth()->user()->email ?? 'admin@example.com' }}</p>
                 </div>
                 @auth
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
                         <button type="submit" class="admin-btn-ghost w-full justify-center text-[11px]">
                             <i class="fa-solid fa-right-from-bracket text-[10px]"></i>
@@ -379,13 +423,13 @@
             </header>
 
             <!-- Content -->
-            <main class="flex-1 px-4 py-5 sm:px-6 lg:px-8">
-                <div class="mx-auto w-full max-w-5xl space-y-6">
+            <main class="flex-1 px-3 py-4 sm:px-4 sm:py-5 md:px-6 lg:px-8">
+                <div class="mx-auto w-full max-w-5xl space-y-4 sm:space-y-6">
                     <!-- Page heading -->
-                    <div class="flex items-center justify-between gap-3">
-                        <div>
-                            <h1 class="text-lg font-semibold tracking-tight text-slate-900">@yield('title')</h1>
-                            <p class="mt-1 text-xs text-slate-500">Admin area • {{ now()->format('M j, Y') }}</p>
+                    <div class="flex items-center justify-between gap-2 sm:gap-3">
+                        <div class="min-w-0 flex-1">
+                            <h1 class="text-base sm:text-lg font-semibold tracking-tight text-slate-900 truncate">@yield('title')</h1>
+                            <p class="mt-1 text-[10px] sm:text-xs text-slate-500">Admin area • {{ now()->format('M j, Y') }}</p>
                         </div>
                     </div>
 
