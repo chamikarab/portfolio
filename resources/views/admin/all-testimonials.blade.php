@@ -4,6 +4,31 @@
 
 @section('content')
 
+@push('styles')
+<style>
+    .btn-edit {
+        border-color: #10b981 !important;
+        color: #10b981 !important;
+        background-color: #ecfdf5 !important;
+    }
+    .btn-edit:hover {
+        border-color: #059669 !important;
+        color: #ffffff !important;
+        background-color: #10b981 !important;
+    }
+    .btn-delete {
+        border-color: #ef4444 !important;
+        color: #ef4444 !important;
+        background-color: #fef2f2 !important;
+    }
+    .btn-delete:hover {
+        border-color: #dc2626 !important;
+        color: #ffffff !important;
+        background-color: #ef4444 !important;
+    }
+</style>
+@endpush
+
 <div>
     <div class="admin-card-header" style="margin-bottom:12px;">
         <div>
@@ -14,6 +39,13 @@
             <span>+ New Testimonial</span>
         </a>
     </div>
+
+    @if(session('success'))
+        <div class="admin-alert-success mb-4">
+            <i class="fa-solid fa-circle-check mr-2"></i>
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="admin-card">
         <div class="admin-card-header">
@@ -36,10 +68,15 @@
                             <td style="max-width:260px;white-space:normal;">{{ $testimonial->testimonial }}</td>
                             <td>
                                 <div class="admin-table-actions">
-                                    <form action="{{ route('admin.testimonials.destroy', $testimonial->id) }}" method="POST" onsubmit="return confirm('Delete this testimonial?');">
+                                    <a href="{{ route('admin.testimonials.edit', $testimonial->id) }}" class="admin-btn-ghost btn-edit">
+                                        <i class="fa-solid fa-pen-to-square text-[10px]"></i>
+                                        <span>Edit</span>
+                                    </a>
+                                    <form action="{{ route('admin.testimonials.destroy', $testimonial->id) }}" method="POST" onsubmit="return confirm('Delete this testimonial?');" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="admin-btn-ghost">
+                                        <button type="submit" class="admin-btn-ghost btn-delete">
+                                            <i class="fa-solid fa-trash text-[10px]"></i>
                                             <span>Delete</span>
                                         </button>
                                     </form>
