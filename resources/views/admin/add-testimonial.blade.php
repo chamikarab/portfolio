@@ -1,38 +1,38 @@
 @extends('layouts.admin')
 
+@section('title', 'Add Testimonial')
+
 @section('content')
 
-<h1>Add New Testimonial</h1>
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card-box">
-            <h4 class="m-t-0 header-title"><b>Add Testimonial</b></h4>
-            
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            <form action="{{ route('admin.testimonials.store') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label for="clientName">Client Name*</label>
-                    <input type="text" name="name" placeholder="Client Name" required class="form-control" id="clientName">
-                </div>
-
-                <div class="form-group">
-                    <label for="testimonial">Testimonial*</label>
-                    <input type="text" name="testimonial" placeholder="Testimonial" required class="form-control" id="testimonial">
-                </div>
-
-                <div class="form-group text-right m-b-0">
-                    <button type="submit" class="btn btn-primary waves-effect waves-light">Add Testimonial</button>
-                </div>
-            </form>
-        </div>
+<div class="admin-card">
+    <div class="admin-card-header">
+        <h1 class="admin-page-title">Add New Testimonial</h1>
+        <a href="{{ route('admin.all-testimonials') }}" class="admin-btn-ghost">Back to list</a>
     </div>
+    <p class="admin-page-subtitle">Capture what your clients say about working with you.</p>
+
+    @if(session('success'))
+        <div class="admin-alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <form action="{{ route('admin.testimonials.store') }}" method="POST">
+        @csrf
+        <div class="form-group" style="margin-bottom:10px;">
+            <label for="clientName" style="font-size:12px;color:#e5e7eb;">Client Name*</label>
+            <input type="text" name="name" placeholder="Client Name" required class="admin-form-control" id="clientName">
+        </div>
+
+        <div class="form-group" style="margin-bottom:16px;">
+            <label for="testimonial" style="font-size:12px;color:#e5e7eb;">Testimonial*</label>
+            <input type="text" name="testimonial" placeholder="Testimonial" required class="admin-form-control" id="testimonial">
+        </div>
+
+        <div style="text-align:right;">
+            <button type="submit" class="admin-btn-primary">Save Testimonial</button>
+        </div>
+    </form>
 </div>
 
 @endsection
