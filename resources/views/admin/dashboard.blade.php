@@ -17,7 +17,7 @@
         <div>
             <p class="text-xs font-medium uppercase tracking-[0.18em] text-slate-500 mb-1">Overview</p>
             <h2 class="text-xl md:text-2xl font-semibold tracking-tight text-slate-900">
-                Welcome back, {{ auth()->user()->name ?? 'Admin' }}
+                Welcome back, {{ auth()->user()->name ?? 'Chamikara' }}
             </h2>
             <p class="mt-1 text-xs md:text-sm text-slate-600 max-w-xl">
                 Quickly see how your portfolio content is performing and jump into the tasks that matter most.
