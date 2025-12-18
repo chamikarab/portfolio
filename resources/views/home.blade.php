@@ -21,11 +21,7 @@
                     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight">
                         <span class="block text-xs sm:text-sm md:text-base text-slate-300 uppercase tracking-[0.3em] mb-1">Hello, I’m</span>
                         <span class="block gradient-text-accent">Chamikara Bandara</span>
-<<<<<<< Updated upstream
                     </h1>
-=======
-                </h1>
->>>>>>> Stashed changes
                     <p class="max-w-xl mx-auto lg:mx-0 text-sm sm:text-base md:text-lg text-slate-300/90">
                         <span class="text-slate-300">I’m a </span>
                         <span class="font-semibold text-slate-100">
@@ -98,8 +94,8 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-8 sm:mb-10 md:mb-14 fade-in-up">
                 <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
-            <span>About</span> <span>Me</span>
-        </h2>
+                    <span>About</span> <span>Me</span>
+                </h2>
                 <p class="max-w-2xl mx-auto text-sm sm:text-base text-slate-300">
                     A developer who cares as much about the **feeling** of an interface as the architecture behind it —
                     blending design, code, and systems thinking.
@@ -298,11 +294,7 @@
             <div class="text-center mb-8 sm:mb-10 md:mb-14 fade-in-up">
                 <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
                     <span>How</span> <span>I Help</span>
-<<<<<<< Updated upstream
                 </h2>
-=======
-        </h2>
->>>>>>> Stashed changes
                 <p class="max-w-2xl mx-auto text-sm sm:text-base text-slate-300">
                     From first idea to live product, I plug into your team where it matters most — strategy, design,
                     engineering, or all three.
@@ -386,11 +378,7 @@
                                 </h3>
                             </div>
                         </div>
-<<<<<<< Updated upstream
                     </div>
-=======
-            </div>
->>>>>>> Stashed changes
                     <p class="text-slate-300 text-sm sm:text-base leading-relaxed flex-1">
                         Designing the glue that keeps products healthy: APIs, data models, performance, and automation.
                         I help simplify complexity so teams can ship faster without losing quality.
@@ -1031,14 +1019,10 @@
             ],
             typeSpeed: 60,
             backSpeed: 35,
-<<<<<<< Updated upstream
             loop: true,
-=======
-        loop: true,
->>>>>>> Stashed changes
             backDelay: 2000,
             smartBackspace: true,
-    });
+        });
     }
 
     // Counter animation
