@@ -41,11 +41,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/projects/create', [ProjectController::class, 'create'])->name('admin.projects.create');
     Route::post('/admin/projects', [ProjectController::class, 'store'])->name('admin.projects.store');
     Route::get('/admin/all-projects', [ProjectController::class, 'allProjects'])->name('admin.all-projects');
+    Route::get('/admin/projects/{id}/edit', [ProjectController::class, 'edit'])->name('admin.projects.edit');
+    Route::put('/admin/projects/{id}', [ProjectController::class, 'update'])->name('admin.projects.update');
     Route::delete('/admin/projects/{id}', [ProjectController::class, 'destroy'])->name('admin.projects.destroy');
 
     // Testimonial routes
     Route::get('/admin/testimonials/create', [TestimonialController::class, 'create'])->name('admin.testimonials.create');
     Route::post('/admin/testimonials', [TestimonialController::class, 'store'])->name('admin.testimonials.store');
     Route::get('/admin/all-testimonials', [TestimonialController::class, 'allTestimonials'])->name('admin.all-testimonials');
+    Route::get('/admin/testimonials/{id}/edit', [TestimonialController::class, 'edit'])->name('admin.testimonials.edit');
+    Route::put('/admin/testimonials/{id}', [TestimonialController::class, 'update'])->name('admin.testimonials.update');
     Route::delete('/admin/testimonials/{id}', [TestimonialController::class, 'destroy'])->name('admin.testimonials.destroy');
 });

@@ -57,6 +57,45 @@ class ProjectController extends Controller
         return redirect()->route('admin.all-projects')->with('success', 'Project added successfully.');
     }
 
+    public function edit($id)
+    {
+        $project = Project::findOrFail($id);
+        return view('admin.edit-project', compact('project'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $project = Project::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required',
+            'image' => 'nullable|image',
+            'category' => 'required',
+            'description' => 'required',
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'category' => $request->category,
+            'description' => $request->description,
+        ];
+
+        // Handle image upload if new image is provided
+        if ($request->hasFile('image')) {
+            // Delete old image
+            if ($project->image) {
+                \Storage::delete('public/' . $project->image);
+            }
+            // Store new image
+            $path = $request->file('image')->store('projects', 'public');
+            $data['image'] = $path;
+        }
+
+        $project->update($data);
+
+        return redirect()->route('admin.all-projects')->with('success', 'Project updated successfully.');
+    }
+
     public function destroy($id)
     {
         $project = Project::findOrFail($id);
