@@ -1,24 +1,30 @@
 @extends('layouts.admin')
 
+@section('title', 'Projects')
+
 @section('content')
 
-<h1>All Projects</h1>
-
-<div class="panel">
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="m-b-30">
-                    <a href="{{ route('admin.projects.create') }}" class="btn btn-default waves-effect waves-light">Add New Project <i class="fa fa-plus"></i></a>
-                </div>
-            </div>
+<div>
+    <div class="admin-card-header" style="margin-bottom:12px;">
+        <div>
+            <h1 class="admin-page-title">Projects</h1>
+            <p class="admin-page-subtitle">Manage all portfolio projects from one place.</p>
         </div>
+        <a href="{{ route('admin.projects.create') }}" class="admin-btn-primary">
+            <span>+ New Project</span>
+        </a>
+    </div>
 
-        <div class="">
-            <table class="table table-striped" id="datatable-editable">
+    <div class="admin-card">
+        <div class="admin-card-header">
+            <h2 class="admin-card-title">All Projects</h2>
+            <span class="admin-badge-pill">{{ $projects->count() }} total</span>
+        </div>
+        <div style="overflow-x:auto;">
+            <table class="admin-table">
                 <thead>
                     <tr>
-                        <th>Project Name</th>
+                        <th>Project</th>
                         <th>Category</th>
                         <th>Description</th>
                         <th>Image</th>
@@ -26,27 +32,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($projects as $project)
-                        <tr class="gradeX">
+                    @forelse($projects as $project)
+                        <tr>
                             <td>{{ $project->name }}</td>
                             <td>{{ $project->category }}</td>
-                            <td>{{ $project->description }}</td>
+                            <td style="max-width:260px;white-space:normal;">{{ $project->description }}</td>
                             <td>
-                                <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->name }}" style="width: 100px;">
+                                @if($project->image)
+                                    <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->name }}" style="width: 80px;border-radius:8px;border:1px solid rgba(148,163,184,0.5);">
+                                @else
+                                    <span class="admin-chip-muted">No image</span>
+                                @endif
                             </td>
-                            <td class="actions">
-                                <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-
-                                <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="on-default remove-row" onclick="return confirm('Are you sure you want to delete this project?')">
-                                        <i class="fa fa-trash-o"></i>
-                                    </button>
-                                </form>
+                            <td>
+                                <div class="admin-table-actions">
+                                    <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Delete this project?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="admin-btn-ghost">
+                                            <span>Delete</span>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="5" style="text-align:center;font-size:13px;color:#9ca3af;padding:18px 0;">
+                                No projects yet. Create your first project to populate your portfolio.
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
