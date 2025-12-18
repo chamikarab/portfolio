@@ -21,7 +21,11 @@
                     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight">
                         <span class="block text-xs sm:text-sm md:text-base text-slate-300 uppercase tracking-[0.3em] mb-1">Hello, I’m</span>
                         <span class="block gradient-text-accent">Chamikara Bandara</span>
+<<<<<<< Updated upstream
                     </h1>
+=======
+                </h1>
+>>>>>>> Stashed changes
                     <p class="max-w-xl mx-auto lg:mx-0 text-sm sm:text-base md:text-lg text-slate-300/90">
                         <span class="text-slate-300">I’m a </span>
                         <span class="font-semibold text-slate-100">
@@ -94,8 +98,8 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-8 sm:mb-10 md:mb-14 fade-in-up">
                 <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
-                    <span>About</span> <span>Me</span>
-                </h2>
+            <span>About</span> <span>Me</span>
+        </h2>
                 <p class="max-w-2xl mx-auto text-sm sm:text-base text-slate-300">
                     A developer who cares as much about the **feeling** of an interface as the architecture behind it —
                     blending design, code, and systems thinking.
@@ -114,7 +118,7 @@
                             I’ve worked with agencies and product teams on websites, dashboards, and internal tools using
                             Laravel, React, Node, and modern CSS. My favorite projects live at the intersection of brand,
                             interaction, and performance.
-                        </p>
+                    </p>
                         <p class="text-slate-300/90 text-sm sm:text-base md:text-lg leading-relaxed">
                             Outside of client work, I’m usually refining components, exploring new design patterns, or learning
                             how other teams ship great products. I’m currently open to **remote roles, freelance projects, and long‑term
@@ -188,8 +192,8 @@
                                     Enjoys small, focused teams
                                 </span>
                             </div>
-                        </div>
-                    </div>
+                </div>
+            </div>
                 </div>
             </div>
         </div>
@@ -280,8 +284,8 @@
                                 Book a collaboration chat
                             </a>
                         </div>
-                    </div>
-                </div>
+            </div>
+            </div>
             </div>
         </div>
     </div>
@@ -294,7 +298,11 @@
             <div class="text-center mb-8 sm:mb-10 md:mb-14 fade-in-up">
                 <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
                     <span>How</span> <span>I Help</span>
+<<<<<<< Updated upstream
                 </h2>
+=======
+        </h2>
+>>>>>>> Stashed changes
                 <p class="max-w-2xl mx-auto text-sm sm:text-base text-slate-300">
                     From first idea to live product, I plug into your team where it matters most — strategy, design,
                     engineering, or all three.
@@ -378,7 +386,11 @@
                                 </h3>
                             </div>
                         </div>
+<<<<<<< Updated upstream
                     </div>
+=======
+            </div>
+>>>>>>> Stashed changes
                     <p class="text-slate-300 text-sm sm:text-base leading-relaxed flex-1">
                         Designing the glue that keeps products healthy: APIs, data models, performance, and automation.
                         I help simplify complexity so teams can ship faster without losing quality.
@@ -439,8 +451,8 @@
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-8 sm:mb-10 md:mb-14 fade-in-up">
                 <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
-                    <span>My</span> <span>Education</span>
-                </h2>
+            <span>My</span> <span>Education</span>
+        </h2>
                 <p class="max-w-2xl mx-auto text-sm sm:text-base text-slate-300">
                     A brief timeline of the studies and certifications that shaped how I think about technology and problem‑solving.
                 </p>
@@ -460,7 +472,7 @@
                                     Kingswood College, Kandy
                                 </p>
                             </div>
-                        </div>
+                    </div>
                         <span class="inline-flex items-center rounded-full bg-slate-800/80 px-2.5 py-1 text-[10px] font-medium text-slate-200 border border-slate-500/60 whitespace-nowrap">
                             2017
                         </span>
@@ -484,8 +496,8 @@
                                 <p class="text-[11px] sm:text-xs text-slate-400">
                                     Esoft Metro Campus, Kandy
                                 </p>
-                            </div>
-                        </div>
+                </div>
+            </div>
                         <span class="inline-flex items-center rounded-full bg-slate-800/80 px-2.5 py-1 text-[10px] font-medium text-slate-200 border border-slate-500/60 whitespace-nowrap">
                             2018
                         </span>
@@ -532,8 +544,8 @@
                                 <p class="text-[11px] sm:text-xs text-slate-400">
                                     Sri Lanka Institute of Information Technology (SLIIT)
                                 </p>
-                            </div>
-                        </div>
+                </div>
+            </div>
                         <span class="inline-flex items-center rounded-full bg-emerald-500/15 px-2.5 py-1 text-[10px] font-medium text-emerald-200 border border-emerald-400/60 whitespace-nowrap">
                             2022 – Present
                         </span>
@@ -554,14 +566,43 @@
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-8 sm:mb-10 md:mb-14 fade-in-up">
                 <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
-                    <span>My</span> <span>Experience</span>
-                </h2>
+            <span>My</span> <span>Experience</span>
+        </h2>
                 <p class="max-w-2xl mx-auto text-sm sm:text-base text-slate-300">
                     Roles where I’ve blended design, development, and systems thinking to support teams and ship real products.
                 </p>
             </div>
 
             <div class="space-y-5 sm:space-y-6 md:space-y-7">
+                <!-- Candea Digital -->
+                <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/10 fade-in-up">
+                    <div class="flex items-start justify-between gap-3 mb-3">
+                        <div class="flex items-start gap-3">
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-r from-emerald-500 to-sky-500 text-white">
+                                <i class="fas fa-network-wired text-sm"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-100">IT System Administrator</p>
+                                <p class="text-[11px] sm:text-xs text-slate-400">
+                                    Candea Digital (Pvt) Ltd · Full Time
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[11px] font-medium text-slate-300">2024 – Present</p>
+                            <span class="mt-1 inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40 whitespace-nowrap">
+                                vahana.lk project
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Managing and monitoring the infrastructure behind <span class="font-semibold text-slate-100">vahana.lk</span>,
+                        including servers, deployments, and day‑to‑day system health. I work closely with the development team to
+                        keep the platform secure, performant, and reliable while helping troubleshoot production issues and
+                        streamline DevOps workflows.
+                    </p>
+                </article>
+
                 <!-- Refectline -->
                 <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/10 fade-in-up">
                     <div class="flex items-start justify-between gap-3 mb-3">
@@ -630,14 +671,14 @@
                                 <p class="text-[11px] sm:text-xs text-slate-400">
                                     Recode99 (Pvt) Ltd · Part Time
                                 </p>
-                            </div>
-                        </div>
+                </div>
+            </div>
                         <div class="text-right">
                             <p class="text-[11px] font-medium text-slate-300">2017 – 2019</p>
                             <span class="mt-1 inline-flex items-center rounded-full bg-fuchsia-400/10 px-2.5 py-1 text-[10px] font-medium text-fuchsia-300 border border-fuchsia-400/40 whitespace-nowrap">
                                 Design & web
                             </span>
-                        </div>
+                    </div>
                     </div>
                     <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                         Started with social media graphics and video editing, then took on building and maintaining WordPress
@@ -656,8 +697,8 @@
         <div class="flex flex-col items-center text-center gap-4 sm:gap-5 mb-8 sm:mb-10 md:mb-12">
             <div class="fade-in-up">
                 <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
-                    <span>My</span> <span>Skills</span>
-                </h2>
+            <span>My</span> <span>Skills</span>
+        </h2>
                 <p class="max-w-xl mx-auto text-sm sm:text-base text-slate-200/90">
                     A snapshot of the tools and technologies I use most often — from interface craft to backend systems
                     and the workflow glue that holds everything together.
@@ -890,7 +931,7 @@
                     <div class="h-9 w-9 rounded-full bg-gradient-to-tr from-fuchsia-400/30 to-amber-400/40 flex items-center justify-center text-fuchsia-100 border border-fuchsia-400/40">
                         <i class="fas fa-compass-drafting text-xs"></i>
                     </div>
-                </div>
+            </div>
 
                 <ul class="space-y-3.5">
                     <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
@@ -903,8 +944,8 @@
                             <div>
                                 <p class="text-xs font-semibold text-slate-50">Git & GitHub</p>
                                 <p class="text-[11px] text-slate-400">Version control & collaboration</p>
-                            </div>
-                        </div>
+            </div>
+            </div>
                         <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
                             Primary
                         </span>
@@ -920,8 +961,8 @@
                             <div>
                                 <p class="text-xs font-semibold text-slate-50">WordPress</p>
                                 <p class="text-[11px] text-slate-400">Custom themes & CMS setups</p>
-                            </div>
-                        </div>
+            </div>
+            </div>
                         <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40">
                             In production
                         </span>
@@ -935,8 +976,8 @@
                             <div>
                                 <p class="text-xs font-semibold text-slate-50">CLI & automation</p>
                                 <p class="text-[11px] text-slate-400">Dev tooling & scripts</p>
-                            </div>
-                        </div>
+            </div>
+            </div>
                         <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40">
                             In production
                         </span>
@@ -950,8 +991,8 @@
                             <div>
                                 <p class="text-xs font-semibold text-slate-50">Component systems</p>
                                 <p class="text-[11px] text-slate-400">Reusable UI libraries</p>
-                            </div>
-                        </div>
+            </div>
+            </div>
                         <span class="inline-flex items-center rounded-full bg-fuchsia-400/10 px-2.5 py-1 text-[10px] font-medium text-fuchsia-300 border border-fuchsia-400/40">
                             Exploring
                         </span>
@@ -965,8 +1006,8 @@
                             <div>
                                 <p class="text-xs font-semibold text-slate-50">Performance & monitoring</p>
                                 <p class="text-[11px] text-slate-400">Lighthouse, bundle analysis</p>
-                            </div>
-                        </div>
+            </div>
+            </div>
                         <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
                             Primary
                         </span>
@@ -990,10 +1031,14 @@
             ],
             typeSpeed: 60,
             backSpeed: 35,
+<<<<<<< Updated upstream
             loop: true,
+=======
+        loop: true,
+>>>>>>> Stashed changes
             backDelay: 2000,
             smartBackspace: true,
-        });
+    });
     }
 
     // Counter animation

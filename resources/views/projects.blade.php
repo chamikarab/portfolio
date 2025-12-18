@@ -6,9 +6,15 @@
 
 <section class="pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 md:pb-20 min-h-screen">
     <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-        <h2 class="section-title fade-in-up mb-8 sm:mb-12 md:mb-16">
+        <h2 class="section-title fade-in-up mb-8 sm:mb-10 md:mb-12">
             <span>My</span> <span>Projects</span>
         </h2>
+
+        @php
+            $groupedCategories = $projects->groupBy(function ($project) {
+                return $project->category ?? 'Other';
+            });
+        @endphp
 
         @if($projects->isEmpty())
             <div class="text-center py-12 sm:py-16 md:py-20">
@@ -16,9 +22,40 @@
                 <p class="text-gray-400 text-lg sm:text-xl">No projects available at the moment.</p>
             </div>
         @else
+            {{-- Category chips (extra small filter cards) --}}
+            <div class="mb-6 sm:mb-8 md:mb-10 fade-in-up">
+                <div class="flex flex-wrap gap-2 sm:gap-3">
+                    <button 
+                        class="glass rounded-full px-3 py-1.5 sm:px-4 sm:py-2 inline-flex items-center gap-2 hover:border-purple-500/70 border border-transparent transition-all duration-300 text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-gray-300 category-filter active"
+                        data-category-card="all"
+                    >
+                        <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/20 text-purple-400 text-[10px]">
+                            <i class="fas fa-layer-group"></i>
+                        </span>
+                        <span>All ({{ $projects->count() }})</span>
+                    </button>
+
+                    @foreach ($groupedCategories as $categoryName => $items)
+                        <button 
+                            class="glass rounded-full px-3 py-1.5 sm:px-4 sm:py-2 inline-flex items-center gap-2 hover:border-purple-500/70 border border-transparent transition-all duration-300 text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-gray-300 category-filter"
+                            data-category-card="{{ \Illuminate\Support\Str::slug($categoryName) }}"
+                        >
+                            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/20 text-purple-400 text-[10px]">
+                                <i class="fas fa-folder"></i>
+                            </span>
+                            <span>{{ $categoryName }} ({{ $items->count() }})</span>
+                        </button>
+                    @endforeach
+                </div>
+            </div>
+
+            {{-- Project cards --}}
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 @foreach ($projects as $project)
-                    <div class="project-card-modern fade-in-up">
+                    <div 
+                        class="project-card-modern fade-in-up"
+                        data-project-category="{{ \Illuminate\Support\Str::slug($project->category ?? 'Other') }}"
+                    >
                         <div class="overflow-hidden rounded-t-2xl relative group">
                             <img src="{{ asset('storage/' . $project->image) }}" 
                                  alt="{{ $project->name }}" 
@@ -62,6 +99,31 @@
         el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         fadeObserver.observe(el);
     });
+
+    // Category filter logic
+    const categoryButtons = document.querySelectorAll('.category-filter');
+    const projectCards = document.querySelectorAll('[data-project-category]');
+
+    if (categoryButtons.length && projectCards.length) {
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const selected = button.getAttribute('data-category-card');
+
+                categoryButtons.forEach(btn => btn.classList.remove('border-purple-500/70', 'active'));
+                button.classList.add('border-purple-500/70', 'active');
+
+                projectCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-project-category');
+
+                    if (selected === 'all' || cardCategory === selected) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
 </script>
 
 @endsection

@@ -4,96 +4,113 @@
 
 @section('content')
 
-<section id="contact" class="pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 md:pb-20 min-h-screen">
+<section id="contact" class="pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-16 sm:pb-20 md:pb-24 min-h-screen">
     <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-        <h2 class="section-title fade-in-up mb-8 sm:mb-12 md:mb-16">
-            <span>Contact</span> <span>Me</span>
-        </h2>
-
-        <!-- Contact Details -->
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12 md:mb-16 max-w-6xl mx-auto">
-            <!-- Phone Number -->
-            <div class="contact-item-modern fade-in-up">
-                <i class="fas fa-phone-alt text-3xl sm:text-4xl"></i>
-                <h3 class="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-white mt-4">Phone Number</h3>
-                <p class="text-gray-300 text-base sm:text-lg">+94 779 404 553</p>
-            </div>
-
-            <!-- Email -->
-            <div class="contact-item-modern fade-in-up">
-                <i class="fas fa-envelope text-3xl sm:text-4xl"></i>
-                <h3 class="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-white mt-4">Email</h3>
-                <p class="text-gray-300 text-base sm:text-lg break-words">chamikara38@gmail.com</p>
-            </div>
-
-            <!-- Social Media -->
-            <div class="contact-item-modern fade-in-up sm:col-span-2 lg:col-span-1">
-                <i class="fas fa-share-alt text-3xl sm:text-4xl"></i>
-                <h3 class="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-white mt-4">Social Media</h3>
-                <div class="flex justify-center flex-wrap gap-3 sm:gap-4 mt-4">
-                    <a href="https://facebook.com" target="_blank" 
-                       class="w-11 h-11 sm:w-12 sm:h-12 rounded-full glass flex items-center justify-center text-blue-500 hover:text-blue-400 transition-colors duration-300">
-                        <i class="fab fa-facebook-f text-lg sm:text-xl"></i>
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" 
-                       class="w-11 h-11 sm:w-12 sm:h-12 rounded-full glass flex items-center justify-center text-blue-600 hover:text-blue-400 transition-colors duration-300">
-                        <i class="fab fa-linkedin-in text-lg sm:text-xl"></i>
-                    </a>
-                    <a href="https://github.com" target="_blank" 
-                       class="w-11 h-11 sm:w-12 sm:h-12 rounded-full glass flex items-center justify-center text-white hover:text-gray-300 transition-colors duration-300">
-                        <i class="fab fa-github text-lg sm:text-xl"></i>
-                    </a>
-                    <a href="https://whatsapp.com" target="_blank" 
-                       class="w-11 h-11 sm:w-12 sm:h-12 rounded-full glass flex items-center justify-center text-green-500 hover:text-green-400 transition-colors duration-300">
-                        <i class="fab fa-whatsapp text-lg sm:text-xl"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Additional Info Section -->
-        <div class="max-w-3xl mx-auto glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 fade-in-up">
-            <div class="text-center">
-                <i class="fas fa-comments text-4xl sm:text-5xl gradient-text mb-4 sm:mb-6"></i>
-                <h3 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-white">Let's Work Together</h3>
-                <p class="text-gray-300 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
-                    Feel free to reach out via any of the above methods. I'm always open to work, collaboration, or casual conversations about technology and development!
-                </p>
-                <p class="text-gray-400 text-sm sm:text-base">
-                    Whether you have a project in mind, want to collaborate, or just want to say hello, I'd love to hear from you.
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-8 sm:mb-10 md:mb-14 fade-in-up">
+                <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
+                    <span>Contact</span> <span>Me</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base text-slate-300">
+                    Pick the way that’s easiest for you — a quick call, a DM, or an email with all the details.
                 </p>
             </div>
-        </div>
 
-        <!-- Quick Actions -->
-        <div class="max-w-2xl mx-auto mt-8 sm:mt-10 md:mt-12 text-center fade-in-up">
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/projects" class="btn-secondary inline-block">View My Projects</a>
-                <a href="/about" class="btn-primary inline-block">Learn More About Me</a>
+            <div class="grid gap-6 sm:gap-7 md:gap-8 md:grid-cols-3">
+                <!-- Call / WhatsApp -->
+                <article class="glass-dark rounded-3xl border border-white/10 p-5 sm:p-6 fade-in-up flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500/20 text-emerald-200">
+                            <i class="fas fa-phone-alt text-sm"></i>
+                        </span>
+                        <div>
+                            <p class="text-[11px] font-medium uppercase tracking-[0.22em] text-emerald-300/80">Call / WhatsApp</p>
+                            <h3 class="text-sm sm:text-base md:text-lg font-semibold text-slate-50">
+                                Talk through your idea
+                            </h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-sm sm:text-base mb-2">
+                        +94 779 404 553
+                    </p>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-4 flex-1">
+                        Best for quick introductions, clarifying scope, and seeing if we’re a good fit.
+                    </p>
+                    <p class="text-[11px] sm:text-xs text-slate-500">
+                        Usually available 9am – 7pm (IST), Monday to Saturday.
+                    </p>
+                </article>
+
+                <!-- Email -->
+                <article class="glass-dark rounded-3xl border border-white/10 p-5 sm:p-6 fade-in-up flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-500/20 text-sky-200">
+                            <i class="fas fa-envelope text-sm"></i>
+                        </span>
+                        <div>
+                            <p class="text-[11px] font-medium uppercase tracking-[0.22em] text-sky-300/80">Email</p>
+                            <h3 class="text-sm sm:text-base md:text-lg font-semibold text-slate-50">
+                                Share project details
+                            </h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-sm sm:text-base break-words mb-2">
+                        chamikara38@gmail.com
+                    </p>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-4 flex-1">
+                        Ideal for sending briefs, links, references, and timelines so I can review everything properly.
+                    </p>
+                    <a href="mailto:chamikara38@gmail.com" class="inline-flex items-center gap-2 text-[11px] sm:text-xs text-emerald-200 hover:text-emerald-100 transition-colors duration-300">
+                        <i class="fas fa-arrow-right text-[10px]"></i>
+                        Write an email
+                    </a>
+                </article>
+
+                <!-- Social / collaboration -->
+                <article class="glass-dark rounded-3xl border border-white/10 p-5 sm:p-6 fade-in-up flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-fuchsia-500/20 text-fuchsia-200">
+                            <i class="fas fa-share-alt text-sm"></i>
+                        </span>
+                        <div>
+                            <p class="text-[11px] font-medium uppercase tracking-[0.22em] text-fuchsia-300/80">Social</p>
+                            <h3 class="text-sm sm:text-base md:text-lg font-semibold text-slate-50">
+                                Follow & say hello
+                            </h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs sm:text-sm mb-4 flex-1">
+                        See what I’m working on, explore experiments, or drop a quick message.
+                    </p>
+                    <div class="flex flex-wrap gap-3 sm:gap-4">
+                        <a href="https://facebook.com" target="_blank"
+                           class="w-9 h-9 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-blue-500 hover:text-blue-400 transition-colors duration-300">
+                            <i class="fab fa-facebook-f text-xs sm:text-sm"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank"
+                           class="w-9 h-9 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-sky-400 hover:text-sky-300 transition-colors duration-300">
+                            <i class="fab fa-linkedin-in text-xs sm:text-sm"></i>
+                        </a>
+                        <a href="https://github.com" target="_blank"
+                           class="w-9 h-9 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-slate-100 hover:text-slate-300 transition-colors duration-300">
+                            <i class="fab fa-github text-xs sm:text-sm"></i>
+                        </a>
+                        <a href="https://whatsapp.com" target="_blank"
+                           class="w-9 h-9 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-emerald-400 hover:text-emerald-300 transition-colors duration-300">
+                            <i class="fab fa-whatsapp text-xs sm:text-sm"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="mt-10 sm:mt-12 md:mt-14 text-center fade-in-up">
+                <p class="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto">
+                    Not sure where to start? A short email with a few bullet points about your idea, budget range, and
+                    timeline is perfect. I’ll suggest a good next step from there.
+                </p>
             </div>
         </div>
     </div>
 </section>
-
-<script>
-    // Fade in animation on scroll
-    const fadeElements = document.querySelectorAll('.fade-in-up');
-    const fadeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                fadeObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    fadeElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        fadeObserver.observe(el);
-    });
-</script>
 
 @endsection
