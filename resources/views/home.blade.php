@@ -842,7 +842,7 @@
                     <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
                         <div class="flex items-center gap-3">
                             <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-red-500/15">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg"
+                                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/laravel/laravel-plain.svg"
                                      alt="Laravel"
                                      class="h-5 w-5 sm:h-6 sm:w-6">
                             </span>
