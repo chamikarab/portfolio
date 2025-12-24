@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
@@ -50,16 +51,18 @@ class AdminController extends Controller
 
     public function toggleMaintenance(Request $request)
     {
-        if (app()->isDownForMaintenance()) {
+        $maintenanceFile = storage_path('framework/custom_maintenance.json');
+        
+        if (File::exists($maintenanceFile)) {
             // Turn off maintenance mode
-            \Artisan::call('up');
+            File::delete($maintenanceFile);
             return back()->with('success', 'Maintenance mode disabled. Site is now live!');
         } else {
             // Turn on maintenance mode
-            \Artisan::call('down', [
-                '--render' => 'maintenance',
-                '--retry' => 60
-            ]);
+            File::put($maintenanceFile, json_encode([
+                'enabled' => true,
+                'timestamp' => now()->toDateTimeString()
+            ]));
             return back()->with('success', 'Maintenance mode enabled. Site is now under maintenance.');
         }
     }

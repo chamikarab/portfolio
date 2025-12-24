@@ -222,7 +222,11 @@
                                 <i class="fa-solid fa-screwdriver-wrench"></i>
                             </span>
                             <span class="text-xs sm:text-sm text-slate-700">
-                                @if(app()->isDownForMaintenance())
+                                @php
+                                    $maintenanceFile = storage_path('framework/custom_maintenance.json');
+                                    $isMaintenanceMode = \Illuminate\Support\Facades\File::exists($maintenanceFile);
+                                @endphp
+                                @if($isMaintenanceMode)
                                     Disable Maintenance Mode
                                 @else
                                     Enable Maintenance Mode
