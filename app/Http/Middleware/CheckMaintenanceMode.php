@@ -22,11 +22,6 @@ class CheckMaintenanceMode
         $isMaintenanceMode = File::exists($maintenanceFile);
 
         if ($isMaintenanceMode) {
-            // Allow maintenance page itself
-            if ($request->is('maintenance') || $request->routeIs('maintenance')) {
-                return $next($request);
-            }
-
             // Allow admin login routes (both GET and POST) - check multiple ways for reliability
             $isLoginRoute = 
                 $request->is('admin/login') || 
@@ -46,8 +41,9 @@ class CheckMaintenanceMode
                 return $next($request);
             }
 
-            // Redirect all other routes to maintenance page
-            return redirect()->route('maintenance');
+            // Return 503 Service Unavailable for all other routes
+            return response('Service temporarily unavailable. Please try again later.', 503)
+                ->header('Retry-After', '60');
         }
 
         return $next($request);
