@@ -25,68 +25,75 @@
 
         html, body {
             height: 100%;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             color: #e2e8f0;
             overflow-x: hidden;
             position: relative;
         }
 
         /* Animated background */
-        .maintenance-bg {
+        .bg-animated {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 0;
-            overflow: hidden;
-        }
-
-        .grid-pattern {
-            position: absolute;
-            width: 100%;
-            height: 100%;
             background-image: 
-                linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 20s linear infinite;
+                radial-gradient(circle at 20% 50%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
         }
 
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
 
-        .floating-particles {
-            position: absolute;
+        /* Grid pattern */
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            z-index: 1;
+            background-image: 
+                linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
         }
 
+        /* Floating particles */
         .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(99, 102, 241, 0.6);
+            position: fixed;
             border-radius: 50%;
+            background: rgba(79, 70, 229, 0.3);
+            pointer-events: none;
+            z-index: 2;
             animation: float 15s infinite ease-in-out;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(100px, -100px) scale(1.2);
+                opacity: 0.6;
+            }
         }
 
         .maintenance-container {
             position: relative;
-            z-index: 1;
+            z-index: 10;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -100,19 +107,19 @@
             font-size: 5rem;
             color: #6366f1;
             margin-bottom: 2rem;
-            animation: pulse 2s ease-in-out infinite;
+            animation: bounce 2s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .maintenance-title {
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -121,96 +128,73 @@
         .name {
             font-size: 2rem;
             font-weight: 700;
-            color: #a78bfa;
+            color: #818cf8;
             margin-bottom: 1.5rem;
         }
 
-        .maintenance-info {
+        .maintenance-message {
             max-width: 600px;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .maintenance-info p {
-            font-size: 1.1rem;
+            margin: 0 auto 3rem;
+            font-size: 1.125rem;
             line-height: 1.8;
             color: #cbd5e1;
+        }
+
+        .info-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            max-width: 500px;
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
             margin-bottom: 1rem;
+            color: #e2e8f0;
         }
 
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
+        .info-card p {
+            color: #94a3b8;
+            line-height: 1.6;
         }
 
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: rgba(99, 102, 241, 0.2);
-            border: 1px solid rgba(99, 102, 241, 0.4);
-            border-radius: 50%;
-            color: #a78bfa;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .social-link:hover {
-            background: rgba(99, 102, 241, 0.4);
-            border-color: #6366f1;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
-        }
-
-        /* Mini Game Styles */
+        /* Mini Game Section */
         .game-section {
-            margin-top: 3rem;
-            max-width: 800px;
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 2rem;
+            max-width: 600px;
             width: 100%;
         }
 
-        .game-card {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .game-title {
+        .game-section h3 {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: #a78bfa;
             margin-bottom: 1.5rem;
+            color: #e2e8f0;
         }
 
         .game-stats {
             display: flex;
             justify-content: space-around;
-            gap: 1rem;
             margin-bottom: 1.5rem;
-            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .stat {
+        .stat-item {
             text-align: center;
         }
 
         .stat-label {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
             margin-bottom: 0.5rem;
         }
 
@@ -220,22 +204,22 @@
             color: #6366f1;
         }
 
-        .game-area {
-            position: relative;
+        #gameArea {
             width: 100%;
-            height: 400px;
-            background: rgba(30, 41, 59, 0.5);
-            border: 2px solid rgba(99, 102, 241, 0.3);
-            border-radius: 1rem;
+            height: 300px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 2px dashed rgba(99, 102, 241, 0.3);
+            border-radius: 0.5rem;
+            position: relative;
             margin-bottom: 1.5rem;
             overflow: hidden;
         }
 
         .target {
             position: absolute;
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle, #ec4899, #8b5cf6);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
             border-radius: 50%;
             cursor: pointer;
             display: flex;
@@ -243,67 +227,94 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.5);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
             transition: transform 0.1s;
-            animation: targetPulse 1s ease-in-out infinite;
         }
 
         .target:hover {
             transform: scale(1.1);
         }
 
-        @keyframes targetPulse {
-            0%, 100% { box-shadow: 0 4px 15px rgba(236, 72, 153, 0.5); }
-            50% { box-shadow: 0 4px 25px rgba(236, 72, 153, 0.8); }
+        .target.clicked {
+            animation: explode 0.3s ease-out;
+        }
+
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
         }
 
         .game-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
-            flex-wrap: wrap;
         }
 
         .game-btn {
             padding: 0.75rem 2rem;
-            font-size: 1rem;
-            font-weight: 600;
             border: none;
-            border-radius: 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+            font-size: 1rem;
         }
 
-        .btn-start {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        .game-btn-start {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
             color: white;
         }
 
-        .btn-start:hover {
+        .game-btn-start:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
         }
 
-        .btn-reset {
-            background: rgba(99, 102, 241, 0.2);
-            color: #a78bfa;
-            border: 1px solid rgba(99, 102, 241, 0.4);
+        .game-btn-reset {
+            background: rgba(148, 163, 184, 0.2);
+            color: #cbd5e1;
+            border: 1px solid rgba(148, 163, 184, 0.3);
         }
 
-        .btn-reset:hover {
-            background: rgba(99, 102, 241, 0.3);
+        .game-btn-reset:hover {
+            background: rgba(148, 163, 184, 0.3);
         }
 
         .game-instructions {
             margin-top: 1.5rem;
-            padding: 1rem;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 0.75rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.2);
             font-size: 0.875rem;
-            color: #cbd5e1;
+            color: #94a3b8;
             line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #818cf8;
+            font-size: 1.25rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: rgba(99, 102, 241, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
         }
 
         @media (max-width: 640px) {
@@ -315,23 +326,31 @@
                 font-size: 1.5rem;
             }
 
-            .game-area {
-                height: 300px;
+            .maintenance-message {
+                font-size: 1rem;
             }
 
-            .target {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
+            .game-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            #gameArea {
+                height: 250px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="maintenance-bg">
-        <div class="grid-pattern"></div>
-        <div class="floating-particles" id="particles"></div>
-    </div>
+    <div class="bg-animated"></div>
+    <div class="grid-pattern"></div>
+
+    <!-- Floating particles -->
+    <div class="particle" style="left: 10%; top: 20%; width: 4px; height: 4px; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 80%; top: 60%; width: 6px; height: 6px; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 50%; top: 80%; width: 3px; height: 3px; animation-delay: 4s;"></div>
+    <div class="particle" style="left: 30%; top: 40%; width: 5px; height: 5px; animation-delay: 6s;"></div>
+    <div class="particle" style="left: 70%; top: 10%; width: 4px; height: 4px; animation-delay: 8s;"></div>
 
     <div class="maintenance-container">
         <div class="maintenance-icon">
@@ -339,78 +358,62 @@
         </div>
 
         <h1 class="maintenance-title">Under Maintenance</h1>
-        <div class="name">Chamikara Bandara</div>
+        <p class="name">Chamikara Bandara</p>
 
-        <div class="maintenance-info">
-            <p>I'm currently working on improving my portfolio to give you a better experience.</p>
-            <p>I'll be back soon with exciting updates!</p>
-            <p>Thank you for your patience.</p>
+        <div class="maintenance-message">
+            <p>I'm currently working on improving my portfolio to give you the best experience possible. I'll be back soon!</p>
         </div>
 
-        <div class="social-links">
-            <a href="#" class="social-link" title="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="#" class="social-link" title="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="#" class="social-link" title="Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-link" title="Email">
-                <i class="fas fa-envelope"></i>
-            </a>
+        <div class="info-card">
+            <h3>What's happening?</h3>
+            <p>I'm making some updates and improvements to my portfolio. This won't take long, and I'll be back with an even better experience for you.</p>
         </div>
 
         <!-- Mini Game Section -->
         <div class="game-section">
-            <div class="game-card">
-                <h2 class="game-title">While You Wait - Mini Game</h2>
-                
-                <div class="game-stats">
-                    <div class="stat">
-                        <div class="stat-label">Score</div>
-                        <div class="stat-value" id="score">0</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-label">Time</div>
-                        <div class="stat-value" id="time">30</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-label">Missed</div>
-                        <div class="stat-value" id="missed">0</div>
-                    </div>
+            <h3>While You Wait - Mini Game</h3>
+            
+            <div class="game-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Score</div>
+                    <div class="stat-value" id="score">0</div>
                 </div>
-
-                <div class="game-area" id="gameArea"></div>
-
-                <div class="game-buttons">
-                    <button class="game-btn btn-start" id="startBtn">Start Game</button>
-                    <button class="game-btn btn-reset" id="resetBtn">Reset</button>
+                <div class="stat-item">
+                    <div class="stat-label">Time</div>
+                    <div class="stat-value" id="time">30</div>
                 </div>
-
-                <div class="game-instructions">
-                    <strong>How to play:</strong> Click on the targets as they appear! You have 30 seconds to score as many points as possible. Each target gives you 10 points. If a target disappears before you click it, it counts as a miss.
+                <div class="stat-item">
+                    <div class="stat-label">Missed</div>
+                    <div class="stat-value" id="missed">0</div>
                 </div>
             </div>
+
+            <div id="gameArea"></div>
+
+            <div class="game-buttons">
+                <button id="startBtn" class="game-btn game-btn-start">Start Game</button>
+                <button id="resetBtn" class="game-btn game-btn-reset">Reset</button>
+            </div>
+
+            <div class="game-instructions">
+                <p><strong>How to play:</strong> Click on the targets as they appear! You have 30 seconds to score as many points as possible. Each target gives you 10 points. Good luck!</p>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <a href="https://github.com/chamikarab" target="_blank" class="social-link" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/chamikarab" target="_blank" class="social-link" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:chami@test.com" class="social-link" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
         </div>
     </div>
 
     <script>
-        // Floating particles
-        const particlesContainer = document.getElementById('particles');
-        const particleCount = 30;
-
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-            particlesContainer.appendChild(particle);
-        }
-
-        // Mini Game Logic
         let gameState = {
             score: 0,
             time: 30,
@@ -432,63 +435,61 @@
 
             const target = document.createElement('div');
             target.className = 'target';
-            target.innerHTML = '🎯';
             
-            const maxX = gameArea.offsetWidth - 60;
-            const maxY = gameArea.offsetHeight - 60;
-            const x = Math.random() * maxX;
-            const y = Math.random() * maxY;
+            const areaWidth = gameArea.offsetWidth - 50;
+            const areaHeight = gameArea.offsetHeight - 50;
             
-            target.style.left = x + 'px';
-            target.style.top = y + 'px';
+            target.style.left = Math.random() * areaWidth + 'px';
+            target.style.top = Math.random() * areaHeight + 'px';
             
             target.addEventListener('click', function() {
+                if (!gameState.isPlaying) return;
+                target.classList.add('clicked');
                 gameState.score += 10;
                 scoreEl.textContent = gameState.score;
-                target.remove();
+                setTimeout(() => target.remove(), 300);
             });
 
             gameArea.appendChild(target);
 
-            // Remove target after 2 seconds if not clicked
             setTimeout(() => {
                 if (target.parentNode) {
-                    gameState.missed++;
-                    missedEl.textContent = gameState.missed;
                     target.remove();
+                    if (gameState.isPlaying) {
+                        gameState.missed++;
+                        missedEl.textContent = gameState.missed;
+                    }
                 }
             }, 2000);
         }
 
         function startGame() {
             if (gameState.isPlaying) return;
-
+            
             gameState.isPlaying = true;
-            gameState.score = 0;
             gameState.time = 30;
+            gameState.score = 0;
             gameState.missed = 0;
-
+            
             scoreEl.textContent = gameState.score;
             timeEl.textContent = gameState.time;
             missedEl.textContent = gameState.missed;
-
+            
             gameArea.innerHTML = '';
             startBtn.disabled = true;
-            startBtn.style.opacity = '0.5';
-            startBtn.style.cursor = 'not-allowed';
-
-            // Create targets every 1.5 seconds
-            gameState.targetInterval = setInterval(createTarget, 1500);
-
-            // Countdown timer
+            startBtn.textContent = 'Playing...';
+            
             gameState.timer = setInterval(() => {
                 gameState.time--;
                 timeEl.textContent = gameState.time;
-
+                
                 if (gameState.time <= 0) {
                     endGame();
                 }
             }, 1000);
+            
+            gameState.targetInterval = setInterval(createTarget, 1000);
+            createTarget();
         }
 
         function endGame() {
@@ -496,23 +497,30 @@
             clearInterval(gameState.timer);
             clearInterval(gameState.targetInterval);
             gameArea.innerHTML = '';
-
             startBtn.disabled = false;
-            startBtn.style.opacity = '1';
-            startBtn.style.cursor = 'pointer';
-
-            alert(`Game Over!\n\nFinal Score: ${gameState.score}\nMissed: ${gameState.missed}`);
+            startBtn.textContent = 'Start Game';
+            
+            alert(`Game Over!\n\nScore: ${gameState.score}\nMissed: ${gameState.missed}`);
         }
 
         function resetGame() {
-            endGame();
+            if (gameState.isPlaying) {
+                clearInterval(gameState.timer);
+                clearInterval(gameState.targetInterval);
+            }
+            
+            gameState.isPlaying = false;
             gameState.score = 0;
             gameState.time = 30;
             gameState.missed = 0;
-
+            
             scoreEl.textContent = gameState.score;
             timeEl.textContent = gameState.time;
             missedEl.textContent = gameState.missed;
+            
+            gameArea.innerHTML = '';
+            startBtn.disabled = false;
+            startBtn.textContent = 'Start Game';
         }
 
         startBtn.addEventListener('click', startGame);
