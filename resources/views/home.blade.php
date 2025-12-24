@@ -20,7 +20,7 @@
                 <div class="space-y-3 sm:space-y-4">
                     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight">
                         <span class="block text-xs sm:text-sm md:text-base text-slate-300 uppercase tracking-[0.3em] mb-1">Hello, I’m</span>
-                        <span class="block gradient-text-accent">Janitha Chamikara Bandara</span>
+                        <span class="block gradient-text-accent">Chamikara Bandara</span>
                     </h1>
                     <p class="max-w-xl mx-auto lg:mx-0 text-sm sm:text-base md:text-lg text-slate-300/90">
                         <span class="text-slate-300">I’m a </span>
