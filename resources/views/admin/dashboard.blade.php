@@ -11,6 +11,13 @@
     $recentTestimonials = ($recentTestimonials ?? null) ?: \App\Models\Testimonial::latest()->take(5)->get();
 @endphp
 
+@if(session('success'))
+    <div class="admin-alert-success mb-4">
+        <i class="fa-solid fa-circle-check mr-2"></i>
+        {{ session('success') }}
+    </div>
+@endif
+
 {{-- Top hero / welcome --}}
 <div class="admin-card mb-4 sm:mb-5">
     <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -201,6 +208,42 @@
 
     {{-- Right column: quick insights --}}
     <div class="space-y-4">
+        {{-- System controls --}}
+        <div class="admin-card">
+            <div class="admin-card-header">
+                <h2 class="admin-card-title">System controls</h2>
+            </div>
+            <div class="space-y-2">
+                <form action="{{ route('admin.toggle-maintenance') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="w-full flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 hover:border-amber-500/60 hover:bg-amber-50 transition text-left">
+                        <div class="flex items-center gap-2">
+                            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-[11px] text-white">
+                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                            </span>
+                            <span class="text-xs sm:text-sm text-slate-700">
+                                @if(app()->isDownForMaintenance())
+                                    Disable Maintenance Mode
+                                @else
+                                    Enable Maintenance Mode
+                                @endif
+                            </span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                    </button>
+                </form>
+                <a href="{{ route('maintenance') }}" target="_blank" class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 hover:border-indigo-500/60 hover:bg-indigo-50 transition">
+                    <div class="flex items-center gap-2">
+                        <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500 text-[11px] text-white">
+                            <i class="fa-solid fa-eye"></i>
+                        </span>
+                        <span class="text-xs sm:text-sm text-slate-700">Preview Maintenance Page</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </a>
+            </div>
+        </div>
+
         {{-- Quick actions --}}
         <div class="admin-card">
             <div class="admin-card-header">
