@@ -6,6 +6,10 @@
     <meta name="theme-color" content="#020617">
     <title>@yield('title') • Admin</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="apple-touch-icon" href="{{ asset('favicon.svg') }}">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Typography & Icons -->
@@ -312,7 +316,7 @@
             background-color: rgba(30, 41, 59, 0.95);
             color: #ffffff;
         }
-</style>
+    </style>
 
     @stack('styles')
 </head>

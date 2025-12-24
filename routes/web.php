@@ -6,6 +6,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TestimonialController;
 
+// Maintenance page route
+Route::get('/maintenance', function () {
+    return view('maintenance');
+})->name('maintenance');
+
 // Home and About routes
 Route::get('/', [ProjectController::class, 'homeprojects'])->name('home');
 
@@ -36,6 +41,7 @@ Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.lo
 // Admin Dashboard routes (protected)
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::post('/admin/toggle-maintenance', [AdminController::class, 'toggleMaintenance'])->name('admin.toggle-maintenance');
 
     // Project routes
     Route::get('/admin/projects/create', [ProjectController::class, 'create'])->name('admin.projects.create');

@@ -47,4 +47,20 @@ class AdminController extends Controller
     {
         return view('admin.dashboard');
     }
+
+    public function toggleMaintenance(Request $request)
+    {
+        if (app()->isDownForMaintenance()) {
+            // Turn off maintenance mode
+            \Artisan::call('up');
+            return back()->with('success', 'Maintenance mode disabled. Site is now live!');
+        } else {
+            // Turn on maintenance mode
+            \Artisan::call('down', [
+                '--render' => 'maintenance',
+                '--retry' => 60
+            ]);
+            return back()->with('success', 'Maintenance mode enabled. Site is now under maintenance.');
+        }
+    }
 }
