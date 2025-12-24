@@ -23,17 +23,21 @@ class CheckMaintenanceMode
 
         if ($isMaintenanceMode) {
             // Allow maintenance page itself
-            if ($request->is('maintenance')) {
+            if ($request->is('maintenance') || $request->routeIs('maintenance')) {
                 return $next($request);
             }
 
-            // Allow admin login page (GET)
-            if ($request->is('admin/login') || $request->is('login')) {
-                return $next($request);
-            }
+            // Allow admin login routes (both GET and POST) - check multiple ways for reliability
+            $isLoginRoute = 
+                $request->is('admin/login') || 
+                $request->is('login') || 
+                $request->routeIs('admin.login') || 
+                $request->routeIs('admin.login.post') || 
+                $request->routeIs('login') ||
+                $request->path() === 'admin/login' ||
+                $request->path() === 'login';
 
-            // Allow admin login POST request
-            if ($request->is('admin/login') && $request->isMethod('post')) {
+            if ($isLoginRoute) {
                 return $next($request);
             }
 
