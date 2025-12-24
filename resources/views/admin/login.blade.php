@@ -6,6 +6,10 @@
     <meta name="theme-color" content="#020617">
     <title>Admin Login • Portfolio</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="apple-touch-icon" href="{{ asset('favicon.svg') }}">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Typography & Icons -->
