@@ -6,11 +6,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TestimonialController;
 
-// Maintenance page route
-Route::get('/maintenance', function () {
-    return view('maintenance');
-})->name('maintenance');
-
 // Home and About routes
 Route::get('/', [ProjectController::class, 'homeprojects'])->name('home');
 
