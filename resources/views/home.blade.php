@@ -82,7 +82,11 @@
     </div>
 
     <!-- Scroll Indicator -->
+<<<<<<< HEAD
     <div class="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 animate-bounce hidden sm:flex flex-col items-center justify-center gap-2 text-[11px] text-slate-400">
+=======
+    <div class="absolute bottom-6 sm:bottom-10 left-4/2 -translate-x-1/2 animate-bounce hidden sm:flex flex-col items-center gap-2 text-[11px] text-slate-400">
+>>>>>>> 521a876 (Update home page layout and styling improvements)
         <span class="uppercase tracking-[0.25em]">Scroll</span>
         <div class="h-9 w-[1px] bg-gradient-to-b from-transparent via-slate-500/70 to-slate-100"></div>
     </div>
