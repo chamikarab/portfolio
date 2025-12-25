@@ -44,11 +44,11 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="mobile-menu md:hidden">
-        <ul class="flex flex-col space-y-1 text-sm">
-            <li><a href="{{ route('home') }}" class="nav-link block rounded-xl px-3 py-2.5" data-active="home">Home</a></li>
-            <li><a href="{{ route('about') }}" class="nav-link block rounded-xl px-3 py-2.5" data-active="about">About</a></li>
-            <li><a href="{{ route('projects.index') }}" class="nav-link block rounded-xl px-3 py-2.5" data-active="projects">Projects</a></li>
-            <li><a href="{{ route('contact') }}" class="nav-link block rounded-xl px-3 py-2.5" data-active="contact">Contact</a></li>
+        <ul class="flex flex-col space-y-2 text-sm">
+            <li><a href="{{ route('home') }}" class="nav-link block rounded-xl px-4 py-3 font-medium" data-active="home">Home</a></li>
+            <li><a href="{{ route('about') }}" class="nav-link block rounded-xl px-4 py-3 font-medium" data-active="about">About</a></li>
+            <li><a href="{{ route('projects.index') }}" class="nav-link block rounded-xl px-4 py-3 font-medium" data-active="projects">Projects</a></li>
+            <li><a href="{{ route('contact') }}" class="nav-link block rounded-xl px-4 py-3 font-medium" data-active="contact">Contact</a></li>
         </ul>
     </div>
 </nav>
