@@ -23,7 +23,9 @@ class CheckMaintenanceMode
 
         if ($isMaintenanceMode) {
             // Allow maintenance page itself
-            if ($request->is('maintenance') || $request->routeIs('maintenance')) {
+            if ($request->is('maintenance') || 
+                $request->routeIs('maintenance') || 
+                $request->path() === 'maintenance') {
                 return $next($request);
             }
 
@@ -41,7 +43,7 @@ class CheckMaintenanceMode
                 return $next($request);
             }
 
-            // Allow all admin routes for authenticated users
+            // Allow all admin routes for authenticated users (including toggle maintenance)
             if ($request->is('admin*') && Auth::check()) {
                 return $next($request);
             }

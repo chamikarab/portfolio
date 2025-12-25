@@ -53,17 +53,28 @@ class AdminController extends Controller
     {
         $maintenanceFile = storage_path('framework/custom_maintenance.json');
         
-        if (File::exists($maintenanceFile)) {
-            // Turn off maintenance mode
-            File::delete($maintenanceFile);
-            return back()->with('success', 'Maintenance mode disabled. Site is now live!');
-        } else {
-            // Turn on maintenance mode
-            File::put($maintenanceFile, json_encode([
-                'enabled' => true,
-                'timestamp' => now()->toDateTimeString()
-            ]));
-            return back()->with('success', 'Maintenance mode enabled. Site is now under maintenance.');
+        try {
+            if (File::exists($maintenanceFile)) {
+                // Turn off maintenance mode
+                File::delete($maintenanceFile);
+                return back()->with('success', 'Maintenance mode disabled. Site is now live!');
+            } else {
+                // Ensure directory exists
+                $directory = dirname($maintenanceFile);
+                if (!File::isDirectory($directory)) {
+                    File::makeDirectory($directory, 0755, true);
+                }
+                
+                // Turn on maintenance mode
+                File::put($maintenanceFile, json_encode([
+                    'enabled' => true,
+                    'timestamp' => now()->toDateTimeString()
+                ], JSON_PRETTY_PRINT));
+                
+                return back()->with('success', 'Maintenance mode enabled. Site is now under maintenance.');
+            }
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to toggle maintenance mode: ' . $e->getMessage());
         }
     }
 }
