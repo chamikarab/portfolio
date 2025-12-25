@@ -250,7 +250,6 @@
 
 /* Mobile Menu */
 .mobile-menu {
-    @apply glass-dark rounded-2xl p-6;
     display: none;
     position: absolute;
     top: 100%;
@@ -258,11 +257,27 @@
     right: 1.5rem;
     z-index: 50;
     margin-top: 0.5rem;
+    background: rgba(2, 6, 23, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .mobile-menu.active {
     display: block;
     animation: fadeInUp 0.3s ease-out;
+}
+
+.mobile-menu ul li a {
+    @apply text-gray-200 transition-colors duration-200;
+}
+
+.mobile-menu ul li a:hover,
+.mobile-menu ul li a.active {
+    @apply text-white bg-white/5;
 }
 
 /* Button Styles */
@@ -346,6 +361,23 @@
     .skill-item-modern img {
         @apply text-5xl mb-2;
         height: 3rem;
+    }
+    
+    /* Mobile Menu Improvements */
+    .mobile-menu {
+        left: 1rem;
+        right: 1rem;
+        padding: 1.25rem;
+        margin-top: 0.75rem;
+    }
+    
+    .mobile-menu ul li a {
+        @apply py-3.5;
+        font-size: 0.9375rem;
+    }
+    
+    #navbar {
+        border-bottom-width: 1px;
     }
 }
 

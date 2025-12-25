@@ -10,7 +10,7 @@
             <span>About</span> <span>Me</span>
         </h2>
         
-            <div class="max-w-5xl mx-auto">
+        <div class="max-w-5xl mx-auto">
             <div class="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-start mb-10 sm:mb-12 md:mb-16">
                 <div class="fade-in-up order-1 lg:order-2">
                     <div class="relative">
