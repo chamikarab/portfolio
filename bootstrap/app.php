@@ -24,4 +24,12 @@ return Application::configure(basePath: dirname(__DIR__))
                     : redirect()->route('admin.login');
             }
         });
+
+        // Custom 404 error page
+        $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e, $request) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Page not found.'], 404);
+            }
+            return response()->view('errors.404', [], 404);
+        });
     })->create();
