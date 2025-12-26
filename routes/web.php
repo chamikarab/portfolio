@@ -11,6 +11,11 @@ Route::get('/maintenance', function () {
     return view('maintenance');
 })->name('maintenance');
 
+// Coming Soon page route
+Route::get('/coming-soon', function () {
+    return view('coming-soon');
+})->name('coming-soon');
+
 // Home and About routes
 Route::get('/', [ProjectController::class, 'homeprojects'])->name('home');
 
@@ -42,6 +47,7 @@ Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.lo
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::post('/admin/toggle-maintenance', [AdminController::class, 'toggleMaintenance'])->name('admin.toggle-maintenance');
+    Route::post('/admin/toggle-coming-soon', [AdminController::class, 'toggleComingSoon'])->name('admin.toggle-coming-soon');
 
     // Project routes
     Route::get('/admin/projects/create', [ProjectController::class, 'create'])->name('admin.projects.create');

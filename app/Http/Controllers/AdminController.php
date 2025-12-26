@@ -77,4 +77,33 @@ class AdminController extends Controller
             return back()->with('error', 'Failed to toggle maintenance mode: ' . $e->getMessage());
         }
     }
+
+    public function toggleComingSoon(Request $request)
+    {
+        $comingSoonFile = storage_path('framework/custom_coming_soon.json');
+        
+        try {
+            if (File::exists($comingSoonFile)) {
+                // Turn off coming soon mode
+                File::delete($comingSoonFile);
+                return back()->with('success', 'Coming soon mode disabled. Site is now live!');
+            } else {
+                // Ensure directory exists
+                $directory = dirname($comingSoonFile);
+                if (!File::isDirectory($directory)) {
+                    File::makeDirectory($directory, 0755, true);
+                }
+                
+                // Turn on coming soon mode
+                File::put($comingSoonFile, json_encode([
+                    'enabled' => true,
+                    'timestamp' => now()->toDateTimeString()
+                ], JSON_PRETTY_PRINT));
+                
+                return back()->with('success', 'Coming soon mode enabled. Site now shows coming soon page.');
+            }
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to toggle coming soon mode: ' . $e->getMessage());
+        }
+    }
 }

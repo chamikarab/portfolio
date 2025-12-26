@@ -245,6 +245,37 @@
                     </div>
                     <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
                 </a>
+                <form action="{{ route('admin.toggle-coming-soon') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="w-full flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 hover:border-purple-500/60 hover:bg-purple-50 transition text-left">
+                        <div class="flex items-center gap-2">
+                            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500 text-[11px] text-white">
+                                <i class="fa-solid fa-rocket"></i>
+                            </span>
+                            <span class="text-xs sm:text-sm text-slate-700">
+                                @php
+                                    $comingSoonFile = storage_path('framework/custom_coming_soon.json');
+                                    $isComingSoonMode = \Illuminate\Support\Facades\File::exists($comingSoonFile);
+                                @endphp
+                                @if($isComingSoonMode)
+                                    Disable Coming Soon Mode
+                                @else
+                                    Enable Coming Soon Mode
+                                @endif
+                            </span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                    </button>
+                </form>
+                <a href="{{ route('coming-soon') }}" target="_blank" class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 hover:border-purple-500/60 hover:bg-purple-50 transition">
+                    <div class="flex items-center gap-2">
+                        <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500 text-[11px] text-white">
+                            <i class="fa-solid fa-eye"></i>
+                        </span>
+                        <span class="text-xs sm:text-sm text-slate-700">Preview Coming Soon Page</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </a>
             </div>
         </div>
 
