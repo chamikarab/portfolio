@@ -281,7 +281,8 @@
             border-radius: 1.5rem;
             padding: 2.5rem;
             margin-bottom: 2rem;
-            max-width: 600px;
+            max-width: 750px;
+            width: 100%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
@@ -443,12 +444,7 @@
         <p class="name">Chamikara's Portfolio</p>
 
         <div class="coming-soon-message">
-            <p>I'm crafting something <span style="background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">extraordinary</span> for my portfolio. New features, enhanced experiences, and amazing projects are on the way!</p>
-        </div>
-
-        <div class="info-card">
-            <h3><i class="fas fa-code mr-2"></i>What's Coming?</h3>
-            <p>I'm building new features and improvements to showcase my work better. This includes enhanced project displays, interactive elements, better performance, and an overall improved user experience. Stay tuned for the launch!</p>
+            <p>I'm crafting something <span style="background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">extraordinary</span> for my portfolio. Stay tuned!</p>
         </div>
 
         <div class="progress-card">
