@@ -441,7 +441,7 @@
         </div>
 
         <h1 class="coming-soon-title">Coming Soon</h1>
-        <p class="name">Chamikara's Portfolio</p>
+        <p class="name">Chamikara's Web Portfolio</p>
 
         <div class="coming-soon-message">
             <p>I'm crafting something <span style="background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">extraordinary</span> for my portfolio. Stay tuned!</p>
