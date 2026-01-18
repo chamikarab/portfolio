@@ -1103,21 +1103,49 @@
 </section>
 
 <script>
-    // Typed.js initialization for hero subtitle
-    if (document.getElementById('typed-text')) {
-        new Typed('#typed-text', {
-            strings: [
-                "Full-Stack Developer",
-                "Mobile App Developer",
-                "Software Developer",
-                "UI/UX Designer"
-            ],
-            typeSpeed: 60,
-            backSpeed: 35,
-            loop: true,
-            backDelay: 2000,
-            smartBackspace: true,
+    // Typed.js initialization for hero subtitle - wait for both DOM and Typed.js
+    function initTyped() {
+        const typedElement = document.getElementById('typed-text');
+        if (typedElement && typeof Typed !== 'undefined') {
+            // Clear any existing content
+            typedElement.textContent = '';
+            new Typed('#typed-text', {
+                strings: [
+                    "Full-Stack Developer",
+                    "Mobile App Developer",
+                    "Software Developer",
+                    "UI/UX Designer"
+                ],
+                typeSpeed: 60,
+                backSpeed: 35,
+                loop: true,
+                backDelay: 2000,
+                smartBackspace: true,
+            });
+        } else if (typedElement) {
+            // Fallback if Typed.js fails to load
+            typedElement.textContent = 'Full-Stack Developer';
+        }
+    }
+
+    // Wait for DOM and Typed.js
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if Typed is already loaded
+            if (typeof Typed !== 'undefined') {
+                initTyped();
+            } else {
+                // Wait a bit more for Typed.js to load
+                setTimeout(initTyped, 100);
+            }
         });
+    } else {
+        // DOM already loaded
+        if (typeof Typed !== 'undefined') {
+            initTyped();
+        } else {
+            setTimeout(initTyped, 100);
+        }
     }
 
     // Counter animation
