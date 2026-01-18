@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
     <!-- Typed text (hero) -->
-    <script src="https://unpkg.com/typed.js@2.0.12/lib/typed.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.12/lib/typed.min.js?v=2.0.12"></script>
 
     <style>
         .typed-text {
@@ -26,6 +26,9 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 700;
+            display: inline-block;
+            min-width: fit-content;
+            white-space: nowrap;
         }
     </style>
 </head>
