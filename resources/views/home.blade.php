@@ -1103,58 +1103,85 @@
 </section>
 
 <script>
-    // Typed.js initialization for hero subtitle - ensure proper loading
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            const typedElement = document.getElementById('typed-text');
+    // Typed.js initialization for hero subtitle - with retry mechanism
+    (function initTypedText() {
+        const typedElement = document.getElementById('typed-text');
+        
+        if (!typedElement) {
+            // Retry if element not found yet (page still loading)
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initTypedText);
+            } else {
+                setTimeout(initTypedText, 100);
+            }
+            return;
+        }
+
+        // Clear any cached/stale content immediately
+        typedElement.innerHTML = '';
+        typedElement.textContent = '';
+
+        function tryInitializeTyped(attempt = 0) {
+            const maxAttempts = 10;
             
-            if (!typedElement) {
-                console.error('Typed text element not found');
-                return;
-            }
+            if (typeof Typed !== 'undefined') {
+                try {
+                    // Destroy any existing instance
+                    if (typedElement._typedInstance) {
+                        try {
+                            typedElement._typedInstance.destroy();
+                        } catch (e) {}
+                        typedElement._typedInstance = null;
+                    }
 
-            // Clear any cached content
-            typedElement.innerHTML = '';
-            typedElement.textContent = '';
+                    // Clear content again before initializing
+                    typedElement.innerHTML = '';
+                    typedElement.textContent = '';
 
-            if (typeof Typed === 'undefined') {
-                console.warn('Typed.js not loaded, using fallback text');
-                typedElement.textContent = 'Full-Stack Developer';
-                return;
-            }
+                    // Initialize Typed.js
+                    const typed = new Typed('#typed-text', {
+                        strings: [
+                            "Full-Stack Developer",
+                            "Mobile App Developer",
+                            "Software Developer",
+                            "UI/UX Designer"
+                        ],
+                        typeSpeed: 60,
+                        backSpeed: 35,
+                        loop: true,
+                        backDelay: 2000,
+                        smartBackspace: true,
+                        showCursor: false,
+                        startDelay: 300
+                    });
 
-            try {
-                // Destroy any existing instance
-                if (typedElement._typedInstance) {
-                    typedElement._typedInstance.destroy();
-                    typedElement._typedInstance = null;
+                    // Store reference
+                    typedElement._typedInstance = typed;
+                } catch (error) {
+                    console.error('Typed.js initialization error:', error);
+                    typedElement.textContent = 'Full-Stack Developer';
                 }
-
-                // Initialize Typed.js
-                const typed = new Typed('#typed-text', {
-                    strings: [
-                        "Full-Stack Developer",
-                        "Mobile App Developer",
-                        "Software Developer",
-                        "UI/UX Designer"
-                    ],
-                    typeSpeed: 60,
-                    backSpeed: 35,
-                    loop: true,
-                    backDelay: 2000,
-                    smartBackspace: true,
-                    showCursor: false,
-                    startDelay: 500
-                });
-
-                // Store reference
-                typedElement._typedInstance = typed;
-            } catch (error) {
-                console.error('Typed.js initialization error:', error);
+            } else if (attempt < maxAttempts) {
+                // Retry if Typed.js not loaded yet
+                setTimeout(function() {
+                    tryInitializeTyped(attempt + 1);
+                }, 200);
+            } else {
+                // Fallback after max attempts
+                console.warn('Typed.js failed to load after ' + maxAttempts + ' attempts');
                 typedElement.textContent = 'Full-Stack Developer';
             }
-        }, 300); // Small delay to ensure everything is ready
-    });
+        }
+
+        // Start initialization after window load or immediately if already loaded
+        if (document.readyState === 'complete') {
+            tryInitializeTyped();
+        } else {
+            window.addEventListener('load', function() {
+                setTimeout(tryInitializeTyped, 200);
+            });
+        }
+    })();
 
     // Counter animation
     function animateCounter(counter) {

@@ -16,8 +16,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <!-- Typed text (hero) -->
-    <script src="https://unpkg.com/typed.js@2.0.12/lib/typed.min.js?v=2.0.12"></script>
+    <!-- Typed text (hero) - Cache busted -->
+    <script src="https://unpkg.com/typed.js@2.0.12/lib/typed.min.js?ver=2.0.12-cb-20250119"></script>
 
     <style>
         .typed-text {
