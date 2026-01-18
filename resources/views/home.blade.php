@@ -5,86 +5,182 @@
 @section('content')
 
 <!-- Hero Section -->
-<section
-    id="hero"
-    class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 sm:pt-28 pb-16 sm:pb-20"
->
-    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
-        <div class="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-10 lg:gap-14 items-center">
-            <div class="text-center lg:text-left space-y-6 sm:space-y-7 fade-in-up order-2 lg:order-1">
-                <p class="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-3 py-1 text-[11px] sm:text-xs font-medium uppercase tracking-[0.25em] text-emerald-200">
-                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(16,185,129,0.45)]"></span>
-                    Available for new projects
-                </p>
+<section id="hero" class="relative min-h-[85vh] lg:min-h-screen flex items-center justify-center overflow-hidden pt-16 pb-8 mesh-gradient">
+    <!-- Clean Background Architecture -->
+    <div class="absolute inset-0 developer-grid"></div>
+    
+    <div class="bg-beams">
+        <div class="beam" style="left: 10%; --duration: 8s;"></div>
+        <div class="beam" style="left: 30%; --duration: 12s; animation-delay: 2s;"></div>
+        <div class="beam" style="left: 70%; --duration: 10s; animation-delay: 5s;"></div>
+        <div class="beam" style="left: 90%; --duration: 15s; animation-delay: 1s;"></div>
+    </div>
+    
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="scanning-line opacity-20"></div>
+        <!-- Ultra-subtle Deep Glows -->
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-indigo-500/5 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-fuchsia-500/5 rounded-full blur-[120px]"></div>
+    </div>
 
-                <div class="space-y-3 sm:space-y-4">
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight">
-                        <span class="block text-xs sm:text-sm md:text-base text-slate-300 uppercase tracking-[0.3em] mb-1">Hello, I’m</span>
-                        <span class="block gradient-text-accent">Chamikara Bandara</span>
-                    </h1>
-                    <p class="max-w-xl mx-auto lg:mx-0 text-sm sm:text-base md:text-lg text-slate-300/90">
-                        <span class="text-slate-300">I’m a </span>
-                        <span class="font-semibold text-slate-100">
-                            <span id="typed-text"></span>
-                        </span>
-                    </p>
-                    <p class="max-w-xl mx-auto lg:mx-0 text-xs sm:text-sm md:text-base text-slate-400 leading-relaxed">
-                        I design and build web experiences that blend clean code, thoughtful interfaces, and visual storytelling. 
-                        With expertise spanning full‑stack development, UI/UX design, graphic design, and video editing, I help 
-                        brands and teams turn ideas into polished, user‑focused digital products.
+    <div class="container mx-auto px-8 sm:px-12 lg:px-20 relative z-10">
+        <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center min-h-[calc(100vh-200px)]">
+            
+            <!-- Left Side: Narrative & Identity -->
+            <div class="space-y-6 lg:space-y-8 fade-in-up text-center lg:text-left mt-12 lg:mt-0">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-morphism border-white/10 hover:border-indigo-500/30 transition-colors group mx-auto lg:mx-0">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-[10px] font-bold tracking-[0.2em] text-slate-400 uppercase group-hover:text-indigo-300 transition-colors">Available for Work</span>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <p class="text-indigo-400 font-black tracking-[0.5em] uppercase text-[10px] sm:text-xs ml-1 transition-all hover:tracking-[0.6em] cursor-default opacity-80">
+                            Hi, I’m
+                        </p>
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-black tracking-tighter leading-tight flex flex-wrap justify-center lg:justify-start gap-x-3">
+                            <span class="text-white">CHAMIKARA</span>
+                            <span class="text-stroke">BANDARA</span>
+                        </h1>
+                    </div>
+                    
+                    <div class="flex items-center justify-center lg:justify-start gap-3 text-sm sm:text-base text-slate-400 font-medium tracking-tight">
+                        <span class="hidden sm:block w-8 h-[1px] bg-indigo-500/50"></span>
+                        <p>
+                            <span class="typed-text px-2 py-0.5 rounded-md bg-white/5 border border-white/10" id="typed-text"></span>
+                        </p>
+                    </div>
+
+                    <p class="max-w-md mx-auto lg:mx-0 text-slate-400 text-xs sm:text-sm leading-relaxed font-medium">
+                        Bridging the gap between <span class="text-white/90">robust engineering</span> and 
+                        <span class="text-white/90">empathetic design</span>. Specialist in modern full-stack ecosystems.
                     </p>
                 </div>
 
-                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-center">
-                    <a href="#contact" class="btn-primary inline-flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto">
-                        <span>Book a collaboration call</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1">
+                    <a href="{{ route('contact') }}" class="glow-button group relative px-6 py-3 bg-indigo-600 rounded-xl overflow-hidden transition-all hover:scale-105 hover:shadow-[0_20px_40px_rgba(79,70,229,0.3)]">
+                        <div class="relative z-10 flex items-center gap-2 text-white font-bold tracking-tight text-[10px] uppercase">
+                            <span>Start a Project</span>
+                            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
+                        </div>
                     </a>
-                    <a href="#projects" class="btn-secondary inline-flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto">
-                        <span>Explore selected work</span>
-                        <i class="fa-regular fa-circle-play text-xs"></i>
+                    
+                    <a href="#projects" class="group px-6 py-3 glass-morphism rounded-xl border border-white/10 hover:bg-white/5 transition-all flex items-center gap-3">
+                        <span class="text-white font-bold tracking-tight text-[10px] uppercase">View Projects</span>
                     </a>
+                </div>
+
+                <!-- Subtle Tech Stack -->
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
+                    <p class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-600">Core Stack</p>
+                    <div class="flex flex-wrap justify-center gap-5 text-xl text-slate-500">
+                        <div class="group/stack relative">
+                            <i class="fa-brands fa-laravel hover:text-rose-500 transition-colors cursor-help" title="Laravel"></i>
+                        </div>
+                        <div class="group/stack relative">
+                            <i class="fa-brands fa-react hover:text-sky-400 transition-colors cursor-help" title="React"></i>
+                        </div>
+                        <div class="group/stack relative">
+                            <i class="fa-brands fa-node-js hover:text-emerald-500 transition-colors cursor-help" title="Node.js"></i>
+                        </div>
+                        <div class="group/stack relative">
+                            <i class="fa-brands fa-php hover:text-indigo-400 transition-colors cursor-help" title="PHP"></i>
+                        </div>
+                        <div class="group/stack relative">
+                            <i class="fa-brands fa-js hover:text-yellow-400 transition-colors cursor-help" title="JavaScript"></i>
+                        </div>
+                        <div class="group/stack relative flex items-center">
+                            <span class="text-[11px] font-black hover:text-[#E0234E] transition-colors cursor-help leading-none" title="NestJS">NEST</span>
+                        </div>
+                        <div class="group/stack relative flex items-center">
+                            <span class="text-[11px] font-black hover:text-white transition-colors cursor-help leading-none" title="Next.js">NEXT</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="flex justify-center lg:justify-end order-1 lg:order-2 mb-6 lg:mb-0">
-                <div class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80">
-                    <div class="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-sky-400 opacity-30 blur-3xl animate-pulse"></div>
-                    <div class="relative h-full w-full rounded-[2.2rem] glass-dark border border-white/10 p-[2px]">
-                        <div class="relative h-full w-full overflow-hidden rounded-[2rem] bg-slate-900/80">
-                            <img
-                                src="{{ asset('chamikara_bandara.PNG') }}"
-                                alt="Chamikara Bandara"
-                                class="h-full w-full object-cover object-center scale-105"
-                            >
-                            <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.12),_transparent_60%)] mix-blend-soft-light"></div>
-                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent px-4 pb-4 pt-10">
-                                <p class="text-[11px] font-medium uppercase tracking-[0.25em] text-slate-300/80">
-                                    Currently crafting with
-                                </p>
-                                <div class="mt-2 flex flex-wrap gap-1.5 text-[11px] text-slate-200/90">
-                                    <span class="inline-flex items-center gap-1 rounded-full bg-slate-900/80 px-2 py-1 border border-white/10">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span> Laravel
-                                    </span>
-                                    <span class="inline-flex items-center gap-1 rounded-full bg-slate-900/80 px-2 py-1 border border-white/10">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span> Tailwind
-                                    </span>
-                                    <span class="inline-flex items-center gap-1 rounded-full bg-slate-900/80 px-2 py-1 border border-white/10">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-fuchsia-400"></span> React
-                                    </span>
+                <!-- Right Side: 3D Holographic Workstation -->
+                <div class="relative perspective-container hidden lg:flex justify-end items-center fade-in-up lg:translate-x-8" style="animation-delay: 0.2s;">
+                    <div class="relative w-full max-w-[340px] perspective-card group">
+                        
+                        <!-- Back Layer: Tech Constellation -->
+                        <div class="absolute -inset-20 flex items-center justify-center -z-10 opacity-20 group-hover:opacity-40 transition-opacity duration-700">
+                            <div class="w-full h-full border border-white/5 rounded-full animate-[spin_60s_linear_infinite]"></div>
+                            <div class="absolute w-[80%] h-[80%] border border-white/5 rounded-full animate-[spin_40s_linear_infinite_reverse]"></div>
+                        </div>
+
+                        <!-- Middle Layer: The Profile Core -->
+                        <div class="relative z-20">
+                            <div class="absolute -inset-4 bg-gradient-to-tr from-indigo-500/20 to-fuchsia-500/20 rounded-[3rem] blur-3xl opacity-50 group-hover:opacity-80 transition-all duration-700"></div>
+                            
+                            <div class="relative glass-morphism rounded-[2.5rem] p-1.5 border border-white/10 overflow-hidden shadow-2xl">
+                                <div class="relative rounded-[2rem] overflow-hidden aspect-[4/5] bg-slate-900 w-full">
+                                    <img
+                                        src="{{ asset('chamikara_bandara.PNG') }}"
+                                        alt="Chamikara Bandara"
+                                        class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:rotate-2"
+                                    >
+                                    <!-- Holographic Overlays -->
+                                    <div class="hologram-effect"></div>
+                                    <div class="scanning-bar"></div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
                                 </div>
                             </div>
                         </div>
+
+                    <!-- Front Layer 2: Visual Metrics (Floating Left) -->
+                    <div class="floating-layer layer-depth-2 -left-16 bottom-10 z-30 p-5 glass-morphism rounded-3xl border-white/20 hidden xl:block">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center">
+                                    <i class="fa-solid fa-microchip text-indigo-400 text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[8px] font-black text-slate-500 uppercase tracking-widest">Stack</p>
+                                    <p class="text-xs font-bold text-white leading-none">Full-Stack</p>
+                                </div>
+                            </div>
+                            <div class="flex -space-x-2">
+                                <div class="w-6 h-6 rounded-full border border-slate-950 bg-indigo-600 flex items-center justify-center text-[8px] font-bold" title="Laravel">L</div>
+                                <div class="w-6 h-6 rounded-full border border-slate-950 bg-sky-500 flex items-center justify-center text-[8px] font-bold" title="React">R</div>
+                                <div class="w-6 h-6 rounded-full border border-slate-950 bg-slate-800 flex items-center justify-center text-[8px] font-bold" title="Node.js">N</div>
+                                <div class="w-6 h-6 rounded-full border border-slate-950 bg-rose-600 flex items-center justify-center text-[8px] font-bold" title="NestJS">Ns</div>
+                                <div class="w-6 h-6 rounded-full border border-slate-950 bg-white text-black flex items-center justify-center text-[8px] font-bold" title="Next.js">Nx</div>
+                                <div class="w-6 h-6 rounded-full border border-slate-950 bg-sky-400 flex items-center justify-center text-[8px] font-bold" title="Flutter">F</div>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Interactive HUD Points -->
+                    <div class="absolute top-10 right-10 w-2 h-2 bg-indigo-500 rounded-full animate-ping z-40"></div>
+                    <div class="absolute bottom-20 left-20 w-2 h-2 bg-fuchsia-500 rounded-full animate-ping z-40" style="animation-delay: 1s;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Profile (Simpler) -->
+        <div class="lg:hidden flex justify-center mt-12 fade-in-up">
+            <div class="relative w-64 h-64 sm:w-80 sm:h-80">
+                <div class="absolute -inset-4 bg-gradient-to-tr from-indigo-500/20 to-fuchsia-500/20 rounded-full blur-2xl"></div>
+                <div class="relative h-full w-full rounded-full border-2 border-white/10 overflow-hidden p-2">
+                    <img
+                        src="{{ asset('chamikara_bandara.PNG') }}"
+                        alt="Chamikara Bandara"
+                        class="w-full h-full object-cover rounded-full"
+                    >
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 animate-bounce hidden sm:flex flex-col items-center justify-center gap-2 text-[11px] text-slate-400">
-        <span class="uppercase tracking-[0.25em]">Scroll</span>
-        <div class="h-9 w-[1px] bg-gradient-to-b from-transparent via-slate-500/70 to-slate-100"></div>
+    <!-- Scroll Mouse -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+        <div class="w-6 h-10 border-2 border-white/10 rounded-full flex justify-center p-1">
+            <div class="w-1 h-2 bg-indigo-500 rounded-full animate-bounce"></div>
+        </div>
     </div>
 </section>
 
@@ -114,7 +210,7 @@
                             I’ve worked with agencies and product teams on websites, dashboards, and internal tools using
                             Laravel, React, Node, and modern CSS. My favorite projects live at the intersection of brand,
                             interaction, and performance.
-                    </p>
+                        </p>
                         <p class="text-slate-300/90 text-sm sm:text-base md:text-lg leading-relaxed">
                             Outside of client work, I’m usually refining components, exploring new design patterns, or learning
                             how other teams ship great products. I’m currently open to **remote roles, freelance projects, and long‑term
@@ -428,7 +524,7 @@
             @endforelse
         </div>
         <div class="text-center mt-8 sm:mt-10 md:mt-12">
-            <a href="/projects" class="btn-secondary">View All Projects</a>
+            <a href="{{ route('projects.index') }}" class="btn-secondary">View All Projects</a>
         </div>
     </div>
 </section>
@@ -1011,10 +1107,9 @@
     if (document.getElementById('typed-text')) {
         new Typed('#typed-text', {
             strings: [
-                "Web Developer",
+                "Full-Stack Developer",
+                "Mobile App Developer",
                 "Software Developer",
-                "Video Editor",
-                "Graphic Designer",
                 "UI/UX Designer"
             ],
             typeSpeed: 60,
@@ -1069,24 +1164,14 @@
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
+                entry.target.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
                 fadeObserver.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1 });
 
     fadeElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         fadeObserver.observe(el);
-    });
-
-    // Video playback rate
-    document.addEventListener("DOMContentLoaded", function () {
-        const video = document.getElementById("bg-video");
-        if (video) {
-            video.playbackRate = 0.7;
-        }
     });
 </script>
 
