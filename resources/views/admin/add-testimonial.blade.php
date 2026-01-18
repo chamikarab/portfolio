@@ -1,38 +1,55 @@
 @extends('layouts.admin')
 
-@section('title', 'Add Testimonial')
+@section('title', 'Add Signal')
 
 @section('content')
 
-<div class="admin-card">
-    <div class="admin-card-header">
-        <h1 class="admin-page-title">Add New Testimonial</h1>
-        <a href="{{ route('admin.all-testimonials') }}" class="admin-btn-ghost">Back to list</a>
+<header class="admin-header">
+    <div>
+        <h1 class="admin-page-title">Inject New Signal</h1>
+        <p class="text-gray-500 text-sm mt-1">Capture client feedback for social proofing.</p>
     </div>
-    <p class="admin-page-subtitle">Capture what your clients say about working with you.</p>
+    <a href="{{ route('admin.all-testimonials') }}" class="btn-modern-secondary text-xs">
+        <i class="fa-solid fa-arrow-left"></i>
+        Abort
+    </a>
+</header>
 
-    @if(session('success'))
-        <div class="admin-alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+<div class="max-w-3xl mx-auto">
+    <div class="admin-card p-10">
+        <form action="{{ route('admin.testimonials.store') }}" method="POST" class="space-y-8">
+            @csrf
 
-    <form action="{{ route('admin.testimonials.store') }}" method="POST">
-        @csrf
-        <div class="form-group" style="margin-bottom:10px;">
-            <label for="clientName" style="font-size:12px;color:#e5e7eb;">Client Name*</label>
-            <input type="text" name="name" placeholder="Client Name" required class="admin-form-control" id="clientName">
-        </div>
+            <div class="space-y-2">
+                <label for="name" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Source Identity</label>
+                <input type="text" name="name" id="name" value="{{ old('name') }}" placeholder="e.g. Marcus Aurelius" class="admin-input-modern" required>
+                @error('name') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
+            </div>
 
-        <div class="form-group" style="margin-bottom:16px;">
-            <label for="testimonial" style="font-size:12px;color:#e5e7eb;">Testimonial*</label>
-            <input type="text" name="testimonial" placeholder="Testimonial" required class="admin-form-control" id="testimonial">
-        </div>
+            <div class="space-y-2">
+                <label for="testimonial" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Signal Payload</label>
+                <textarea name="testimonial" id="testimonial" rows="6" placeholder="Paste the specific feedback broadcasted by the source..." class="admin-input-modern resize-none" required>{{ old('testimonial') }}</textarea>
+                @error('testimonial') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
+            </div>
 
-        <div style="text-align:right;">
-            <button type="submit" class="admin-btn-primary">Save Testimonial</button>
+            <div class="pt-4">
+                <button type="submit" class="btn-modern-primary w-full justify-center py-4 text-sm tracking-widest uppercase">
+                    <i class="fa-solid fa-satellite-dish"></i>
+                    Broadcast Signal
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="mt-10 p-8 admin-card bg-indigo-500/[0.02] border-indigo-500/10">
+        <div class="flex items-center gap-3 mb-4">
+            <i class="fa-solid fa-lightbulb text-indigo-400"></i>
+            <h4 class="text-xs font-bold text-white uppercase tracking-widest">Signal Strategy</h4>
         </div>
-    </form>
+        <p class="text-gray-500 text-[11px] leading-relaxed">
+            High-fidelity signals focus on operational outcomes rather than general praise. Aim for feedback that mentions specific problem-solving scenarios for maximum conversion impact in 2026.
+        </p>
+    </div>
 </div>
 
 @endsection

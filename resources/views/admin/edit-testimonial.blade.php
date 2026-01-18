@@ -1,93 +1,63 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Testimonial')
+@section('title', 'Modify Signal')
 
 @section('content')
 
-<div class="admin-card">
-    <div class="admin-card-header">
-        <div>
-            <h1 class="admin-page-title">Edit Testimonial</h1>
-            <p class="admin-page-subtitle">Update client feedback displayed on your portfolio.</p>
-        </div>
-        <a href="{{ route('admin.all-testimonials') }}" class="admin-btn-ghost">
-            <i class="fa-solid fa-arrow-left-long text-[11px] mr-1"></i>
-            <span>Back to list</span>
-        </a>
+<header class="admin-header">
+    <div>
+        <h1 class="admin-page-title">Modify Signal</h1>
+        <p class="text-gray-500 text-sm mt-1">Update validation parameters for: <span class="text-white">{{ $testimonial->client_name }}</span></p>
+    </div>
+    <a href="{{ route('admin.all-testimonials') }}" class="btn-modern-secondary text-xs">
+        <i class="fa-solid fa-arrow-left"></i>
+        Discard
+    </a>
+</header>
+
+<div class="max-w-3xl mx-auto">
+    <div class="admin-card p-10">
+        <form action="{{ route('admin.testimonials.update', $testimonial->id) }}" method="POST" class="space-y-8">
+            @csrf
+            @method('PUT')
+
+            <div class="space-y-2">
+                <label for="name" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Source Identity</label>
+                <input type="text" name="name" id="name" value="{{ old('name', $testimonial->client_name) }}" class="admin-input-modern" required>
+                @error('name') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="space-y-2">
+                <label for="testimonial" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Signal Payload</label>
+                <textarea name="testimonial" id="testimonial" rows="8" class="admin-input-modern resize-none" required>{{ old('testimonial', $testimonial->testimonial) }}</textarea>
+                @error('testimonial') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="pt-4 flex gap-4">
+                <button type="submit" class="btn-modern-primary flex-1 justify-center py-4 text-sm tracking-widest uppercase">
+                    <i class="fa-solid fa-check-circle"></i>
+                    Update Registry
+                </button>
+                <a href="{{ route('admin.all-testimonials') }}" class="btn-modern-secondary px-10 justify-center py-4 text-sm tracking-widest uppercase">
+                    Cancel
+                </a>
+            </div>
+        </form>
     </div>
 
-    @if(session('success'))
-        <div class="admin-alert-success">
-            {{ session('success') }}
+    <div class="mt-10 p-8 admin-card">
+        <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-6">Signal Metadata</h4>
+        <div class="space-y-4 text-[11px]">
+            <div class="flex justify-between border-b border-white/5 pb-3">
+                <span class="text-gray-500">Intercepted</span>
+                <span class="text-gray-300 font-medium">{{ $testimonial->created_at->format('M d, Y') }}</span>
+            </div>
+            <div class="flex justify-between pt-1">
+                <span class="text-gray-500">Status</span>
+                <span class="text-green-400 font-bold uppercase tracking-widest">Active Signal</span>
+            </div>
         </div>
-    @endif
-
-    @if($errors->any())
-        <div class="mb-4 rounded-xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
-            <p class="font-medium mb-1">Please fix the following:</p>
-            <ul class="list-disc list-inside space-y-0.5">
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form action="{{ route('admin.testimonials.update', $testimonial->id) }}" method="POST" class="space-y-4">
-        @csrf
-        @method('PUT')
-
-        <div>
-            <label for="clientName" class="block text-[11px] font-semibold tracking-[0.16em] uppercase text-slate-600">
-                Client Name*
-            </label>
-            <input
-                type="text"
-                name="name"
-                id="clientName"
-                value="{{ old('name', $testimonial->client_name) }}"
-                placeholder="Client Name"
-                required
-                class="admin-form-control mt-1"
-            >
-        </div>
-
-        <div>
-            <label for="testimonial" class="block text-[11px] font-semibold tracking-[0.16em] uppercase text-slate-600">
-                Testimonial*
-            </label>
-            <textarea
-                name="testimonial"
-                id="testimonial"
-                rows="5"
-                required
-                placeholder="What your client said about working with you..."
-                class="admin-form-control mt-1 resize-y"
-            >{{ old('testimonial', $testimonial->testimonial) }}</textarea>
-            <p class="mt-1 text-[11px] text-slate-500">
-                Keep it authentic and specific — this builds trust with visitors.
-            </p>
-        </div>
-
-        <div class="flex items-center justify-between pt-2">
-            <a href="{{ route('admin.all-testimonials') }}" class="admin-btn-ghost">
-                <i class="fa-solid fa-xmark text-[11px] mr-1"></i>
-                <span>Cancel</span>
-            </a>
-            <button type="submit" class="admin-btn-primary">
-                <i class="fa-solid fa-floppy-disk text-[11px] mr-1"></i>
-                <span>Update Testimonial</span>
-            </button>
-        </div>
-    </form>
+    </div>
 </div>
 
 @endsection
-
-
-
-
-
-
-
-
