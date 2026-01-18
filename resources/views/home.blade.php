@@ -1103,50 +1103,58 @@
 </section>
 
 <script>
-    // Typed.js initialization for hero subtitle - wait for both DOM and Typed.js
-    function initTyped() {
-        const typedElement = document.getElementById('typed-text');
-        if (typedElement && typeof Typed !== 'undefined') {
-            // Clear any existing content
-            typedElement.textContent = '';
-            new Typed('#typed-text', {
-                strings: [
-                    "Full-Stack Developer",
-                    "Mobile App Developer",
-                    "Software Developer",
-                    "UI/UX Designer"
-                ],
-                typeSpeed: 60,
-                backSpeed: 35,
-                loop: true,
-                backDelay: 2000,
-                smartBackspace: true,
-            });
-        } else if (typedElement) {
-            // Fallback if Typed.js fails to load
-            typedElement.textContent = 'Full-Stack Developer';
-        }
-    }
-
-    // Wait for DOM and Typed.js
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check if Typed is already loaded
-            if (typeof Typed !== 'undefined') {
-                initTyped();
-            } else {
-                // Wait a bit more for Typed.js to load
-                setTimeout(initTyped, 100);
+    // Typed.js initialization for hero subtitle - ensure proper loading
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            const typedElement = document.getElementById('typed-text');
+            
+            if (!typedElement) {
+                console.error('Typed text element not found');
+                return;
             }
-        });
-    } else {
-        // DOM already loaded
-        if (typeof Typed !== 'undefined') {
-            initTyped();
-        } else {
-            setTimeout(initTyped, 100);
-        }
-    }
+
+            // Clear any cached content
+            typedElement.innerHTML = '';
+            typedElement.textContent = '';
+
+            if (typeof Typed === 'undefined') {
+                console.warn('Typed.js not loaded, using fallback text');
+                typedElement.textContent = 'Full-Stack Developer';
+                return;
+            }
+
+            try {
+                // Destroy any existing instance
+                if (typedElement._typedInstance) {
+                    typedElement._typedInstance.destroy();
+                    typedElement._typedInstance = null;
+                }
+
+                // Initialize Typed.js
+                const typed = new Typed('#typed-text', {
+                    strings: [
+                        "Full-Stack Developer",
+                        "Mobile App Developer",
+                        "Software Developer",
+                        "UI/UX Designer"
+                    ],
+                    typeSpeed: 60,
+                    backSpeed: 35,
+                    loop: true,
+                    backDelay: 2000,
+                    smartBackspace: true,
+                    showCursor: false,
+                    startDelay: 500
+                });
+
+                // Store reference
+                typedElement._typedInstance = typed;
+            } catch (error) {
+                console.error('Typed.js initialization error:', error);
+                typedElement.textContent = 'Full-Stack Developer';
+            }
+        }, 300); // Small delay to ensure everything is ready
+    });
 
     // Counter animation
     function animateCounter(counter) {
