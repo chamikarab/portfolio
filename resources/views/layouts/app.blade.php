@@ -21,7 +21,7 @@
 
     <style>
         .typed-text {
-            background: linear-gradient(135deg, #4f46e5 0%, #a855f7 50%, #ec4899 100%);
+            background: linear-gradient(to right, #818cf8, #c084fc, #fb7185);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -96,10 +96,19 @@
             if (mobileMenuBtn && mobileMenu) {
                 mobileMenuBtn.addEventListener('click', function (e) {
                     e.stopPropagation();
-                    mobileMenu.classList.toggle('active');
+                    const isOpen = mobileMenu.classList.contains('active') || !mobileMenu.classList.contains('invisible');
+                    
+                    if (isOpen) {
+                        mobileMenu.classList.add('invisible', 'opacity-0', 'translate-y-4');
+                        mobileMenu.classList.remove('active');
+                    } else {
+                        mobileMenu.classList.remove('invisible', 'opacity-0', 'translate-y-4');
+                        mobileMenu.classList.add('active');
+                    }
+                    
                     const icon = mobileMenuBtn.querySelector('svg');
                     if (!icon) return;
-                    if (mobileMenu.classList.contains('active')) {
+                    if (!isOpen) {
                         icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
                     } else {
                         icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
@@ -109,10 +118,11 @@
                 // Close mobile menu when clicking outside
                 document.addEventListener('click', function (event) {
                     if (
-                        mobileMenu.classList.contains('active') &&
+                        !mobileMenu.classList.contains('invisible') &&
                         !mobileMenu.contains(event.target) &&
                         !mobileMenuBtn.contains(event.target)
                     ) {
+                        mobileMenu.classList.add('invisible', 'opacity-0', 'translate-y-4');
                         mobileMenu.classList.remove('active');
                         const icon = mobileMenuBtn.querySelector('svg');
                         if (icon) {
@@ -137,36 +147,6 @@
                     }
                 });
             });
-
-            // Theme toggle (light/dark preference hook)
-            if (themeToggle) {
-                const root = document.documentElement;
-                const applyTheme = (mode) => {
-                    if (mode === 'light') {
-                        root.classList.add('light');
-                        root.classList.remove('dark');
-                        document.body.classList.remove('bg-slate-950', 'text-slate-50');
-                        document.body.classList.add('bg-slate-50', 'text-slate-900');
-                    } else {
-                        root.classList.add('dark');
-                        root.classList.remove('light');
-                        document.body.classList.add('bg-slate-950', 'text-slate-50');
-                    }
-                };
-
-                const stored = window.localStorage.getItem('theme');
-                const prefersDark = window.matchMedia &&
-                    window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const initial = stored || (prefersDark ? 'dark' : 'light');
-                applyTheme(initial);
-
-                themeToggle.addEventListener('click', () => {
-                    const isDark = root.classList.contains('dark');
-                    const next = isDark ? 'light' : 'dark';
-                    applyTheme(next);
-                    window.localStorage.setItem('theme', next);
-                });
-            }
         });
     </script>
 </body>
