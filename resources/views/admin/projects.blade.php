@@ -1,140 +1,99 @@
 @extends('layouts.admin')
 
-@section('title', 'Add Project')
+@section('title', 'Deploy Project')
 
 @section('content')
 
-<div class="grid gap-5 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-    <!-- Main form card -->
-    <div class="admin-card">
-        <div class="admin-card-header">
-            <div>
-                <h1 class="admin-page-title">Add new project</h1>
-                <p class="admin-page-subtitle">
-                    Create a polished project entry that will appear on your public portfolio.
-                </p>
-            </div>
-            <a href="{{ route('admin.all-projects') }}" class="admin-btn-ghost">
-                <i class="fa-solid fa-arrow-left-long text-[11px] mr-1"></i>
-                <span>Back to list</span>
-            </a>
+<header class="admin-header">
+    <div>
+        <h1 class="admin-page-title">Deploy New Project</h1>
+        <p class="text-gray-500 text-sm mt-1">Add a fresh piece of work to your portfolio registry.</p>
+    </div>
+    <a href="{{ route('admin.all-projects') }}" class="btn-modern-secondary text-xs">
+        <i class="fa-solid fa-arrow-left"></i>
+        Return to Registry
+    </a>
+</header>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+    <div class="lg:col-span-2">
+        <div class="admin-card p-10">
+            <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
+                @csrf
+
+                <div class="space-y-2">
+                    <label for="name" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Project Nomenclature</label>
+                    <input type="text" name="name" id="name" value="{{ old('name') }}" placeholder="e.g. Neo-Financial Dashboard" class="admin-input-modern" required>
+                    @error('name') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-2">
+                        <label for="category" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Classification</label>
+                        <input type="text" name="category" id="category" value="{{ old('category') }}" placeholder="e.g. Web Architecture" class="admin-input-modern" required>
+                        @error('category') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
+                    </div>
+                    <div class="space-y-2">
+                        <label for="image" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Visual Asset</label>
+                        <div class="relative group">
+                            <input type="file" name="image" id="image" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" required onchange="updateFileName(this)">
+                            <div class="admin-input-modern flex items-center justify-between group-hover:border-white/20 transition">
+                                <span id="file-name" class="text-gray-500 truncate">Select image file...</span>
+                                <i class="fa-solid fa-cloud-arrow-up text-indigo-400"></i>
+                            </div>
+                        </div>
+                        @error('image') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="description" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Project Narrative</label>
+                    <textarea name="description" id="description" rows="6" placeholder="Describe the operational parameters and visual impact of this project..." class="admin-input-modern resize-none" required>{{ old('description') }}</textarea>
+                    @error('description') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="btn-modern-primary w-full justify-center py-4 text-sm tracking-widest uppercase">
+                        <i class="fa-solid fa-plus-circle"></i>
+                        Initialize Deployment
+                    </button>
+                </div>
+            </form>
         </div>
-
-        @if(session('success'))
-            <div class="admin-alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if($errors->any())
-            <div class="mb-4 rounded-xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
-                <p class="font-medium mb-1">Please fix the following:</p>
-                <ul class="list-disc list-inside space-y-0.5">
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
-            @csrf
-
-            <div>
-                <label for="projectName" class="block text-[11px] font-semibold tracking-[0.16em] uppercase text-slate-400">
-                    Project name*
-                </label>
-                <input
-                    type="text"
-                    name="name"
-                    id="projectName"
-                    value="{{ old('name') }}"
-                    placeholder="e.g. Modern Portfolio Website"
-                    required
-                    class="admin-form-control mt-1"
-                >
-            </div>
-
-            <div class="grid gap-4 md:grid-cols-2">
-                <div>
-                    <label for="projectCategory" class="block text-[11px] font-semibold tracking-[0.16em] uppercase text-slate-400">
-                        Category*
-                    </label>
-                    <input
-                        type="text"
-                        name="category"
-                        id="projectCategory"
-                        value="{{ old('category') }}"
-                        placeholder="e.g. Web Development, UI/UX, Mobile"
-                        required
-                        class="admin-form-control mt-1"
-                    >
-                </div>
-
-                <div>
-                    <label for="projectImage" class="block text-[11px] font-semibold tracking-[0.16em] uppercase text-slate-400">
-                        Featured image*
-                    </label>
-                    <input
-                        type="file"
-                        name="image"
-                        id="projectImage"
-                        required
-                        class="admin-form-control mt-1 file:mr-3 file:rounded-lg file:border-0 file:bg-slate-800 file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-slate-100 hover:file:bg-slate-700"
-                    >
-                    <p class="mt-1 text-[11px] text-slate-500">
-                        Recommended size: 1200×800px • JPG or PNG • &lt; 2MB
-                    </p>
-                </div>
-            </div>
-
-            <div>
-                <label for="projectDescription" class="block text-[11px] font-semibold tracking-[0.16em] uppercase text-slate-400">
-                    Description*
-                </label>
-                <textarea
-                    name="description"
-                    id="projectDescription"
-                    rows="5"
-                    required
-                    placeholder="Describe the problem, your solution, and the outcome."
-                    class="admin-form-control mt-1 resize-y"
-                >{{ old('description') }}</textarea>
-                <p class="mt-1 text-[11px] text-slate-500">
-                    Keep it concise but specific — this is what visitors will read on your project page.
-                </p>
-            </div>
-
-            <div class="flex items-center justify-between pt-2">
-                <p class="text-[11px] text-slate-500">
-                    You can always edit this project later from the projects list.
-                </p>
-                <button type="submit" class="admin-btn-primary">
-                    <i class="fa-solid fa-floppy-disk text-[11px] mr-1"></i>
-                    <span>Save project</span>
-                </button>
-            </div>
-        </form>
     </div>
 
-    <!-- Side info card -->
-    <div class="admin-card">
-        <h2 class="admin-card-title mb-2">Tips for a strong project</h2>
-        <ul class="mt-2 space-y-2 text-sm text-slate-700">
-            <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                <span>Use a clear, outcome‑focused title (what you built and for whom).</span>
-            </li>
-            <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                <span>Mention the stack or tools you used if it helps show your strengths.</span>
-            </li>
-            <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                <span>Add a high‑quality screenshot that instantly communicates the value.</span>
-            </li>
-        </ul>
+    <div class="space-y-8">
+        <div class="admin-card p-8 border-indigo-500/10 bg-indigo-500/[0.02]">
+            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-circle-info text-indigo-400"></i>
+                Deployment Standards
+            </h4>
+            <ul class="space-y-6 text-[11px] leading-relaxed text-gray-500">
+                <li class="flex gap-4">
+                    <span class="text-indigo-400 font-bold">01</span>
+                    Visual assets should be optimized for high-density 4K displays.
+                </li>
+                <li class="flex gap-4">
+                    <span class="text-indigo-400 font-bold">02</span>
+                    Classification tags help in semantic indexing and user navigation.
+                </li>
+                <li class="flex gap-4">
+                    <span class="text-indigo-400 font-bold">03</span>
+                    Narratives should focus on measurable impact and technical excellence.
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
+
+<script>
+    function updateFileName(input) {
+        const fileName = input.files[0] ? input.files[0].name : 'Select image file...';
+        const display = document.getElementById('file-name');
+        display.textContent = fileName;
+        display.classList.remove('text-gray-500');
+        display.classList.add('text-white');
+    }
+</script>
 
 @endsection
