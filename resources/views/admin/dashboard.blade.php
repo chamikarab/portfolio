@@ -7,355 +7,161 @@
 @php
     $projectsCount = $projectsCount ?? \App\Models\Project::count();
     $testimonialsCount = $testimonialsCount ?? \App\Models\Testimonial::count();
-    $recentProjects = ($recentProjects ?? null) ?: \App\Models\Project::latest()->take(5)->get();
-    $recentTestimonials = ($recentTestimonials ?? null) ?: \App\Models\Testimonial::latest()->take(5)->get();
+    $recentProjects = ($recentProjects ?? null) ?: \App\Models\Project::latest()->take(4)->get();
+    $recentTestimonials = ($recentTestimonials ?? null) ?: \App\Models\Testimonial::latest()->take(4)->get();
 @endphp
 
 @if(session('success'))
-    <div class="admin-alert-success mb-4">
-        <i class="fa-solid fa-circle-check mr-2"></i>
-        {{ session('success') }}
+    <div class="p-4 mb-8 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-lg"></i>
+        <p class="text-sm font-medium">{{ session('success') }}</p>
     </div>
 @endif
 
-{{-- Top hero / welcome --}}
-<div class="admin-card mb-4 sm:mb-5">
-    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div class="min-w-0 flex-1">
-            <p class="text-[10px] sm:text-xs font-medium uppercase tracking-[0.18em] text-slate-500 mb-1">Overview</p>
-            <h2 class="text-lg sm:text-xl md:text-2xl font-semibold tracking-tight text-slate-900">
-                Welcome back, {{ auth()->user()->name ?? 'Chamikara' }}
-            </h2>
-            <p class="mt-1 text-[11px] sm:text-xs md:text-sm text-slate-600 max-w-xl">
-                Quickly see how your portfolio content is performing and jump into the tasks that matter most.
-            </p>
+<header class="admin-header">
+    <div>
+        <h1 class="admin-page-title">Dashboard</h1>
+        <p class="text-gray-500 text-sm mt-1">Welcome back, {{ explode(' ', auth()->user()->name)[0] }}</p>
+    </div>
+    <div class="flex items-center gap-3">
+        <a href="{{ route('admin.projects.create') }}" class="btn-modern-primary">
+            <i class="fa-solid fa-plus text-xs"></i>
+            New Project
+        </a>
+        <a href="{{ route('admin.testimonials.create') }}" class="btn-modern-secondary">
+            Add Testimonial
+        </a>
+    </div>
+</header>
+
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+    <div class="admin-card p-6">
+        <div class="flex items-center justify-between mb-4">
+            <span class="text-gray-500 text-xs font-bold uppercase tracking-widest">Active Assets</span>
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+                <i class="fa-solid fa-folder-tree"></i>
+            </div>
         </div>
-        <div class="flex flex-wrap gap-2 sm:flex-nowrap">
-            <a href="{{ route('admin.projects.create') }}" class="admin-btn-primary flex-1 sm:flex-none">
-                <i class="fa-solid fa-circle-plus text-[10px] sm:text-[11px]"></i>
-                <span class="hidden sm:inline">New project</span>
-                <span class="sm:hidden">New</span>
-            </a>
-            <a href="{{ route('admin.testimonials.create') }}" class="admin-btn-ghost flex-1 sm:flex-none">
-                <i class="fa-solid fa-quote-left text-[10px] sm:text-[11px]"></i>
-                <span class="hidden sm:inline">New testimonial</span>
-                <span class="sm:hidden">Testimonial</span>
-            </a>
-            <a href="{{ route('home') }}" class="admin-btn-ghost flex-1 sm:flex-none">
-                <i class="fa-solid fa-globe text-[10px] sm:text-[11px]"></i>
-                <span class="hidden sm:inline">View site</span>
-                <span class="sm:hidden">Site</span>
-            </a>
+        <p class="text-3xl font-bold text-white">{{ $projectsCount }}</p>
+        <p class="text-[11px] text-gray-600 mt-2 font-medium uppercase tracking-wider">Total Portfolio Projects</p>
+    </div>
+
+    <div class="admin-card p-6">
+        <div class="flex items-center justify-between mb-4">
+            <span class="text-gray-500 text-xs font-bold uppercase tracking-widest">Social Signals</span>
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                <i class="fa-solid fa-comment-dots"></i>
+            </div>
+        </div>
+        <p class="text-3xl font-bold text-white">{{ $testimonialsCount }}</p>
+        <p class="text-[11px] text-gray-600 mt-2 font-medium uppercase tracking-wider">Verified Testimonials</p>
+    </div>
+
+    <div class="admin-card p-6 overflow-hidden relative">
+        <div class="flex items-center justify-between mb-4">
+            <span class="text-gray-500 text-xs font-bold uppercase tracking-widest">Health Index</span>
+            <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400">
+                <i class="fa-solid fa-bolt-lightning"></i>
+            </div>
+        </div>
+        <p class="text-3xl font-bold text-white">{{ round(min(100, ($projectsCount/10)*100)) }}%</p>
+        <div class="mt-4 h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+            @php $saturation = min(100, ($projectsCount/10)*100); @endphp
+            <div class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full" style="width: {{ $saturation }}%"></div>
         </div>
     </div>
 </div>
 
-{{-- KPI cards --}}
-<div class="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-4 sm:mb-6">
-    {{-- Projects --}}
-    <div class="admin-card">
-        <div class="admin-card-header">
-            <div class="min-w-0 flex-1">
-                <p class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Projects</p>
-                <p class="mt-1 text-2xl sm:text-3xl font-semibold text-slate-900">
-                    {{ $projectsCount }}
-                </p>
-            </div>
-            <span class="admin-badge-pill shrink-0">
-                <i class="fa-solid fa-briefcase text-[10px] sm:text-xs mr-1"></i>
-                <span class="hidden sm:inline">Portfolio</span>
-                <span class="sm:hidden">Proj</span>
-            </span>
-        </div>
-        <p class="text-[11px] sm:text-xs text-slate-600">
-            All projects currently visible on your public portfolio.
-        </p>
-        <div class="mt-3 sm:mt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-0 text-[10px] sm:text-[11px]">
-            <a href="{{ route('admin.all-projects') }}" class="inline-flex items-center gap-1 text-indigo-600 hover:text-indigo-500 font-medium">
-                <span class="truncate">Manage projects</span>
-                <i class="fa-solid fa-arrow-up-right-from-square text-[8px] sm:text-[9px] shrink-0"></i>
-            </a>
-            <a href="{{ route('admin.projects.create') }}" class="admin-btn-ghost px-2 sm:px-3 py-1 text-[10px] sm:text-[11px]">
-                <i class="fa-solid fa-circle-plus text-[9px] sm:text-[10px] mr-1"></i>
-                <span class="hidden sm:inline">New project</span>
-                <span class="sm:hidden">New</span>
-            </a>
-        </div>
-    </div>
-
-    {{-- Testimonials --}}
-    <div class="admin-card">
-        <div class="admin-card-header">
-            <div class="min-w-0 flex-1">
-                <p class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Testimonials</p>
-                <p class="mt-1 text-2xl sm:text-3xl font-semibold text-slate-900">
-                    {{ $testimonialsCount }}
-                </p>
-            </div>
-            <span class="admin-badge-pill shrink-0">
-                <i class="fa-solid fa-comment-dots text-[10px] sm:text-xs mr-1"></i>
-                <span class="hidden sm:inline">Social proof</span>
-                <span class="sm:hidden">Proof</span>
-            </span>
-        </div>
-        <p class="text-[11px] sm:text-xs text-slate-600">
-            Client quotes that add credibility to your work.
-        </p>
-        <div class="mt-3 sm:mt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-0 text-[10px] sm:text-[11px]">
-            <a href="{{ route('admin.all-testimonials') }}" class="inline-flex items-center gap-1 text-indigo-600 hover:text-indigo-500 font-medium">
-                <span class="truncate">View all testimonials</span>
-                <i class="fa-solid fa-arrow-up-right-from-square text-[8px] sm:text-[9px] shrink-0"></i>
-            </a>
-            <a href="{{ route('admin.testimonials.create') }}" class="admin-btn-ghost px-2 sm:px-3 py-1 text-[10px] sm:text-[11px]">
-                <i class="fa-solid fa-square-plus text-[9px] sm:text-[10px] mr-1"></i>
-                <span class="hidden sm:inline">New testimonial</span>
-                <span class="sm:hidden">New</span>
-            </a>
-        </div>
-    </div>
-
-    {{-- Activity snapshot --}}
-    <div class="admin-card sm:col-span-2 lg:col-span-1">
-        <div class="admin-card-header">
-            <div class="min-w-0 flex-1">
-                <p class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Today</p>
-                <p class="mt-1 text-xs sm:text-sm font-semibold text-slate-900">Activity snapshot</p>
-            </div>
-        </div>
-        <ul class="mt-1 space-y-1.5 text-[11px] sm:text-xs text-slate-600">
-            <li class="flex items-start gap-2">
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0"></span>
-                <span><strong class="font-semibold text-slate-900">{{ $projectsCount }}</strong> total projects in your portfolio.</span>
-            </li>
-            <li class="flex items-start gap-2">
-                <span class="h-1.5 w-1.5 rounded-full bg-sky-400 mt-1.5 shrink-0"></span>
-                <span><strong class="font-semibold text-slate-900">{{ $testimonialsCount }}</strong> testimonials from clients.</span>
-            </li>
-            <li class="flex items-start gap-2">
-                <span class="h-1.5 w-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0"></span>
-                <span>Keep things fresh by adding new content regularly.</span>
-            </li>
-        </ul>
-        <div class="mt-3 sm:mt-4 text-[10px] sm:text-[11px] text-slate-500">
-            <span class="block sm:inline">Tip: aim to add at least one new project each month.</span>
-        </div>
-    </div>
-</div>
-
-{{-- Main grid: recent activity + highlights --}}
-<div class="grid gap-4 grid-cols-1 lg:grid-cols-[minmax(0,2.1fr)_minmax(0,1.4fr)]">
-    {{-- Recent activity --}}
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <!-- Recent Projects -->
     <div class="space-y-4">
-        <div class="admin-card">
-            <div class="admin-card-header">
-                <div>
-                    <h2 class="admin-card-title">Recent activity</h2>
-                    <p class="text-xs text-slate-600 mt-0.5">Latest changes to your portfolio content.</p>
-                </div>
-            </div>
-
-            <div class="space-y-3 text-sm text-slate-700">
-                @if($recentProjects->isEmpty() && $recentTestimonials->isEmpty())
-                    <p class="text-xs text-slate-500">
-                        No activity yet. Create your first project or testimonial to see activity here.
-                    </p>
-                @endif
-
-                @foreach($recentProjects as $project)
-                    <div class="flex items-start gap-2 sm:gap-3 rounded-xl border border-slate-200 bg-slate-50 px-2 sm:px-3 py-2 sm:py-2.5">
-                        <div class="mt-0.5 shrink-0">
-                            <span class="inline-flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-indigo-500 text-[10px] sm:text-[11px] text-white shadow-sm">
-                                <i class="fa-solid fa-briefcase"></i>
-                            </span>
+        <div class="flex items-center justify-between px-2">
+            <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest">Recent Activity</h3>
+            <a href="{{ route('admin.all-projects') }}" class="text-[10px] font-bold text-indigo-400 hover:text-white transition">Full Registry</a>
+        </div>
+        <div class="admin-card overflow-hidden">
+            <div class="divide-y divide-white/5">
+                @forelse($recentProjects as $project)
+                    <div class="p-4 flex items-center justify-between group hover:bg-white/[0.02] transition-colors">
+                        <div class="flex items-center gap-4 min-w-0">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 overflow-hidden border border-white/5 flex-shrink-0">
+                                @if($project->image)
+                                    <img src="{{ asset('storage/' . $project->image) }}" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-500">
+                                @else
+                                    <div class="w-full h-full flex items-center justify-center text-gray-700">
+                                        <i class="fa-solid fa-image"></i>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-sm font-semibold text-white truncate">{{ $project->name }}</p>
+                                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">{{ $project->category }}</p>
+                            </div>
                         </div>
-                        <div class="min-w-0 flex-1">
-                            <p class="truncate text-xs sm:text-sm font-medium text-slate-900">
-                                New project: {{ $project->name }}
-                            </p>
-                            <p class="text-[10px] sm:text-xs text-slate-500 truncate">
-                                {{ $project->category ?? 'Uncategorized' }}
-                            </p>
-                        </div>
-                        <p class="whitespace-nowrap text-[10px] sm:text-[11px] text-slate-500 shrink-0 ml-1">
-                            {{ $project->created_at?->diffForHumans() }}
-                        </p>
+                        <a href="{{ route('admin.projects.edit', $project) }}" class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gray-500 hover:text-white transition">
+                            <i class="fa-solid fa-pen-to-square text-xs"></i>
+                        </a>
                     </div>
-                @endforeach
-
-                @foreach($recentTestimonials as $testimonial)
-                    <div class="flex items-start gap-2 sm:gap-3 rounded-xl border border-slate-200 bg-slate-50 px-2 sm:px-3 py-2 sm:py-2.5">
-                        <div class="mt-0.5 shrink-0">
-                            <span class="inline-flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-emerald-500 text-[10px] sm:text-[11px] text-white shadow-sm">
-                                <i class="fa-solid fa-quote-left"></i>
-                            </span>
-                        </div>
-                        <div class="min-w-0 flex-1">
-                            <p class="truncate text-xs sm:text-sm font-medium text-slate-900">
-                                New testimonial from {{ $testimonial->client_name }}
-                            </p>
-                            <p class="mt-0.5 text-[10px] sm:text-xs text-slate-600 line-clamp-2">
-                                “{{ $testimonial->testimonial }}”
-                            </p>
-                        </div>
-                        <p class="whitespace-nowrap text-[10px] sm:text-[11px] text-slate-500 shrink-0 ml-1">
-                            {{ $testimonial->created_at?->diffForHumans() }}
-                        </p>
+                @empty
+                    <div class="p-12 text-center">
+                        <p class="text-xs text-gray-600 font-medium">No recent operations detected.</p>
                     </div>
-                @endforeach
+                @endforelse
             </div>
         </div>
     </div>
 
-    {{-- Right column: quick insights --}}
+    <!-- Quick Controls -->
     <div class="space-y-4">
-        {{-- System controls --}}
-        <div class="admin-card">
-            <div class="admin-card-header">
-                <h2 class="admin-card-title">System controls</h2>
-            </div>
-            <div class="space-y-2">
-                <form action="{{ route('admin.toggle-maintenance') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="w-full flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 hover:border-amber-500/60 hover:bg-amber-50 transition text-left">
-                        <div class="flex items-center gap-2">
-                            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-[11px] text-white">
-                                <i class="fa-solid fa-screwdriver-wrench"></i>
-                            </span>
-                            <span class="text-xs sm:text-sm text-slate-700">
-                                @php
-                                    $maintenanceFile = storage_path('framework/custom_maintenance.json');
-                                    $isMaintenanceMode = \Illuminate\Support\Facades\File::exists($maintenanceFile);
-                                @endphp
-                                @if($isMaintenanceMode)
-                                    Disable Maintenance Mode
-                                @else
-                                    Enable Maintenance Mode
-                                @endif
-                            </span>
-                        </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
-                    </button>
-                </form>
-                <a href="{{ route('maintenance') }}" target="_blank" class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 hover:border-indigo-500/60 hover:bg-indigo-50 transition">
-                    <div class="flex items-center gap-2">
-                        <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500 text-[11px] text-white">
-                            <i class="fa-solid fa-eye"></i>
-                        </span>
-                        <span class="text-xs sm:text-sm text-slate-700">Preview Maintenance Page</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
-                </a>
-                <form action="{{ route('admin.toggle-coming-soon') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="w-full flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 hover:border-purple-500/60 hover:bg-purple-50 transition text-left">
-                        <div class="flex items-center gap-2">
-                            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500 text-[11px] text-white">
-                                <i class="fa-solid fa-rocket"></i>
-                            </span>
-                            <span class="text-xs sm:text-sm text-slate-700">
-                                @php
-                                    $comingSoonFile = storage_path('framework/custom_coming_soon.json');
-                                    $isComingSoonMode = \Illuminate\Support\Facades\File::exists($comingSoonFile);
-                                @endphp
-                                @if($isComingSoonMode)
-                                    Disable Coming Soon Mode
-                                @else
-                                    Enable Coming Soon Mode
-                                @endif
-                            </span>
-                        </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
-                    </button>
-                </form>
-                <a href="{{ route('coming-soon') }}" target="_blank" class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 hover:border-purple-500/60 hover:bg-purple-50 transition">
-                    <div class="flex items-center gap-2">
-                        <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500 text-[11px] text-white">
-                            <i class="fa-solid fa-eye"></i>
-                        </span>
-                        <span class="text-xs sm:text-sm text-slate-700">Preview Coming Soon Page</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
-                </a>
-            </div>
+        <div class="flex items-center justify-between px-2">
+            <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest">System Protocols</h3>
         </div>
+        <div class="grid grid-cols-1 gap-4">
+            @php
+                $maintenanceFile = storage_path('framework/custom_maintenance.json');
+                $isMaintenance = \Illuminate\Support\Facades\File::exists($maintenanceFile);
+                $comingSoonFile = storage_path('framework/custom_coming_soon.json');
+                $isComingSoon = \Illuminate\Support\Facades\File::exists($comingSoonFile);
+            @endphp
+            
+            <form action="{{ route('admin.toggle-maintenance') }}" method="POST">
+                @csrf
+                <button type="submit" class="w-full admin-card p-5 flex items-center justify-between hover:border-amber-500/30 transition group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl {{ $isMaintenance ? 'bg-amber-500/20 text-amber-500' : 'bg-white/5 text-gray-600' }} flex items-center justify-center transition border border-white/5">
+                            <i class="fa-solid fa-wrench text-sm"></i>
+                        </div>
+                        <span class="text-sm font-semibold {{ $isMaintenance ? 'text-white' : 'text-gray-400' }}">Maintenance Mode</span>
+                    </div>
+                    <div class="w-10 h-5 rounded-full bg-black/40 border border-white/10 relative flex items-center px-1 transition">
+                        <div class="w-3 h-3 rounded-full {{ $isMaintenance ? 'translate-x-5 bg-amber-500' : 'bg-gray-800' }} transition-all duration-300"></div>
+                    </div>
+                </button>
+            </form>
 
-        {{-- Quick actions --}}
-        <div class="admin-card">
-            <div class="admin-card-header">
-                <h2 class="admin-card-title">Quick actions</h2>
-            </div>
-            <ul class="mt-1 space-y-2 text-xs sm:text-sm text-slate-700">
-                <li>
-                    <a href="{{ route('admin.projects.create') }}" class="flex items-center justify-between gap-2 sm:gap-3 rounded-xl border border-slate-200 bg-slate-50 px-2 sm:px-3 py-2 hover:border-indigo-500/60 hover:bg-indigo-50 transition">
-                        <div class="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
-                            <span class="inline-flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-indigo-500 text-[10px] sm:text-[11px] text-white shrink-0">
-                                <i class="fa-solid fa-circle-plus"></i>
-                            </span>
-                            <span class="truncate">Add a featured project</span>
+            <form action="{{ route('admin.toggle-coming-soon') }}" method="POST">
+                @csrf
+                <button type="submit" class="w-full admin-card p-5 flex items-center justify-between hover:border-purple-500/30 transition group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl {{ $isComingSoon ? 'bg-purple-500/20 text-purple-500' : 'bg-white/5 text-gray-600' }} flex items-center justify-center transition border border-white/5">
+                            <i class="fa-solid fa-rocket text-sm"></i>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[9px] sm:text-[10px] text-slate-500 shrink-0"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.testimonials.create') }}" class="flex items-center justify-between gap-2 sm:gap-3 rounded-xl border border-slate-200 bg-slate-50 px-2 sm:px-3 py-2 hover:border-indigo-500/60 hover:bg-indigo-50 transition">
-                        <div class="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
-                            <span class="inline-flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-emerald-500 text-[10px] sm:text-[11px] text-white shrink-0">
-                                <i class="fa-solid fa-quote-left"></i>
-                            </span>
-                            <span class="truncate">Capture a new testimonial</span>
-                        </div>
-                        <i class="fa-solid fa-chevron-right text-[9px] sm:text-[10px] text-slate-500 shrink-0"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('home') }}" class="flex items-center justify-between gap-2 sm:gap-3 rounded-xl border border-slate-200 bg-slate-50 px-2 sm:px-3 py-2 hover:border-indigo-500/60 hover:bg-indigo-50 transition">
-                        <div class="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
-                            <span class="inline-flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-sky-500 text-[10px] sm:text-[11px] text-white shrink-0">
-                                <i class="fa-solid fa-globe"></i>
-                            </span>
-                            <span class="truncate">Preview live portfolio</span>
-                        </div>
-                        <i class="fa-solid fa-chevron-right text-[9px] sm:text-[10px] text-slate-500 shrink-0"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
+                        <span class="text-sm font-semibold {{ $isComingSoon ? 'text-white' : 'text-gray-400' }}">Coming Soon Page</span>
+                    </div>
+                    <div class="w-10 h-5 rounded-full bg-black/40 border border-white/10 relative flex items-center px-1 transition">
+                        <div class="w-3 h-3 rounded-full {{ $isComingSoon ? 'translate-x-5 bg-purple-500' : 'bg-gray-800' }} transition-all duration-300"></div>
+                    </div>
+                </button>
+            </form>
 
-        {{-- Content health --}}
-        <div class="admin-card">
-            <div class="admin-card-header">
-                <h2 class="admin-card-title">Content health</h2>
-            </div>
-            <p class="text-xs text-slate-600 mb-3">
-                A quick snapshot of how complete your portfolio feels.
-            </p>
-            <div class="space-y-3 text-xs text-slate-700">
-                <div>
-                    <div class="flex items-center justify-between mb-1">
-                        <span>Projects volume</span>
-                        <span class="text-slate-500">{{ $projectsCount }} / 10+ recommended</span>
-                    </div>
-                    <div class="h-1.5 w-full rounded-full bg-slate-200 overflow-hidden">
-                        @php
-                            $projectProgress = min(100, ($projectsCount / 10) * 100);
-                        @endphp
-                        <div class="h-full rounded-full bg-indigo-500" style="width: {{ $projectProgress }}%;"></div>
-                    </div>
+            <div class="admin-card p-6 bg-indigo-500/[0.02] border-indigo-500/10">
+                <div class="flex items-center gap-3 mb-3">
+                    <i class="fa-solid fa-lightbulb text-indigo-400"></i>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-widest">Operational Tip</h4>
                 </div>
-                <div>
-                    <div class="flex items-center justify-between mb-1">
-                        <span>Testimonials volume</span>
-                        <span class="text-slate-500">{{ $testimonialsCount }} / 3+ recommended</span>
-                    </div>
-                    <div class="h-1.5 w-full rounded-full bg-slate-200 overflow-hidden">
-                        @php
-                            $testimonialProgress = min(100, ($testimonialsCount / 3) * 100);
-                        @endphp
-                        <div class="h-full rounded-full bg-emerald-500" style="width: {{ $testimonialProgress }}%;"></div>
-                    </div>
-                </div>
-                <p class="pt-1 text-[11px] text-slate-500">
-                    These are simple guidelines — focus on quality projects and honest testimonials.
+                <p class="text-gray-500 text-[11px] leading-relaxed">
+                    System health is currently optimal. Maintain portfolio engagement by updating your latest assets once every 14 days.
                 </p>
             </div>
         </div>
