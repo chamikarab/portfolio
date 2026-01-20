@@ -506,7 +506,7 @@
                 <div class="project-card-modern fade-in-up">
                     <div class="overflow-hidden rounded-t-2xl">
                         @if($project->image)
-                            <img src="{{ $project->image_url }}" alt="{{ $project->name }}" 
+                            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->name }}" 
                                  class="w-full h-48 object-cover"
                                  onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
                         @else
