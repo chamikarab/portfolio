@@ -57,16 +57,10 @@
                         data-project-category="{{ \Illuminate\Support\Str::slug($project->category ?? 'Other') }}"
                     >
                         <div class="overflow-hidden rounded-t-2xl relative group">
-                            @if($project->image)
-                                <img src="{{ asset('storage/' . $project->image) }}" 
-                                     alt="{{ $project->name }}" 
-                                     class="w-full h-40 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                                     onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
-                            @else
-                                <div class="w-full h-40 sm:h-48 bg-slate-800 flex items-center justify-center">
-                                    <i class="fas fa-image text-4xl text-slate-600"></i>
-                                </div>
-                            @endif
+                            <img src="{{ $project->image_url }}" 
+                                 alt="{{ $project->name }}" 
+                                 class="w-full h-40 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                                 onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                         <div class="p-4 sm:p-6">
