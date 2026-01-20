@@ -24,7 +24,7 @@
             <!-- Project Image -->
             <div class="glass rounded-2xl sm:rounded-3xl overflow-hidden mb-8 sm:mb-10 md:mb-12 fade-in-up">
                 @if($project->image)
-                    <img src="{{ $project->image_url }}" 
+                    <img src="{{ asset('storage/' . $project->image) }}" 
                          alt="{{ $project->name }}" 
                          class="w-full h-auto object-cover"
                          onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">

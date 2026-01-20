@@ -87,7 +87,7 @@
                         <div class="flex items-center gap-4 min-w-0">
                             <div class="w-12 h-12 rounded-xl bg-white/5 overflow-hidden border border-white/5 flex-shrink-0">
                                 @if($project->image)
-                                    <img src="{{ $project->image_url }}" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-500"
+                                    <img src="{{ asset('storage/' . $project->image) }}" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-500"
                                          onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
                                 @else
                                     <div class="w-full h-full flex items-center justify-center text-gray-700">
