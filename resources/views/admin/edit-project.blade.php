@@ -70,14 +70,9 @@
         <div class="admin-card p-8 border-indigo-500/10 bg-indigo-500/[0.02]">
             <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-6">Active Visual</h4>
             <div class="aspect-video rounded-xl bg-white/5 overflow-hidden border border-white/5 mb-4">
-                @if($project->image)
-                    <img src="{{ asset('storage/' . $project->image) }}" class="w-full h-full object-cover"
-                         onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
-                @else
-                    <div class="w-full h-full flex items-center justify-center text-gray-700">
-                        <i class="fa-solid fa-image text-3xl"></i>
-                    </div>
-                @endif
+                <img src="{{ $project->image_url }}" 
+                     class="w-full h-full object-cover"
+                     onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
             </div>
             <p class="text-[10px] text-gray-600 font-bold uppercase tracking-[0.2em] text-center">Currently Deployed Frame</p>
         </div>
