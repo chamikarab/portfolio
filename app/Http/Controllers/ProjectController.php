@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProjectController extends Controller
 {
@@ -45,11 +46,23 @@ class ProjectController extends Controller
             'description' => 'required',
         ]);
 
-        $path = $request->file('image')->store('projects', 'public');
+        // Ensure directory exists
+        $uploadPath = public_path('assets/projects');
+        if (!File::exists($uploadPath)) {
+            File::makeDirectory($uploadPath, 0755, true);
+        }
 
+        // Generate unique filename
+        $file = $request->file('image');
+        $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        
+        // Move file to public/assets/projects
+        $file->move($uploadPath, $filename);
+
+        // Store only filename in database
         Project::create([
             'name' => $request->name,
-            'image' => $path,
+            'image' => $filename,
             'category' => $request->category,
             'description' => $request->description,
         ]);
@@ -82,13 +95,27 @@ class ProjectController extends Controller
 
         // Handle image upload if new image is provided
         if ($request->hasFile('image')) {
+            // Ensure directory exists
+            $uploadPath = public_path('assets/projects');
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+
             // Delete old image
             if ($project->image) {
-                \Storage::delete('public/' . $project->image);
+                $oldImagePath = public_path('assets/projects/' . basename($project->image));
+                if (File::exists($oldImagePath)) {
+                    File::delete($oldImagePath);
+                }
             }
-            // Store new image
-            $path = $request->file('image')->store('projects', 'public');
-            $data['image'] = $path;
+            
+            // Generate unique filename
+            $file = $request->file('image');
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            
+            // Move file to public/assets/projects
+            $file->move($uploadPath, $filename);
+            $data['image'] = $filename;
         }
 
         $project->update($data);
@@ -100,8 +127,12 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
+        // Delete image file
         if ($project->image) {
-            \Storage::delete('public/' . $project->image);
+            $imagePath = public_path('assets/projects/' . basename($project->image));
+            if (File::exists($imagePath)) {
+                File::delete($imagePath);
+            }
         }
 
         $project->delete();
