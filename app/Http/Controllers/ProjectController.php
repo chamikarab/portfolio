@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -41,35 +42,46 @@ class ProjectController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'required|image',
+            'image' => 'required|image|max:10240', // Max 10MB
             'category' => 'required',
             'description' => 'required',
         ]);
 
-        // Generate unique filename to prevent collisions
-        $file = $request->file('image');
-        $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-        
-        // Store file using Laravel Storage facade
-        // This saves to: storage/app/public/projects/filename.jpg
-        // Database stores: projects/filename.jpg
-        $path = Storage::disk('public')->putFileAs('projects', $file, $filename);
-        
-        // Verify file was stored successfully
-        if (!$path) {
-            return back()->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
+        try {
+            // Generate unique filename to prevent collisions
+            $file = $request->file('image');
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            
+            // Store file using Laravel Storage facade
+            // This saves to: storage/app/public/projects/filename.jpg
+            // Database stores: projects/filename.jpg
+            $path = Storage::disk('public')->putFileAs('projects', $file, $filename);
+            
+            // Verify file was stored successfully
+            if (!$path) {
+                return back()->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
+            }
+
+            // Double-check that the file actually exists
+            if (!Storage::disk('public')->exists($path)) {
+                return back()->withErrors(['image' => 'Image was uploaded but could not be verified. Please try again.'])->withInput();
+            }
+
+            // Store path relative to storage/app/public in database
+            // Format: projects/filename.jpg
+            Project::create([
+                'name' => $request->name,
+                'image' => $path, // e.g., "projects/filename.jpg"
+                'category' => $request->category,
+                'description' => $request->description,
+            ]);
+
+            return redirect()->route('admin.all-projects')->with('success', 'Project added successfully.');
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Project creation failed: ' . $e->getMessage());
+            return back()->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])->withInput();
         }
-
-        // Store path relative to storage/app/public in database
-        // Format: projects/filename.jpg
-        Project::create([
-            'name' => $request->name,
-            'image' => $path, // e.g., "projects/filename.jpg"
-            'category' => $request->category,
-            'description' => $request->description,
-        ]);
-
-        return redirect()->route('admin.all-projects')->with('success', 'Project added successfully.');
     }
 
     public function edit($id)
@@ -97,27 +109,38 @@ class ProjectController extends Controller
 
         // Handle image upload if new image is provided
         if ($request->hasFile('image')) {
-            // Delete old image from storage
-            if ($project->image && Storage::disk('public')->exists($project->image)) {
-                Storage::disk('public')->delete($project->image);
-            }
-            
-            // Generate unique filename to prevent collisions
-            $file = $request->file('image');
-            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            
-            // Store file using Laravel Storage facade
-            // This saves to: storage/app/public/projects/filename.jpg
-            // Database stores: projects/filename.jpg
-            $path = Storage::disk('public')->putFileAs('projects', $file, $filename);
-            
-            // Verify file was stored successfully
-            if (!$path) {
-                return back()->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
-            }
+            try {
+                // Delete old image from storage
+                if ($project->image && Storage::disk('public')->exists($project->image)) {
+                    Storage::disk('public')->delete($project->image);
+                }
+                
+                // Generate unique filename to prevent collisions
+                $file = $request->file('image');
+                $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                
+                // Store file using Laravel Storage facade
+                // This saves to: storage/app/public/projects/filename.jpg
+                // Database stores: projects/filename.jpg
+                $path = Storage::disk('public')->putFileAs('projects', $file, $filename);
+                
+                // Verify file was stored successfully
+                if (!$path) {
+                    return back()->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
+                }
 
-            // Store path relative to storage/app/public in database
-            $data['image'] = $path; // e.g., "projects/filename.jpg"
+                // Double-check that the file actually exists
+                if (!Storage::disk('public')->exists($path)) {
+                    return back()->withErrors(['image' => 'Image was uploaded but could not be verified. Please try again.'])->withInput();
+                }
+
+                // Store path relative to storage/app/public in database
+                $data['image'] = $path; // e.g., "projects/filename.jpg"
+            } catch (\Exception $e) {
+                // Log the error for debugging
+                Log::error('Project image update failed: ' . $e->getMessage());
+                return back()->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])->withInput();
+            }
         }
 
         $project->update($data);

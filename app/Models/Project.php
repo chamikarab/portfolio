@@ -47,8 +47,8 @@ class Project extends Model
         }
 
         // Check if file actually exists before generating URL
-        // This prevents 404 errors and returns placeholder immediately
         if (!Storage::disk('public')->exists($path)) {
+            // File doesn't exist, return placeholder
             return asset('assets/placeholder.svg');
         }
 
@@ -60,7 +60,12 @@ class Project extends Model
         // Result: https://domain.com/storage/projects/filename.jpg
         // The /storage path is served via the symlink created by php artisan storage:link
         try {
-            return Storage::disk('public')->url($path);
+            $url = Storage::disk('public')->url($path);
+            // Ensure we have a valid URL (not empty)
+            if (empty($url)) {
+                return asset('assets/placeholder.svg');
+            }
+            return $url;
         } catch (\Exception $e) {
             // Fallback to placeholder if Storage::url() fails
             // This should rarely happen but provides safety
