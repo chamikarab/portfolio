@@ -23,16 +23,10 @@
 
             <!-- Project Image -->
             <div class="glass rounded-2xl sm:rounded-3xl overflow-hidden mb-8 sm:mb-10 md:mb-12 fade-in-up">
-                @if($project->image)
-                    <img src="{{ asset('storage/' . $project->image) }}" 
-                         alt="{{ $project->name }}" 
-                         class="w-full h-auto object-cover"
-                         onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
-                @else
-                    <div class="w-full h-64 bg-slate-800 flex items-center justify-center">
-                        <i class="fas fa-image text-6xl text-slate-600"></i>
-                    </div>
-                @endif
+                <img src="{{ $project->image_url }}" 
+                     alt="{{ $project->name }}" 
+                     class="w-full h-auto object-cover"
+                     onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
             </div>
 
             <!-- Project Description -->

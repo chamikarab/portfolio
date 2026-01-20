@@ -505,15 +505,10 @@
             @forelse ($projects as $project)
                 <div class="project-card-modern fade-in-up">
                     <div class="overflow-hidden rounded-t-2xl">
-                        @if($project->image)
-                            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->name }}" 
-                                 class="w-full h-48 object-cover"
-                                 onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
-                        @else
-                            <div class="w-full h-48 bg-slate-800 flex items-center justify-center">
-                                <i class="fas fa-image text-4xl text-slate-600"></i>
-                            </div>
-                        @endif
+                        <img src="{{ $project->image_url }}" 
+                             alt="{{ $project->name }}" 
+                             class="w-full h-48 object-cover"
+                             onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
                     </div>
                     <div class="p-4 sm:p-6">
                         <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">{{ $project->name }}</h3>
