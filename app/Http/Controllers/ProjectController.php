@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -46,23 +46,25 @@ class ProjectController extends Controller
             'description' => 'required',
         ]);
 
-        // Ensure directory exists
-        $uploadPath = public_path('assets/projects');
-        if (!File::exists($uploadPath)) {
-            File::makeDirectory($uploadPath, 0755, true);
-        }
-
-        // Generate unique filename
+        // Generate unique filename to prevent collisions
         $file = $request->file('image');
         $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
         
-        // Move file to public/assets/projects
-        $file->move($uploadPath, $filename);
+        // Store file using Laravel Storage facade
+        // This saves to: storage/app/public/projects/filename.jpg
+        // Database stores: projects/filename.jpg
+        $path = Storage::disk('public')->putFileAs('projects', $file, $filename);
+        
+        // Verify file was stored successfully
+        if (!$path) {
+            return back()->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
+        }
 
-        // Store only filename in database
+        // Store path relative to storage/app/public in database
+        // Format: projects/filename.jpg
         Project::create([
             'name' => $request->name,
-            'image' => $filename,
+            'image' => $path, // e.g., "projects/filename.jpg"
             'category' => $request->category,
             'description' => $request->description,
         ]);
@@ -95,27 +97,27 @@ class ProjectController extends Controller
 
         // Handle image upload if new image is provided
         if ($request->hasFile('image')) {
-            // Ensure directory exists
-            $uploadPath = public_path('assets/projects');
-            if (!File::exists($uploadPath)) {
-                File::makeDirectory($uploadPath, 0755, true);
-            }
-
-            // Delete old image
-            if ($project->image) {
-                $oldImagePath = public_path('assets/projects/' . basename($project->image));
-                if (File::exists($oldImagePath)) {
-                    File::delete($oldImagePath);
-                }
+            // Delete old image from storage
+            if ($project->image && Storage::disk('public')->exists($project->image)) {
+                Storage::disk('public')->delete($project->image);
             }
             
-            // Generate unique filename
+            // Generate unique filename to prevent collisions
             $file = $request->file('image');
             $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
             
-            // Move file to public/assets/projects
-            $file->move($uploadPath, $filename);
-            $data['image'] = $filename;
+            // Store file using Laravel Storage facade
+            // This saves to: storage/app/public/projects/filename.jpg
+            // Database stores: projects/filename.jpg
+            $path = Storage::disk('public')->putFileAs('projects', $file, $filename);
+            
+            // Verify file was stored successfully
+            if (!$path) {
+                return back()->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
+            }
+
+            // Store path relative to storage/app/public in database
+            $data['image'] = $path; // e.g., "projects/filename.jpg"
         }
 
         $project->update($data);
@@ -127,12 +129,9 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
-        // Delete image file
-        if ($project->image) {
-            $imagePath = public_path('assets/projects/' . basename($project->image));
-            if (File::exists($imagePath)) {
-                File::delete($imagePath);
-            }
+        // Delete image file from storage
+        if ($project->image && Storage::disk('public')->exists($project->image)) {
+            Storage::disk('public')->delete($project->image);
         }
 
         $project->delete();

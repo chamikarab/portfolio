@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Project extends Model
 {
@@ -17,24 +18,53 @@ class Project extends Model
     ];
 
     /**
-     * Get the image URL (handles both old storage paths and new public paths)
+     * Get the image URL using Laravel Storage facade
+     * 
+     * This uses Storage::url() which generates URLs based on config/filesystems.php
+     * For 'public' disk, it returns: APP_URL/storage/projects/filename.jpg
+     * This works with storage:link symlink that bridges public/storage -> storage/app/public
+     * 
+     * Handles both old format (just filename) and new format (projects/filename.jpg)
+     * 
+     * @return string
      */
     public function getImageUrlAttribute()
     {
         if (!$this->image) {
+            // Return placeholder if no image is set in database
             return asset('assets/placeholder.svg');
         }
 
-        // Extract filename from old storage path format (e.g., "projects/filename.jpg" -> "filename.jpg")
-        $filename = basename($this->image);
+        // Normalize the path to handle both old and new formats
+        // Old format: "filename.jpg" -> convert to "projects/filename.jpg"
+        // New format: "projects/filename.jpg" -> use as-is
+        $path = $this->image;
         
-        // Check if image exists in new location
-        $imagePath = public_path('assets/projects/' . $filename);
-        if (file_exists($imagePath)) {
-            return asset('assets/projects/' . $filename);
+        // If path doesn't start with "projects/", assume it's just a filename
+        // and prepend "projects/" directory
+        if (strpos($path, 'projects/') !== 0 && strpos($path, '/') === false) {
+            $path = 'projects/' . $path;
         }
 
-        // Fallback to placeholder if image not found
-        return asset('assets/placeholder.svg');
+        // Check if file actually exists before generating URL
+        // This prevents 404 errors and returns placeholder immediately
+        if (!Storage::disk('public')->exists($path)) {
+            return asset('assets/placeholder.svg');
+        }
+
+        // Use Storage::url() to generate the correct URL
+        // This respects config/filesystems.php 'public' disk configuration:
+        // - root: storage_path('app/public')
+        // - url: env('APP_URL') . '/storage'
+        // 
+        // Result: https://domain.com/storage/projects/filename.jpg
+        // The /storage path is served via the symlink created by php artisan storage:link
+        try {
+            return Storage::disk('public')->url($path);
+        } catch (\Exception $e) {
+            // Fallback to placeholder if Storage::url() fails
+            // This should rarely happen but provides safety
+            return asset('assets/placeholder.svg');
+        }
     }
 }
