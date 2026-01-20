@@ -5,7 +5,7 @@
 @section('content')
 
 <section id="contact" class="pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-16 sm:pb-20 md:pb-24 min-h-screen">
-    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+    <div class="container mx-auto px-8 sm:px-12 lg:px-20">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-8 sm:mb-10 md:mb-14 fade-in-up">
                 <h2 class="section-title mb-3 sm:mb-4 md:mb-5">
@@ -31,13 +31,13 @@
                         </div>
                     </div>
                     <p class="text-gray-300 text-sm sm:text-base mb-2">
-                        +94 779 404 553
+                        +94 70 222 33 46
                     </p>
                     <p class="text-gray-400 text-xs sm:text-sm mb-4 flex-1">
                         Best for quick introductions, clarifying scope, and seeing if we’re a good fit.
                     </p>
                     <p class="text-[11px] sm:text-xs text-slate-500">
-                        Usually available 9am – 7pm (IST), Monday to Saturday.
+                        Usually available 9:00am – 22:00pm, Monday to Saturday.
                     </p>
                 </article>
 
@@ -112,5 +112,26 @@
         </div>
     </div>
 </section>
+
+<script>
+    // Ensure fade-in-up animations work on contact page
+    document.addEventListener('DOMContentLoaded', function() {
+        const fadeElements = document.querySelectorAll('.fade-in-up');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => {
+            fadeObserver.observe(el);
+        });
+    });
+</script>
 
 @endsection
