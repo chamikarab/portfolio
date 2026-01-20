@@ -505,8 +505,15 @@
             @forelse ($projects as $project)
                 <div class="project-card-modern fade-in-up">
                     <div class="overflow-hidden rounded-t-2xl">
-                        <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->name }}" 
-                             class="w-full h-48 object-cover">
+                        @if($project->image)
+                            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->name }}" 
+                                 class="w-full h-48 object-cover"
+                                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%231e293b\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23475569\' font-family=\'sans-serif\' font-size=\'14\'%3EImage Not Found%3C/text%3E%3C/svg%3E';">
+                        @else
+                            <div class="w-full h-48 bg-slate-800 flex items-center justify-center">
+                                <i class="fas fa-image text-4xl text-slate-600"></i>
+                            </div>
+                        @endif
                     </div>
                     <div class="p-4 sm:p-6">
                         <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">{{ $project->name }}</h3>
