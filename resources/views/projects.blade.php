@@ -57,9 +57,16 @@
                         data-project-category="{{ \Illuminate\Support\Str::slug($project->category ?? 'Other') }}"
                     >
                         <div class="overflow-hidden rounded-t-2xl relative group">
-                            <img src="{{ asset('storage/' . $project->image) }}" 
-                                 alt="{{ $project->name }}" 
-                                 class="w-full h-40 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                            @if($project->image && file_exists(storage_path('app/public/' . $project->image)))
+                                <img src="{{ asset('storage/' . $project->image) }}" 
+                                     alt="{{ $project->name }}" 
+                                     class="w-full h-40 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                                     onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%231e293b\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23475569\' font-family=\'sans-serif\' font-size=\'14\'%3EImage Not Found%3C/text%3E%3C/svg%3E';">
+                            @else
+                                <div class="w-full h-40 sm:h-48 bg-slate-800 flex items-center justify-center">
+                                    <i class="fas fa-image text-4xl text-slate-600"></i>
+                                </div>
+                            @endif
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                         <div class="p-4 sm:p-6">
