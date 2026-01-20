@@ -71,7 +71,7 @@
             <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-6">Active Visual</h4>
             <div class="aspect-video rounded-xl bg-white/5 overflow-hidden border border-white/5 mb-4">
                 @if($project->image)
-                    <img src="{{ $project->image_url }}" class="w-full h-full object-cover"
+                    <img src="{{ asset('storage/' . $project->image) }}" class="w-full h-full object-cover"
                          onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
                 @else
                     <div class="w-full h-full flex items-center justify-center text-gray-700">
