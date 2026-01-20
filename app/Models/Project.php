@@ -52,24 +52,9 @@ class Project extends Model
             return asset('assets/placeholder.svg');
         }
 
-        // Use Storage::url() to generate the correct URL
-        // This respects config/filesystems.php 'public' disk configuration:
-        // - root: storage_path('app/public')
-        // - url: env('APP_URL') . '/storage'
-        // 
-        // Result: https://domain.com/storage/projects/filename.jpg
-        // The /storage path is served via the symlink created by php artisan storage:link
-        try {
-            $url = Storage::disk('public')->url($path);
-            // Ensure we have a valid URL (not empty)
-            if (empty($url)) {
-                return asset('assets/placeholder.svg');
-            }
-            return $url;
-        } catch (\Exception $e) {
-            // Fallback to placeholder if Storage::url() fails
-            // This should rarely happen but provides safety
-            return asset('assets/placeholder.svg');
-        }
+        // Return a host-agnostic relative URL so it works
+        // regardless of APP_URL mismatches (e.g. localhost vs live domain)
+        // Symlink: public/storage -> storage/app/public
+        return '/storage/' . ltrim($path, '/');
     }
 }
