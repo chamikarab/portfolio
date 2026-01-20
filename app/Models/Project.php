@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Project extends Model
 {
@@ -17,20 +16,14 @@ class Project extends Model
         'description',
     ];
 
-    /**
-     * Always return correct public image URL
-     */
-    public function getImageUrlAttribute(): string
+    protected $appends = ['image_url'];
+
+    public function getImageUrlAttribute()
     {
         if (!$this->image) {
             return asset('assets/placeholder.svg');
         }
 
-        // If image already contains full path
-        if (str_starts_with($this->image, 'http')) {
-            return $this->image;
-        }
-
-        return Storage::url($this->image);
+        return asset('storage/' . ltrim($this->image, '/'));
     }
 }
