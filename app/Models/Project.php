@@ -21,10 +21,8 @@ class Project extends Model
 
     public function getImageUrlAttribute()
     {
-        if (!$this->image) {
-            return asset('assets/placeholder.svg');
-        }
-
-        return Storage::url($this->image);
+        return $this->image
+            ? asset($this->image)
+            : asset('assets/placeholder.svg');
     }
 }
