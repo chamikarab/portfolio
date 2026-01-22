@@ -505,10 +505,11 @@
             @forelse ($projects as $project)
                 <div class="project-card-modern fade-in-up">
                     <div class="overflow-hidden rounded-t-2xl">
-                        <img src="{{ $project->image_url }}" 
-                             alt="{{ $project->name }}" 
-                             class="w-full h-48 object-cover"
-                             onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
+                        <img
+                            src="{{ $project->image_url }}"
+                            alt="{{ $project->name }}"
+                            class="w-full h-40 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                        >
                     </div>
                     <div class="p-4 sm:p-6">
                         <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">{{ $project->name }}</h3>
