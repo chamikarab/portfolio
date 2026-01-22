@@ -23,10 +23,11 @@
 
             <!-- Project Image -->
             <div class="glass rounded-2xl sm:rounded-3xl overflow-hidden mb-8 sm:mb-10 md:mb-12 fade-in-up">
-                <img src="{{ $project->image_url }}" 
-                     alt="{{ $project->name }}" 
-                     class="w-full h-auto object-cover"
-                     onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
+                <img
+                    src="{{ $project->image_url }}"
+                    alt="{{ $project->name }}"
+                    class="w-full h-40 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                >
             </div>
 
             <!-- Project Description -->
