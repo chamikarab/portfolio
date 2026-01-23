@@ -27,6 +27,7 @@
                     src="{{ $project->image_url }}"
                     alt="{{ $project->name }}"
                     class="w-full h-40 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';"
                 >
             </div>
 
