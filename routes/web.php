@@ -34,6 +34,25 @@ Route::post('/contact/submit', [ContactController::class, 'submit'])->name('cont
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('projects.show');
 
+// Serve uploaded images (fallback if direct access doesn't work)
+Route::get('/uploads/{filename}', function ($filename) {
+    $path = public_path('uploads/' . $filename);
+    
+    if (!file_exists($path)) {
+        abort(404);
+    }
+    
+    $mimeType = mime_content_type($path);
+    if (!$mimeType) {
+        $mimeType = 'image/webp'; // Default for .webp files
+    }
+    
+    return response()->file($path, [
+        'Content-Type' => $mimeType,
+        'Cache-Control' => 'public, max-age=31536000', // Cache for 1 year
+    ]);
+})->where('filename', '[a-zA-Z0-9_\-\.]+')->name('uploads.serve');
+
 // Diagnostic route for storage debugging (remove in production or protect with auth)
 // Usage: /storage-diagnostic?path=projects/filename.jpg
 Route::get('/storage-diagnostic', function () {
