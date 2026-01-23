@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver as GdDriver;
-use Intervention\Image\Drivers\Imagick\Driver as ImagickDriver;
 
 class ProjectController extends Controller
 {
@@ -68,10 +67,8 @@ class ProjectController extends Controller
             $filePath = $uploadPath . '/' . $filename;
 
             // Process and save image using Intervention/Image v3
-            // Convert to WebP with 90% quality
-            // Auto-detect best available driver (Imagick preferred, fallback to GD)
-            $driver = extension_loaded('imagick') ? new ImagickDriver() : new GdDriver();
-            $manager = new ImageManager($driver);
+            // Convert to WebP with 90% quality using GD driver
+            $manager = new ImageManager(new GdDriver());
             $image = $manager->read($request->file('image'));
             $image->toWebp(90)->save($filePath);
 
@@ -145,10 +142,8 @@ class ProjectController extends Controller
                 $filePath = $uploadPath . '/' . $filename;
 
                 // Process and save image using Intervention/Image v3
-                // Convert to WebP with 90% quality
-                // Auto-detect best available driver (Imagick preferred, fallback to GD)
-                $driver = extension_loaded('imagick') ? new ImagickDriver() : new GdDriver();
-                $manager = new ImageManager($driver);
+                // Convert to WebP with 90% quality using GD driver
+                $manager = new ImageManager(new GdDriver());
                 $image = $manager->read($request->file('image'));
                 $image->toWebp(90)->save($filePath);
 
