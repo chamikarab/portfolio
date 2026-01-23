@@ -43,12 +43,18 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = \Validator::make($request->all(), [
             'name' => 'required',
             'image' => 'required|image|max:10240', // Max 10MB
             'category' => 'required',
             'description' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.projects.create')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         try {
             // Ensure uploads directory exists
@@ -71,7 +77,7 @@ class ProjectController extends Controller
 
             // Verify file was saved successfully
             if (!File::exists($filePath)) {
-                return back()->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
+                return redirect()->route('admin.projects.create')->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
             }
 
             // Store path relative to public directory in database
@@ -87,7 +93,7 @@ class ProjectController extends Controller
         } catch (\Exception $e) {
             // Log the error for debugging
             Log::error('Project creation failed: ' . $e->getMessage());
-            return back()->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])->withInput();
+            return redirect()->route('admin.projects.create')->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])->withInput();
         }
     }
 
@@ -101,12 +107,18 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
-        $request->validate([
+        $validator = \Validator::make($request->all(), [
             'name' => 'required',
             'image' => 'nullable|image',
             'category' => 'required',
             'description' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.projects.edit', $id)
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $data = [
             'name' => $request->name,
@@ -142,7 +154,7 @@ class ProjectController extends Controller
 
                 // Verify file was saved successfully
                 if (!File::exists($filePath)) {
-                    return back()->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
+                    return redirect()->route('admin.projects.edit', $id)->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
                 }
 
                 // Store path relative to public directory in database
@@ -150,7 +162,7 @@ class ProjectController extends Controller
             } catch (\Exception $e) {
                 // Log the error for debugging
                 Log::error('Project image update failed: ' . $e->getMessage());
-                return back()->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])->withInput();
+                return redirect()->route('admin.projects.edit', $id)->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])->withInput();
             }
         }
 
