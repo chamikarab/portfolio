@@ -21,8 +21,13 @@ class Project extends Model
 
     public function getImageUrlAttribute()
     {
-        return $this->image
-            ? asset($this->image)
-            : asset('assets/placeholder.svg');
+        if (!$this->image) {
+            return asset('assets/placeholder.svg');
+        }
+
+        // Database stores: "projects/filename.jpg"
+        // Need to prepend "storage/" to access via symlink
+        // Result: "storage/projects/filename.jpg"
+        return asset('storage/' . $this->image);
     }
 }
