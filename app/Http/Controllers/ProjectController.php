@@ -19,14 +19,14 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $projects = Project::all(); // Fetch all projects from the database
-        return view('projects', compact('projects')); // Pass the $projects variable to the view
+        $projects = Project::all();
+        return view('projects', compact('projects'));
     }
     
     public function show($id)
     {
         $project = Project::findOrFail($id);
-        return view('projects.show', compact('project')); // A view to show individual project details
+        return view('projects.show', compact('project'));
     }
 
     public function homeprojects()
@@ -56,7 +56,7 @@ class ProjectController extends Controller
         }
 
         try {
-            // Ensure uploads directory exists
+            // Ensure uploads directory exists in public folder
             $uploadPath = public_path('uploads');
             if (!File::exists($uploadPath)) {
                 File::makeDirectory($uploadPath, 0755, true);
@@ -74,23 +74,26 @@ class ProjectController extends Controller
 
             // Verify file was saved successfully
             if (!File::exists($filePath)) {
-                return redirect()->route('admin.projects.create')->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
+                return redirect()->route('admin.projects.create')
+                    ->withErrors(['image' => 'Failed to upload image. Please try again.'])
+                    ->withInput();
             }
 
-            // Store path relative to public directory in database
-            // Format: uploads/filename.webp
+            // Store ONLY the filename in database (not the full path)
+            // This makes it easier to handle different server configurations
             Project::create([
                 'name' => $request->name,
-                'image' => 'uploads/' . $filename, // e.g., "uploads/1234567890_abc123.webp"
+                'image' => $filename, // Store just filename: "1234567890_abc123.webp"
                 'category' => $request->category,
                 'description' => $request->description,
             ]);
 
             return redirect()->route('admin.all-projects')->with('success', 'Project added successfully.');
         } catch (\Exception $e) {
-            // Log the error for debugging
             Log::error('Project creation failed: ' . $e->getMessage());
-            return redirect()->route('admin.projects.create')->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])->withInput();
+            return redirect()->route('admin.projects.create')
+                ->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])
+                ->withInput();
         }
     }
 
@@ -127,8 +130,11 @@ class ProjectController extends Controller
         if ($request->hasFile('image')) {
             try {
                 // Delete old image from public/uploads
-                if ($project->image && File::exists(public_path($project->image))) {
-                    File::delete(public_path($project->image));
+                if ($project->image) {
+                    $oldImagePath = $this->getImagePath($project->image);
+                    if (File::exists($oldImagePath)) {
+                        File::delete($oldImagePath);
+                    }
                 }
 
                 // Ensure uploads directory exists
@@ -149,15 +155,18 @@ class ProjectController extends Controller
 
                 // Verify file was saved successfully
                 if (!File::exists($filePath)) {
-                    return redirect()->route('admin.projects.edit', $id)->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
+                    return redirect()->route('admin.projects.edit', $id)
+                        ->withErrors(['image' => 'Failed to upload image. Please try again.'])
+                        ->withInput();
                 }
 
-                // Store path relative to public directory in database
-                $data['image'] = 'uploads/' . $filename; // e.g., "uploads/1234567890_abc123.webp"
+                // Store ONLY the filename in database
+                $data['image'] = $filename;
             } catch (\Exception $e) {
-                // Log the error for debugging
                 Log::error('Project image update failed: ' . $e->getMessage());
-                return redirect()->route('admin.projects.edit', $id)->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])->withInput();
+                return redirect()->route('admin.projects.edit', $id)
+                    ->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])
+                    ->withInput();
             }
         }
 
@@ -171,12 +180,31 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
 
         // Delete image file from public/uploads
-        if ($project->image && File::exists(public_path($project->image))) {
-            File::delete(public_path($project->image));
+        if ($project->image) {
+            $imagePath = $this->getImagePath($project->image);
+            if (File::exists($imagePath)) {
+                File::delete($imagePath);
+            }
         }
 
         $project->delete();
 
         return redirect()->route('admin.all-projects')->with('success', 'Project deleted successfully.');
+    }
+
+    /**
+     * Get the full filesystem path for an image
+     * Handles both old format (with path) and new format (filename only)
+     */
+    private function getImagePath($image)
+    {
+        // If image contains a path (old format), extract filename
+        if (strpos($image, '/') !== false) {
+            $filename = basename($image);
+        } else {
+            $filename = $image;
+        }
+        
+        return public_path('uploads/' . $filename);
     }
 }
