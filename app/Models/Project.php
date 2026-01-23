@@ -25,9 +25,15 @@ class Project extends Model
             return asset('assets/placeholder.svg');
         }
 
-        // Database stores: "projects/filename.jpg"
-        // Need to prepend "storage/" to access via symlink
-        // Result: "storage/projects/filename.jpg"
-        return asset('storage/' . $this->image);
+        // Database stores: "uploads/filename.webp" (new) or "projects/filename.jpg" (old)
+        // For new images: "uploads/filename.webp" -> asset('uploads/filename.webp')
+        // For old images: "projects/filename.jpg" -> asset('storage/projects/filename.jpg')
+        if (strpos($this->image, 'uploads/') === 0) {
+            // New path: already in public/uploads, use directly
+            return asset($this->image);
+        } else {
+            // Old path: in storage/app/public, need storage/ prefix
+            return asset('storage/' . $this->image);
+        }
     }
 }

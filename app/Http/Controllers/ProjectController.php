@@ -5,10 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Drivers\Imagick\Driver as ImagickDriver;
 
 class ProjectController extends Controller
 {
+    /**
+     * Get ImageManager instance with appropriate driver
+     */
+    private function getImageManager()
+    {
+        // Try Imagick first (better quality), fallback to GD
+        if (extension_loaded('imagick')) {
+            return new ImageManager(new ImagickDriver());
+        }
+        return new ImageManager(new Driver());
+    }
+
     public function allProjects()
     {
         $projects = Project::all();
@@ -48,30 +62,30 @@ class ProjectController extends Controller
         ]);
 
         try {
-            // Generate unique filename to prevent collisions
-            $file = $request->file('image');
-            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            
-            // Store file using Laravel Storage facade
-            // This saves to: storage/app/public/projects/filename.jpg
-            // Database stores: projects/filename.jpg
-            $path = Storage::disk('public')->putFileAs('projects', $file, $filename);
-            
-            // Verify file was stored successfully
-            if (!$path) {
+            // Ensure uploads directory exists
+            $uploadPath = public_path('uploads');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0755, true);
+            }
+
+            // Generate unique filename with WebP extension
+            $filename = time() . '_' . uniqid() . '.webp';
+            $filePath = $uploadPath . '/' . $filename;
+
+            // Process and save image using Intervention Image v3
+            $manager = $this->getImageManager();
+            $image = $manager->read($request->file('image')->getRealPath());
+            $image->toWebp(90)->save($filePath);
+
+            // Verify file was saved successfully
+            if (!file_exists($filePath)) {
                 return back()->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
             }
 
-            // Double-check that the file actually exists
-            if (!Storage::disk('public')->exists($path)) {
-                return back()->withErrors(['image' => 'Image was uploaded but could not be verified. Please try again.'])->withInput();
-            }
-
-            // Store path relative to storage/app/public in database
-            // Format: projects/filename.jpg
+            // Store relative path in database: "uploads/filename.webp"
             Project::create([
                 'name' => $request->name,
-                'image' => $path, // e.g., "projects/filename.jpg"
+                'image' => 'uploads/' . $filename, // e.g., "uploads/1234567890_abc123.webp"
                 'category' => $request->category,
                 'description' => $request->description,
             ]);
@@ -110,32 +124,41 @@ class ProjectController extends Controller
         // Handle image upload if new image is provided
         if ($request->hasFile('image')) {
             try {
-                // Delete old image from storage
-                if ($project->image && Storage::disk('public')->exists($project->image)) {
-                    Storage::disk('public')->delete($project->image);
+                // Delete old image (handle both old storage path and new uploads path)
+                if ($project->image) {
+                    $oldPath = public_path($project->image);
+                    // Also check old storage location for backward compatibility
+                    $oldStoragePath = storage_path('app/public/' . $project->image);
+                    
+                    if (file_exists($oldPath)) {
+                        unlink($oldPath);
+                    } elseif (file_exists($oldStoragePath)) {
+                        unlink($oldStoragePath);
+                    }
                 }
-                
-                // Generate unique filename to prevent collisions
-                $file = $request->file('image');
-                $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-                
-                // Store file using Laravel Storage facade
-                // This saves to: storage/app/public/projects/filename.jpg
-                // Database stores: projects/filename.jpg
-                $path = Storage::disk('public')->putFileAs('projects', $file, $filename);
-                
-                // Verify file was stored successfully
-                if (!$path) {
+
+                // Ensure uploads directory exists
+                $uploadPath = public_path('uploads');
+                if (!file_exists($uploadPath)) {
+                    mkdir($uploadPath, 0755, true);
+                }
+
+                // Generate unique filename with WebP extension
+                $filename = time() . '_' . uniqid() . '.webp';
+                $filePath = $uploadPath . '/' . $filename;
+
+                // Process and save image using Intervention Image v3
+                $manager = $this->getImageManager();
+                $image = $manager->read($request->file('image')->getRealPath());
+                $image->toWebp(90)->save($filePath);
+
+                // Verify file was saved successfully
+                if (!file_exists($filePath)) {
                     return back()->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
                 }
 
-                // Double-check that the file actually exists
-                if (!Storage::disk('public')->exists($path)) {
-                    return back()->withErrors(['image' => 'Image was uploaded but could not be verified. Please try again.'])->withInput();
-                }
-
-                // Store path relative to storage/app/public in database
-                $data['image'] = $path; // e.g., "projects/filename.jpg"
+                // Store relative path in database: "uploads/filename.webp"
+                $data['image'] = 'uploads/' . $filename;
             } catch (\Exception $e) {
                 // Log the error for debugging
                 Log::error('Project image update failed: ' . $e->getMessage());
@@ -152,9 +175,17 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
-        // Delete image file from storage
-        if ($project->image && Storage::disk('public')->exists($project->image)) {
-            Storage::disk('public')->delete($project->image);
+        // Delete image file (handle both old storage path and new uploads path)
+        if ($project->image) {
+            $imagePath = public_path($project->image);
+            // Also check old storage location for backward compatibility
+            $oldStoragePath = storage_path('app/public/' . $project->image);
+            
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            } elseif (file_exists($oldStoragePath)) {
+                unlink($oldStoragePath);
+            }
         }
 
         $project->delete();
