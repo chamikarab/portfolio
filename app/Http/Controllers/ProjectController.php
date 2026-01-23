@@ -5,29 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Drivers\Gd\Driver as GdDriver;
 use Intervention\Image\Drivers\Imagick\Driver as ImagickDriver;
 
 class ProjectController extends Controller
 {
-    /**
-     * Get ImageManager instance with appropriate driver
-     */
-    private function getImageManager()
-    {
-        // Check if GD extension is available (required for image processing)
-        if (!extension_loaded('gd') && !extension_loaded('imagick')) {
-            throw new \Exception('GD or Imagick extension is required for image processing. Please install one of them.');
-        }
-        
-        // Try Imagick first (better quality), fallback to GD
-        if (extension_loaded('imagick')) {
-            return new ImageManager(new ImagickDriver());
-        }
-        return new ImageManager(new Driver());
-    }
-
     public function allProjects()
     {
         $projects = Project::all();
@@ -69,37 +53,29 @@ class ProjectController extends Controller
         try {
             // Ensure uploads directory exists
             $uploadPath = public_path('uploads');
-            if (!file_exists($uploadPath)) {
-                if (!mkdir($uploadPath, 0755, true)) {
-                    throw new \Exception('Failed to create uploads directory. Please check permissions.');
-                }
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
             }
 
-            // Check if directory is writable
-            if (!is_writable($uploadPath)) {
-                throw new \Exception('Uploads directory is not writable. Please check permissions.');
-            }
-
-            // Generate unique filename with WebP extension
+            // Generate unique filename with .webp extension
             $filename = time() . '_' . uniqid() . '.webp';
             $filePath = $uploadPath . '/' . $filename;
 
-            // Process and save image using Intervention Image v3
-            $manager = $this->getImageManager();
-            $uploadedFile = $request->file('image');
-            
-            // Read the image
-            $image = $manager->read($uploadedFile->getRealPath());
-            
-            // Convert to WebP and save
+            // Process and save image using Intervention/Image v3
+            // Convert to WebP with 90% quality
+            // Auto-detect best available driver (Imagick preferred, fallback to GD)
+            $driver = extension_loaded('imagick') ? new ImagickDriver() : new GdDriver();
+            $manager = new ImageManager($driver);
+            $image = $manager->read($request->file('image'));
             $image->toWebp(90)->save($filePath);
 
             // Verify file was saved successfully
-            if (!file_exists($filePath)) {
+            if (!File::exists($filePath)) {
                 return back()->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
             }
 
-            // Store relative path in database: "uploads/filename.webp"
+            // Store path relative to public directory in database
+            // Format: uploads/filename.webp
             Project::create([
                 'name' => $request->name,
                 'image' => 'uploads/' . $filename, // e.g., "uploads/1234567890_abc123.webp"
@@ -111,15 +87,7 @@ class ProjectController extends Controller
         } catch (\Exception $e) {
             // Log the error for debugging
             Log::error('Project creation failed: ' . $e->getMessage());
-            Log::error('Stack trace: ' . $e->getTraceAsString());
-            
-            // Return more specific error message
-            $errorMessage = 'An error occurred while uploading the image.';
-            if (strpos($e->getMessage(), 'GD') !== false || strpos($e->getMessage(), 'Imagick') !== false) {
-                $errorMessage = 'Image processing extension (GD or Imagick) is not available. Please contact your server administrator.';
-            }
-            
-            return back()->withErrors(['image' => $errorMessage])->withInput();
+            return back()->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])->withInput();
         }
     }
 
@@ -149,65 +117,40 @@ class ProjectController extends Controller
         // Handle image upload if new image is provided
         if ($request->hasFile('image')) {
             try {
-                // Delete old image (handle both old storage path and new uploads path)
-                if ($project->image) {
-                    $oldPath = public_path($project->image);
-                    // Also check old storage location for backward compatibility
-                    $oldStoragePath = storage_path('app/public/' . $project->image);
-                    
-                    if (file_exists($oldPath)) {
-                        unlink($oldPath);
-                    } elseif (file_exists($oldStoragePath)) {
-                        unlink($oldStoragePath);
-                    }
+                // Delete old image from public/uploads
+                if ($project->image && File::exists(public_path($project->image))) {
+                    File::delete(public_path($project->image));
                 }
 
                 // Ensure uploads directory exists
                 $uploadPath = public_path('uploads');
-                if (!file_exists($uploadPath)) {
-                    if (!mkdir($uploadPath, 0755, true)) {
-                        throw new \Exception('Failed to create uploads directory. Please check permissions.');
-                    }
+                if (!File::exists($uploadPath)) {
+                    File::makeDirectory($uploadPath, 0755, true);
                 }
 
-                // Check if directory is writable
-                if (!is_writable($uploadPath)) {
-                    throw new \Exception('Uploads directory is not writable. Please check permissions.');
-                }
-
-                // Generate unique filename with WebP extension
+                // Generate unique filename with .webp extension
                 $filename = time() . '_' . uniqid() . '.webp';
                 $filePath = $uploadPath . '/' . $filename;
 
-                // Process and save image using Intervention Image v3
-                $manager = $this->getImageManager();
-                $uploadedFile = $request->file('image');
-                
-                // Read the image
-                $image = $manager->read($uploadedFile->getRealPath());
-                
-                // Convert to WebP and save
+                // Process and save image using Intervention/Image v3
+                // Convert to WebP with 90% quality
+                // Auto-detect best available driver (Imagick preferred, fallback to GD)
+                $driver = extension_loaded('imagick') ? new ImagickDriver() : new GdDriver();
+                $manager = new ImageManager($driver);
+                $image = $manager->read($request->file('image'));
                 $image->toWebp(90)->save($filePath);
 
                 // Verify file was saved successfully
-                if (!file_exists($filePath)) {
+                if (!File::exists($filePath)) {
                     return back()->withErrors(['image' => 'Failed to upload image. Please try again.'])->withInput();
                 }
 
-                // Store relative path in database: "uploads/filename.webp"
-                $data['image'] = 'uploads/' . $filename;
+                // Store path relative to public directory in database
+                $data['image'] = 'uploads/' . $filename; // e.g., "uploads/1234567890_abc123.webp"
             } catch (\Exception $e) {
                 // Log the error for debugging
                 Log::error('Project image update failed: ' . $e->getMessage());
-                Log::error('Stack trace: ' . $e->getTraceAsString());
-                
-                // Return more specific error message
-                $errorMessage = 'An error occurred while uploading the image.';
-                if (strpos($e->getMessage(), 'GD') !== false || strpos($e->getMessage(), 'Imagick') !== false) {
-                    $errorMessage = 'Image processing extension (GD or Imagick) is not available. Please contact your server administrator.';
-                }
-                
-                return back()->withErrors(['image' => $errorMessage])->withInput();
+                return back()->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])->withInput();
             }
         }
 
@@ -220,17 +163,9 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
-        // Delete image file (handle both old storage path and new uploads path)
-        if ($project->image) {
-            $imagePath = public_path($project->image);
-            // Also check old storage location for backward compatibility
-            $oldStoragePath = storage_path('app/public/' . $project->image);
-            
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
-            } elseif (file_exists($oldStoragePath)) {
-                unlink($oldStoragePath);
-            }
+        // Delete image file from public/uploads
+        if ($project->image && File::exists(public_path($project->image))) {
+            File::delete(public_path($project->image));
         }
 
         $project->delete();

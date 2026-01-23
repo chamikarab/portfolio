@@ -3,7 +3,8 @@
 /public/hot
 /public/storage
 /public/.htaccess
-/public/uploads
+/public/uploads/*
+!/public/uploads/.htaccess
 /storage/*.key
 /vendor
 .env
