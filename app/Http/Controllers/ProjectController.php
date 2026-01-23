@@ -16,6 +16,11 @@ class ProjectController extends Controller
      */
     private function getImageManager()
     {
+        // Check if GD extension is available (required for image processing)
+        if (!extension_loaded('gd') && !extension_loaded('imagick')) {
+            throw new \Exception('GD or Imagick extension is required for image processing. Please install one of them.');
+        }
+        
         // Try Imagick first (better quality), fallback to GD
         if (extension_loaded('imagick')) {
             return new ImageManager(new ImagickDriver());
@@ -65,7 +70,14 @@ class ProjectController extends Controller
             // Ensure uploads directory exists
             $uploadPath = public_path('uploads');
             if (!file_exists($uploadPath)) {
-                mkdir($uploadPath, 0755, true);
+                if (!mkdir($uploadPath, 0755, true)) {
+                    throw new \Exception('Failed to create uploads directory. Please check permissions.');
+                }
+            }
+
+            // Check if directory is writable
+            if (!is_writable($uploadPath)) {
+                throw new \Exception('Uploads directory is not writable. Please check permissions.');
             }
 
             // Generate unique filename with WebP extension
@@ -74,7 +86,12 @@ class ProjectController extends Controller
 
             // Process and save image using Intervention Image v3
             $manager = $this->getImageManager();
-            $image = $manager->read($request->file('image')->getRealPath());
+            $uploadedFile = $request->file('image');
+            
+            // Read the image
+            $image = $manager->read($uploadedFile->getRealPath());
+            
+            // Convert to WebP and save
             $image->toWebp(90)->save($filePath);
 
             // Verify file was saved successfully
@@ -94,7 +111,15 @@ class ProjectController extends Controller
         } catch (\Exception $e) {
             // Log the error for debugging
             Log::error('Project creation failed: ' . $e->getMessage());
-            return back()->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])->withInput();
+            Log::error('Stack trace: ' . $e->getTraceAsString());
+            
+            // Return more specific error message
+            $errorMessage = 'An error occurred while uploading the image.';
+            if (strpos($e->getMessage(), 'GD') !== false || strpos($e->getMessage(), 'Imagick') !== false) {
+                $errorMessage = 'Image processing extension (GD or Imagick) is not available. Please contact your server administrator.';
+            }
+            
+            return back()->withErrors(['image' => $errorMessage])->withInput();
         }
     }
 
@@ -140,7 +165,14 @@ class ProjectController extends Controller
                 // Ensure uploads directory exists
                 $uploadPath = public_path('uploads');
                 if (!file_exists($uploadPath)) {
-                    mkdir($uploadPath, 0755, true);
+                    if (!mkdir($uploadPath, 0755, true)) {
+                        throw new \Exception('Failed to create uploads directory. Please check permissions.');
+                    }
+                }
+
+                // Check if directory is writable
+                if (!is_writable($uploadPath)) {
+                    throw new \Exception('Uploads directory is not writable. Please check permissions.');
                 }
 
                 // Generate unique filename with WebP extension
@@ -149,7 +181,12 @@ class ProjectController extends Controller
 
                 // Process and save image using Intervention Image v3
                 $manager = $this->getImageManager();
-                $image = $manager->read($request->file('image')->getRealPath());
+                $uploadedFile = $request->file('image');
+                
+                // Read the image
+                $image = $manager->read($uploadedFile->getRealPath());
+                
+                // Convert to WebP and save
                 $image->toWebp(90)->save($filePath);
 
                 // Verify file was saved successfully
@@ -162,7 +199,15 @@ class ProjectController extends Controller
             } catch (\Exception $e) {
                 // Log the error for debugging
                 Log::error('Project image update failed: ' . $e->getMessage());
-                return back()->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])->withInput();
+                Log::error('Stack trace: ' . $e->getTraceAsString());
+                
+                // Return more specific error message
+                $errorMessage = 'An error occurred while uploading the image.';
+                if (strpos($e->getMessage(), 'GD') !== false || strpos($e->getMessage(), 'Imagick') !== false) {
+                    $errorMessage = 'Image processing extension (GD or Imagick) is not available. Please contact your server administrator.';
+                }
+                
+                return back()->withErrors(['image' => $errorMessage])->withInput();
             }
         }
 
