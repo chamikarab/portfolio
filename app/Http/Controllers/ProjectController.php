@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver as GdDriver;
 
@@ -42,7 +43,7 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'image' => 'required|image|max:10240', // Max 10MB
             'category' => 'required',
@@ -62,15 +63,29 @@ class ProjectController extends Controller
                 File::makeDirectory($uploadPath, 0755, true);
             }
 
-            // Generate unique filename with .webp extension
-            $filename = time() . '_' . uniqid() . '.webp';
-            $filePath = $uploadPath . '/' . $filename;
+            $file = $request->file('image');
+            $filename = null;
 
-            // Process and save image using Intervention/Image v3
-            // Convert to WebP with 90% quality using GD driver
-            $manager = new ImageManager(new GdDriver());
-            $image = $manager->read($request->file('image'));
-            $image->toWebp(90)->save($filePath);
+            // Try Intervention/Image WebP conversion first
+            try {
+                $filename = time() . '_' . uniqid() . '.webp';
+                $filePath = $uploadPath . '/' . $filename;
+                $manager = new ImageManager(new GdDriver());
+                $image = $manager->read($file);
+                $image->toWebp(90)->save($filePath);
+            } catch (\Exception $e) {
+                Log::warning('WebP conversion failed, falling back to original format: ' . $e->getMessage());
+                // Fallback: save original file without conversion
+                $ext = strtolower($file->getClientOriginalExtension() ?: 'jpg');
+                $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+                if (!in_array($ext, $allowed)) {
+                    $ext = 'jpg';
+                }
+                $filename = time() . '_' . uniqid() . '.' . $ext;
+                $file->move($uploadPath, $filename);
+            }
+
+            $filePath = $uploadPath . '/' . $filename;
 
             // Verify file was saved successfully
             if (!File::exists($filePath)) {
@@ -79,20 +94,22 @@ class ProjectController extends Controller
                     ->withInput();
             }
 
-            // Store ONLY the filename in database (not the full path)
-            // This makes it easier to handle different server configurations
+            // Store ONLY the filename in database
             Project::create([
                 'name' => $request->name,
-                'image' => $filename, // Store just filename: "1234567890_abc123.webp"
+                'image' => $filename,
                 'category' => $request->category,
                 'description' => $request->description,
             ]);
 
             return redirect()->route('admin.all-projects')->with('success', 'Project added successfully.');
         } catch (\Exception $e) {
-            Log::error('Project creation failed: ' . $e->getMessage());
+            Log::error('Project creation failed: ' . $e->getMessage() . ' | Trace: ' . $e->getTraceAsString());
+            $message = config('app.debug')
+                ? 'Upload failed: ' . $e->getMessage()
+                : 'An error occurred while uploading the image. Please try again.';
             return redirect()->route('admin.projects.create')
-                ->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])
+                ->withErrors(['image' => $message])
                 ->withInput();
         }
     }
@@ -107,7 +124,7 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'image' => 'nullable|image',
             'category' => 'required',
@@ -143,15 +160,28 @@ class ProjectController extends Controller
                     File::makeDirectory($uploadPath, 0755, true);
                 }
 
-                // Generate unique filename with .webp extension
-                $filename = time() . '_' . uniqid() . '.webp';
-                $filePath = $uploadPath . '/' . $filename;
+                $file = $request->file('image');
+                $filename = null;
 
-                // Process and save image using Intervention/Image v3
-                // Convert to WebP with 90% quality using GD driver
-                $manager = new ImageManager(new GdDriver());
-                $image = $manager->read($request->file('image'));
-                $image->toWebp(90)->save($filePath);
+                // Try Intervention/Image WebP conversion first
+                try {
+                    $filename = time() . '_' . uniqid() . '.webp';
+                    $filePath = $uploadPath . '/' . $filename;
+                    $manager = new ImageManager(new GdDriver());
+                    $image = $manager->read($file);
+                    $image->toWebp(90)->save($filePath);
+                } catch (\Exception $e) {
+                    Log::warning('WebP conversion failed on update, falling back to original: ' . $e->getMessage());
+                    $ext = strtolower($file->getClientOriginalExtension() ?: 'jpg');
+                    $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+                    if (!in_array($ext, $allowed)) {
+                        $ext = 'jpg';
+                    }
+                    $filename = time() . '_' . uniqid() . '.' . $ext;
+                    $file->move($uploadPath, $filename);
+                }
+
+                $filePath = $uploadPath . '/' . $filename;
 
                 // Verify file was saved successfully
                 if (!File::exists($filePath)) {
@@ -160,12 +190,14 @@ class ProjectController extends Controller
                         ->withInput();
                 }
 
-                // Store ONLY the filename in database
                 $data['image'] = $filename;
             } catch (\Exception $e) {
-                Log::error('Project image update failed: ' . $e->getMessage());
+                Log::error('Project image update failed: ' . $e->getMessage() . ' | Trace: ' . $e->getTraceAsString());
+                $message = config('app.debug')
+                    ? 'Upload failed: ' . $e->getMessage()
+                    : 'An error occurred while uploading the image. Please try again.';
                 return redirect()->route('admin.projects.edit', $id)
-                    ->withErrors(['image' => 'An error occurred while uploading the image. Please try again.'])
+                    ->withErrors(['image' => $message])
                     ->withInput();
             }
         }
