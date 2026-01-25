@@ -319,7 +319,7 @@
                             <span class="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">Experience</span>
                             <i class="fa-solid fa-clock text-slate-400 text-xs"></i>
                         </div>
-                        <div class="stat-number counter" data-target="4">0+</div>
+                        <div class="stat-number counter" data-target="6">0+</div>
                         <p class="text-slate-200 text-xs sm:text-sm mt-1.5">Years crafting digital experiences</p>
                     </div>
 
