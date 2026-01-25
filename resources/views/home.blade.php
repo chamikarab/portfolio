@@ -319,7 +319,7 @@
                             <span class="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">Experience</span>
                             <i class="fa-solid fa-clock text-slate-400 text-xs"></i>
                         </div>
-                        <div class="stat-number counter" data-target="8">0+</div>
+                        <div class="stat-number counter" data-target="4">0+</div>
                         <p class="text-slate-200 text-xs sm:text-sm mt-1.5">Years crafting digital experiences</p>
                     </div>
 
@@ -328,7 +328,7 @@
                             <span class="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">Projects</span>
                             <i class="fa-solid fa-layer-group text-slate-400 text-xs"></i>
                         </div>
-                        <div class="stat-number counter" data-target="54">0+</div>
+                        <div class="stat-number counter" data-target="24">0+</div>
                         <p class="text-slate-200 text-xs sm:text-sm mt-1.5">Websites, dashboards & internal tools</p>
                     </div>
 
@@ -337,7 +337,7 @@
                             <span class="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">Clients</span>
                             <i class="fa-solid fa-user-group text-slate-400 text-xs"></i>
                         </div>
-                        <div class="stat-number counter" data-target="24">0+</div>
+                        <div class="stat-number counter" data-target="14">0+</div>
                         <p class="text-slate-200 text-xs sm:text-sm mt-1.5">Brands, teams, and founders partnered with</p>
                     </div>
 
@@ -346,7 +346,7 @@
                             <span class="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">Domains</span>
                             <i class="fa-solid fa-globe text-slate-400 text-xs"></i>
                         </div>
-                        <div class="stat-number counter" data-target="14">0+</div>
+                        <div class="stat-number counter" data-target="16">0+</div>
                         <p class="text-slate-200 text-xs sm:text-sm mt-1.5">Industries touched so far</p>
                     </div>
                 </div>
@@ -691,63 +691,35 @@
                     </p>
                 </article>
 
-                <!-- Refectline -->
+                <!-- Web Developer Freelance -->
                 <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/10 fade-in-up">
                     <div class="flex items-start justify-between gap-3 mb-3">
                         <div class="flex items-start gap-3">
                             <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-r from-indigo-500 to-fuchsia-500 text-white">
-                                <i class="fas fa-briefcase text-sm"></i>
+                                <i class="fas fa-code text-sm"></i>
                             </span>
                             <div>
                                 <p class="text-xs font-semibold text-slate-100">Web Developer</p>
                                 <p class="text-[11px] sm:text-xs text-slate-400">
-                                    Refectline (Pvt) Ltd · Full Time
+                                    Freelance
                                 </p>
                             </div>
                         </div>
                         <div class="text-right">
-                            <p class="text-[11px] font-medium text-slate-300">2020 – 2022</p>
+                            <p class="text-[11px] font-medium text-slate-300">2020 – Present</p>
                             <span class="mt-1 inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40 whitespace-nowrap">
-                                Web & WordPress
+                                Web Development
                             </span>
                         </div>
                     </div>
                     <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                        Built and maintained marketing sites and landing pages in WordPress and PHP, while also creating visuals,
-                        posts, and video content for campaigns. Gradually introduced Laravel and modern JavaScript practices to
-                        improve performance, maintainability, and handoff between design and development.
+                        Building custom websites and web applications for diverse clients using Laravel, WordPress, and modern JavaScript frameworks. 
+                        I focus on creating responsive, performant solutions that align with client goals while maintaining clean code and scalable 
+                        architectures. Each project is an opportunity to solve unique challenges and deliver digital experiences that drive results.
                     </p>
                 </article>
 
-                <!-- HQ Restaurant -->
-                <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/10 fade-in-up">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <div class="flex items-start gap-3">
-                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 text-white">
-                                <i class="fas fa-laptop-code text-sm"></i>
-                            </span>
-                            <div>
-                                <p class="text-xs font-semibold text-slate-100">System Maintainer & IT Operator</p>
-                                <p class="text-[11px] sm:text-xs text-slate-400">
-                                    HQ Restaurant · Part Time
-                                </p>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-[11px] font-medium text-slate-300">2017 – 2020</p>
-                            <span class="mt-1 inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40 whitespace-nowrap">
-                                IT operations
-                            </span>
-                        </div>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                        Maintained core IT systems and billing software, troubleshooting issues in a live environment and keeping
-                        operations stable. Also contributed digital content for promotions, which helped me understand how
-                        infrastructure, tools, and user‑facing experiences fit together.
-                    </p>
-                </article>
-
-                <!-- Recode99 -->
+                <!-- Graphic Designer and Video Editor Freelance -->
                 <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/10 fade-in-up">
                     <div class="flex items-start justify-between gap-3 mb-3">
                         <div class="flex items-start gap-3">
@@ -755,23 +727,23 @@
                                 <i class="fas fa-palette text-sm"></i>
                             </span>
                             <div>
-                                <p class="text-xs font-semibold text-slate-100">Web Developer & Graphic Designer</p>
+                                <p class="text-xs font-semibold text-slate-100">Graphic Designer and Video Editor</p>
                                 <p class="text-[11px] sm:text-xs text-slate-400">
-                                    Recode99 (Pvt) Ltd · Part Time
+                                    Freelance
                                 </p>
-                </div>
-            </div>
+                            </div>
+                        </div>
                         <div class="text-right">
-                            <p class="text-[11px] font-medium text-slate-300">2017 – 2019</p>
+                            <p class="text-[11px] font-medium text-slate-300">2018 – Present</p>
                             <span class="mt-1 inline-flex items-center rounded-full bg-fuchsia-400/10 px-2.5 py-1 text-[10px] font-medium text-fuchsia-300 border border-fuchsia-400/40 whitespace-nowrap">
-                                Design & web
+                                Design & Video
                             </span>
-                    </div>
+                        </div>
                     </div>
                     <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                        Started with social media graphics and video editing, then took on building and maintaining WordPress
-                        sites for clients. This role is where I first connected visual design, content, and code into cohesive
-                        digital experiences.
+                        Creating visual content that tells stories and engages audiences—from brand identity and social media graphics to 
+                        promotional videos and motion graphics. I work with clients across industries to develop cohesive visual strategies 
+                        that strengthen their presence and connect with their target markets through thoughtful design and compelling video narratives.
                     </p>
                 </article>
             </div>
