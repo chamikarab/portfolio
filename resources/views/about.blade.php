@@ -23,7 +23,7 @@
                 <div class="fade-in-up order-2 lg:order-1">
                     <div class="glass rounded-2xl sm:rounded-3xl p-6 sm:p-8">
                         <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">Hello! I'm <span class="gradient-text">Chamikara Bandara</span></h3>
-                        <p class="text-gray-300 text-base sm:text-lg leading-relaxed mb-3 sm:mb-4">
+                        <p class="text-gray-300 text-base sm:text-lg leading-relaxed mb-3 sm:mb-4" style="text-align: justify;">
                             A passionate and dedicated <span class="gradient-text font-semibold">Software Developer</span> from Sri Lanka 
                             with a deep love for technology. Currently, I'm pursuing my degree in <span class="text-white font-semibold">Information Technology</span> at 
                             <span class="text-white font-semibold">SLIIT</span>, where I'm enhancing my skills in software engineering and full-stack development.
@@ -37,11 +37,12 @@
                     <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                         <i class="fas fa-code gradient-text mr-2 sm:mr-3"></i>My Journey
                     </h3>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
-                        I have been developing websites and working with various programming languages for over <span class="gradient-text font-semibold">three years</span>. My journey started with 
-                        <span class="text-white font-semibold">WordPress</span> development, and now I specialize in modern web technologies like 
-                        <span class="text-white font-semibold">Laravel</span>, <span class="text-white font-semibold">React</span>, <span class="text-white font-semibold">Node.js</span>, and 
-                        <span class="text-white font-semibold">MongoDB</span>. I'm particularly enthusiastic about building efficient, scalable, and user-friendly web applications.
+                    <p class="text-gray-300 text-lg leading-relaxed mb-4" style="text-align: justify;">
+                        I have been developing websites and applications for over <span class="gradient-text font-semibold">six years</span>. My journey started with 
+                        <span class="text-white font-semibold">WordPress</span> development and has grown through <span class="text-white font-semibold">university projects</span> and real-world client work, 
+                        where I’ve built full-stack solutions with <span class="text-white font-semibold">Laravel</span>, <span class="text-white font-semibold">React</span>, <span class="text-white font-semibold">Node.js</span>, and 
+                        <span class="text-white font-semibold">MongoDB</span>. Recently, I’ve also expanded into <span class="text-white font-semibold">mobile app development with Flutter</span>, bringing my web experience into 
+                        cross‑platform apps. I’m particularly enthusiastic about creating efficient, scalable, and user-friendly digital experiences.
                     </p>
                 </div>
 
@@ -49,7 +50,7 @@
                     <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                         <i class="fas fa-palette gradient-text mr-2 sm:mr-3"></i>Creative Skills
                     </h3>
-                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
+                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed" style="text-align: justify;">
                         In addition to my technical skills, I have a strong background in <span class="gradient-text font-semibold">graphic design</span>, and I enjoy using my creative 
                         abilities to build visually appealing interfaces. I am also constantly learning new tools and frameworks to stay ahead in this ever-evolving field.
                     </p>
@@ -59,11 +60,11 @@
                     <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                         <i class="fas fa-heart gradient-text mr-2 sm:mr-3"></i>Beyond Code
                     </h3>
-                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed mb-3 sm:mb-4">
+                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed mb-3 sm:mb-4" style="text-align: justify;">
                         In my free time, I love experimenting with new technologies, working on personal projects, and contributing to open-source projects. When I'm not coding, 
                         you can find me enjoying a good book or practicing video editing.
                     </p>
-                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
+                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed" style="text-align: justify;">
                         Feel free to reach out to me for collaborations, freelance projects, or just to talk about tech and development!
                     </p>
                 </div>
