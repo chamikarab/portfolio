@@ -360,9 +360,9 @@
                     Design × Code
                 </p>
                 <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold tracking-tight text-slate-50 mb-4 sm:mb-6 leading-[1.1] break-words px-1">
-                    <span class="block">Not just</span>
-                    <span class="block gradient-text mt-1 sm:mt-2">ideas.</span>
-                    <span class="block text-slate-400 mt-2 sm:mt-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold">Products that ship.</span>
+                    <span class="block">Not just ideas</span>
+                    <span class="block gradient-text mt-1 sm:mt-2"></span>
+                    <span class="block gradient-text mt-2 sm:mt-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold">Products that ship</span>
                 </h2>
                 <p class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-slate-300/90 px-2">
                     From concept to launch — I turn design and code into experiences that look sharp and run smooth.
