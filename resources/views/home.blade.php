@@ -295,8 +295,10 @@
 <!-- Social Proof Section -->
 <section class="stats-section relative overflow-hidden py-14 sm:py-18 md:py-22 lg:py-26">
     <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-r from-emerald-500/5 via-purple-500/5 to-fuchsia-500/5 blur-3xl pointer-events-none"></div>
     <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
         <div class="max-w-6xl mx-auto">
+            {{-- Proof of work section with number cards (commented out)
             <div class="text-center mb-8 sm:mb-10 md:mb-12 fade-in-up">
                 <p class="inline-flex items-center gap-2 rounded-full bg-slate-900/70 border border-slate-600/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.24em] text-slate-300 mb-3">
                     <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(16,185,129,0.4)]"></span>
@@ -312,7 +314,6 @@
             </div>
 
             <div class="grid gap-5 sm:gap-6 md:gap-7 lg:grid-cols-[1.3fr_minmax(0,1.1fr)] items-start">
-                <!-- Stats cards -->
                 <div class="grid grid-cols-2 gap-4 sm:gap-5 md:gap-6 fade-in-up">
                     <div class="stat-card glass-dark rounded-2xl p-4 sm:p-5">
                         <div class="flex items-center justify-between mb-2">
@@ -350,11 +351,41 @@
                         <p class="text-slate-200 text-xs sm:text-sm mt-1.5">Industries touched so far</p>
                     </div>
                 </div>
+            --}}
 
-                <!-- Testimonial-style blurb -->
-                <div class="fade-in-up">
-                    <div class="glass-dark rounded-3xl border border-white/10 p-6 sm:p-7 md:p-8 h-full flex flex-col justify-between">
-                        <div>
+            <!-- Creative hero block with big text -->
+            <div class="text-center mb-10 sm:mb-14 md:mb-16 fade-in-up overflow-hidden">
+                <p class="inline-flex items-center gap-2 rounded-full bg-slate-800/60 border border-white/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-slate-300 mb-6 sm:mb-8">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_0_6px_rgba(16,185,129,0.35)] animate-pulse"></span>
+                    Design × Code
+                </p>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold tracking-tight text-slate-50 mb-4 sm:mb-6 leading-[1.1] break-words px-1">
+                    <span class="block">Not just</span>
+                    <span class="block gradient-text mt-1 sm:mt-2">ideas.</span>
+                    <span class="block text-slate-400 mt-2 sm:mt-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold">Products that ship.</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-slate-300/90 px-2">
+                    From concept to launch — I turn design and code into experiences that look sharp and run smooth.
+                </p>
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mt-6 sm:mt-8">
+                    <span class="inline-flex items-center rounded-full bg-white/5 border border-white/10 px-3 py-1.5 text-xs sm:text-sm text-slate-300">Graphic Designer</span>
+                    <span class="inline-flex items-center rounded-full bg-white/5 border border-white/10 px-3 py-1.5 text-xs sm:text-sm text-slate-300">Web Developer</span>
+                    <span class="inline-flex items-center rounded-full bg-white/5 border border-white/10 px-3 py-1.5 text-xs sm:text-sm text-slate-300">Video Editor</span>
+                </div>
+            </div>
+{{--
+            <div class="flex items-center justify-center gap-4 max-w-2xl mx-auto my-10 sm:my-12 fade-in-up">
+                <span class="h-px flex-1 bg-gradient-to-r from-transparent to-white/20"></span>
+                <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/10 text-slate-400"><i class="fa-solid fa-quote-right text-sm"></i></span>
+                <span class="h-px flex-1 bg-gradient-to-l from-transparent to-white/20"></span>
+            </div>
+
+             How I usually fit into a team card (commented out)
+            <div class="grid gap-5 sm:gap-6 md:gap-7 items-start max-w-3xl mx-auto w-full">
+                <div class="fade-in-up w-full min-w-0">
+                    <div class="glass-dark rounded-3xl border border-white/10 p-6 sm:p-7 md:p-8 w-full flex flex-col justify-between min-h-0 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-emerald-500/80 to-purple-500/80 rounded-l-3xl"></div>
+                        <div class="pl-4 sm:pl-5">
                             <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-emerald-300/80 mb-3">
                                 How I usually fit into a team
                             </p>
@@ -365,20 +396,21 @@
                             <p class="text-[11px] sm:text-xs text-slate-400">
                                 — A typical way collaborators describe how I work on cross‑functional teams
                             </p>
+                            <div class="mt-5 flex flex-wrap items-center gap-3 text-[11px] sm:text-xs text-slate-300">
+                                <a href="#projects" class="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-3 py-1.5 border border-white/10 hover:border-emerald-400/40 hover:text-emerald-200 transition-colors">
+                                    <i class="fa-solid fa-arrow-trend-up text-[10px] text-emerald-300"></i>
+                                    See selected work
+                                </a>
+                                <a href="#contact" class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1.5 border border-emerald-400/40 text-emerald-200 hover:bg-emerald-500/20 transition-colors">
+                                    <i class="fa-solid fa-calendar-days text-[10px]"></i>
+                                    Book a collaboration chat
+                                </a>
+                            </div>
                         </div>
-                        <div class="mt-5 flex flex-wrap items-center gap-3 text-[11px] sm:text-xs text-slate-300">
-                            <a href="#projects" class="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-3 py-1 border border-white/10">
-                                <i class="fa-solid fa-arrow-trend-up text-[10px] text-emerald-300"></i>
-                                See selected work
-                            </a>
-                            <a href="#contact" class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 border border-emerald-400/40 text-emerald-200">
-                                <i class="fa-solid fa-calendar-days text-[10px]"></i>
-                                Book a collaboration chat
-                            </a>
-                        </div>
+                    </div>
+                </div>
             </div>
-            </div>
-            </div>
+            --}}
         </div>
     </div>
 </section>
