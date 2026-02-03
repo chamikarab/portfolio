@@ -472,6 +472,53 @@
     @apply scale-110;
 }
 
+/* Project description rich text (admin editor + public view) */
+.project-description-editor,
+.project-description-editor * {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    color: #e5e7eb !important; /* text-gray-200 */
+    background: transparent !important;
+}
+
+.project-description-editor p,
+.project-description-editor div {
+    margin: 0 0 0.35rem 0;
+}
+
+.project-description-editor ul,
+.project-description-editor ol {
+    margin: 0.35rem 0 0.35rem 1.25rem;
+}
+
+.project-description-editor a {
+    color: #a855f7 !important; /* purple-500 */
+    text-decoration: underline;
+}
+
+.project-description-content,
+.project-description-content * {
+    font-size: inherit !important;
+    line-height: inherit !important;
+    color: inherit !important;
+    background: transparent !important;
+}
+
+.project-description-content p,
+.project-description-content div {
+    margin: 0 0 0.75rem 0;
+}
+
+.project-description-content ul,
+.project-description-content ol {
+    margin: 0.75rem 0 0.75rem 1.5rem;
+}
+
+.project-description-content a {
+    color: #a855f7 !important;
+    text-decoration: underline;
+}
+
 /* Skills Section */
 .skill-item-modern {
     @apply glass rounded-xl p-4 text-center transition-all duration-300;

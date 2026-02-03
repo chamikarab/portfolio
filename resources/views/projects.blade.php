@@ -70,7 +70,9 @@
                                 {{ $project->category ?? 'Web Development' }}
                             </span>
                             <h3 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">{{ $project->name }}</h3>
-                            <p class="text-gray-400 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">{{ Str::limit($project->description, 100) }}</p>
+                            <p class="text-gray-400 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">
+                                {{ \Illuminate\Support\Str::limit(strip_tags($project->description), 100) }}
+                            </p>
                             <a href="{{ route('projects.show', $project->id) }}" 
                                class="inline-flex items-center text-purple-400 hover:text-purple-300 font-semibold text-sm sm:text-base transition-colors duration-300">
                                 View Project <i class="fas fa-arrow-right ml-2"></i>

@@ -48,8 +48,57 @@
                 </div>
 
                 <div class="space-y-2">
-                    <label for="description" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Project Narrative</label>
-                    <textarea name="description" id="description" rows="6" class="admin-input-modern resize-none" required>{{ old('description', $project->description) }}</textarea>
+                    <label for="description-editor" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Project Narrative</label>
+
+                    <div class="space-y-2">
+                        <div class="flex flex-wrap gap-2 border border-white/10 rounded-lg bg-black/20 px-2 py-1 text-[10px] text-gray-400">
+                            <button type="button" class="px-2 py-1 rounded-md hover:bg-white/10 flex items-center gap-1" data-editor-command="bold">
+                                <i class="fa-solid fa-bold"></i>
+                                <span class="hidden sm:inline">Bold</span>
+                            </button>
+                            <button type="button" class="px-2 py-1 rounded-md hover:bg-white/10 flex items-center gap-1" data-editor-command="italic">
+                                <i class="fa-solid fa-italic"></i>
+                                <span class="hidden sm:inline">Italic</span>
+                            </button>
+                            <button type="button" class="px-2 py-1 rounded-md hover:bg-white/10 flex items-center gap-1" data-editor-command="underline">
+                                <i class="fa-solid fa-underline"></i>
+                                <span class="hidden sm:inline">Underline</span>
+                            </button>
+                            <span class="w-px h-5 bg-white/10 mx-1"></span>
+                            <button type="button" class="px-2 py-1 rounded-md hover:bg-white/10 flex items-center gap-1" data-editor-command="insertUnorderedList">
+                                <i class="fa-solid fa-list-ul"></i>
+                                <span class="hidden sm:inline">Bullets</span>
+                            </button>
+                            <button type="button" class="px-2 py-1 rounded-md hover:bg-white/10 flex items-center gap-1" data-editor-command="insertOrderedList">
+                                <i class="fa-solid fa-list-ol"></i>
+                                <span class="hidden sm:inline">Numbered</span>
+                            </button>
+                            <span class="w-px h-5 bg-white/10 mx-1"></span>
+                            <button type="button" class="px-2 py-1 rounded-md hover:bg-white/10 flex items-center gap-1" data-editor-command="createLink">
+                                <i class="fa-solid fa-link"></i>
+                                <span class="hidden sm:inline">Link</span>
+                            </button>
+                            <button type="button" class="px-2 py-1 rounded-md hover:bg-white/10 flex items-center gap-1" data-editor-command="removeFormat">
+                                <i class="fa-solid fa-eraser"></i>
+                                <span class="hidden sm:inline">Clear</span>
+                            </button>
+                        </div>
+
+                        <div
+                            id="description-editor"
+                            class="admin-input-modern resize-none min-h-[160px] overflow-y-auto prose prose-invert max-w-none project-description-editor"
+                            contenteditable="true"
+                        >{!! old('description', $project->description) !!}</div>
+
+                        {{-- Hidden textarea that actually submits the HTML --}}
+                        <textarea
+                            name="description"
+                            id="description"
+                            class="hidden"
+                            required
+                        >{{ old('description', $project->description) }}</textarea>
+                    </div>
+
                     @error('description') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
                 </div>
 
@@ -105,6 +154,63 @@
         display.classList.remove('text-gray-500');
         display.classList.add('text-white');
     }
+
+    // Lightweight rich text editor for the Project Narrative field
+    document.addEventListener('DOMContentLoaded', function () {
+        const editor = document.getElementById('description-editor');
+        const textarea = document.getElementById('description');
+
+        if (!editor || !textarea) return;
+
+        const syncToTextarea = () => {
+            textarea.value = editor.innerHTML.trim();
+        };
+
+        syncToTextarea();
+
+        editor.addEventListener('input', syncToTextarea);
+
+        // Normalize URL (add https:// when user types bare domain like www.example.com)
+        const normalizeUrl = (url) => {
+            if (!url) return '';
+            const trimmed = url.trim();
+            // If it already has a scheme, keep it
+            if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed)) {
+                return trimmed;
+            }
+            // If it looks like www.example.com, prefix https://
+            if (trimmed.startsWith('www.')) {
+                return 'https://' + trimmed;
+            }
+            // Otherwise, assume https://
+            return 'https://' + trimmed;
+        };
+
+        document.querySelectorAll('[data-editor-command]').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                const command = this.getAttribute('data-editor-command');
+
+                if (command === 'createLink') {
+                    const raw = prompt('Enter URL (e.g. https://example.com or www.example.com)');
+                    if (!raw) return;
+                    const url = normalizeUrl(raw);
+                    document.execCommand(command, false, url);
+                } else {
+                    document.execCommand(command, false, null);
+                }
+
+                editor.focus();
+                syncToTextarea();
+            });
+        });
+
+        const form = editor.closest('form');
+        if (form) {
+            form.addEventListener('submit', syncToTextarea);
+        }
+    });
 </script>
 
 @endsection
