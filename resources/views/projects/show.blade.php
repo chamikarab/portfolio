@@ -34,8 +34,8 @@
             <!-- Project Description -->
             <div class="glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 fade-in-up">
                 <h2 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">About This Project</h2>
-                <div class="prose prose-invert max-w-none">
-                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed whitespace-pre-line">{{ $project->description }}</p>
+                <div class="prose prose-invert max-w-none text-gray-300 text-base sm:text-lg leading-relaxed project-description-content">
+                    {!! $project->description !!}
                 </div>
             </div>
 
@@ -71,6 +71,27 @@
         el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         fadeObserver.observe(el);
     });
+
+    // Ensure all links in the project description open in a new tab
+    const descContainer = document.querySelector('.project-description-content');
+    if (descContainer) {
+        const links = descContainer.querySelectorAll('a[href]');
+        links.forEach(link => {
+            const href = link.getAttribute('href') || '';
+
+            // If no scheme and looks like www.example.com or example.com, prefix https://
+            if (!/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(href)) {
+                if (href.startsWith('www.')) {
+                    link.setAttribute('href', 'https://' + href);
+                } else if (/^[^\/\s]+\.[^\/\s]+/.test(href)) { // simple domain.tld pattern
+                    link.setAttribute('href', 'https://' + href);
+                }
+            }
+
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    }
 </script>
 
 @endsection
