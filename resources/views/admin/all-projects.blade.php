@@ -45,7 +45,9 @@
                         <td class="pl-6">
                             <div class="flex flex-col">
                                 <span class="text-sm font-semibold text-white group-hover:text-indigo-400 transition-colors">{{ $project->name }}</span>
-                                <span class="text-xs text-gray-500 line-clamp-1 max-w-[300px] mt-1 font-medium">{{ $project->description }}</span>
+                                <span class="text-xs text-gray-500 line-clamp-1 max-w-[300px] mt-1 font-medium">
+                                    {{ \Illuminate\Support\Str::limit(strip_tags($project->description), 80) }}
+                                </span>
                             </div>
                         </td>
                         <td>
