@@ -83,19 +83,19 @@
                         See what I’m working on, explore experiments, or drop a quick message.
                     </p>
                     <div class="flex flex-wrap gap-3 sm:gap-4">
-                        <a href="https://facebook.com" target="_blank"
+                        <a href="https://www.facebook.com/chamikara.bandara.web.developer" target="_blank"
                            class="w-9 h-9 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-blue-500 hover:text-blue-400 transition-colors duration-300">
                             <i class="fab fa-facebook-f text-xs sm:text-sm"></i>
                         </a>
-                        <a href="https://linkedin.com" target="_blank"
+                        <a href="https://www.linkedin.com/in/chamikara-bandara-web-developer" target="_blank"
                            class="w-9 h-9 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-sky-400 hover:text-sky-300 transition-colors duration-300">
                             <i class="fab fa-linkedin-in text-xs sm:text-sm"></i>
                         </a>
-                        <a href="https://github.com" target="_blank"
+                        <a href="https://github.com/chamikarab" target="_blank"
                            class="w-9 h-9 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-slate-100 hover:text-slate-300 transition-colors duration-300">
                             <i class="fab fa-github text-xs sm:text-sm"></i>
                         </a>
-                        <a href="https://whatsapp.com" target="_blank"
+                        <a href="https://wa.me/message/6FVXAKN5IUQEJ1" target="_blank"
                            class="w-9 h-9 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-emerald-400 hover:text-emerald-300 transition-colors duration-300">
                             <i class="fab fa-whatsapp text-xs sm:text-sm"></i>
                         </a>
