@@ -7,6 +7,38 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TestimonialController;
 
+// Sitemap
+Route::get('/sitemap.xml', function () {
+    $baseUrl = rtrim(config('app.url'), '/');
+    $now = now()->format('Y-m-d');
+
+    $urls = [
+        ['loc' => $baseUrl . '/', 'priority' => '1.0'],
+        ['loc' => $baseUrl . '/about', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/projects', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/contact', 'priority' => '0.8'],
+    ];
+
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+
+    foreach ($urls as $entry) {
+        $xml .= '  <url>' . "\n";
+        $xml .= '    <loc>' . e($entry['loc']) . '</loc>' . "\n";
+        $xml .= '    <lastmod>' . $now . '</lastmod>' . "\n";
+        $xml .= '    <changefreq>monthly</changefreq>' . "\n";
+        $xml .= '    <priority>' . $entry['priority'] . '</priority>' . "\n";
+        $xml .= '  </url>' . "\n";
+    }
+
+    $xml .= '</urlset>';
+
+    return response($xml, 200, [
+        'Content-Type' => 'application/xml',
+        'Cache-Control' => 'public, max-age=3600',
+    ]);
+})->name('sitemap');
+
 // Maintenance page route
 Route::get('/maintenance', function () {
     return view('maintenance');
