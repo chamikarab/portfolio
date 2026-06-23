@@ -535,7 +535,7 @@
         </h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 md:gap-8">
             @forelse ($projects as $project)
-                <div class="project-card-modern fade-in-up">
+                <a href="{{ route('projects.show', $project->id) }}" class="project-card-modern fade-in-up block no-underline text-inherit group">
                     <div class="overflow-hidden rounded-t-2xl">
                         <img
                             src="{{ $project->image_url }}"
@@ -546,13 +546,12 @@
                     </div>
                     <div class="p-4 sm:p-6">
                         <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">{{ $project->name }}</h3>
-                        <p class="text-gray-400 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">{{ Str::limit($project->description, 100) }}</p>
-                        <a href="{{ route('projects.show', $project->id) }}" 
-                           class="text-purple-400 hover:text-purple-300 font-semibold text-sm sm:text-base transition-colors duration-300 inline-flex items-center">
+                        <p class="text-gray-400 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">{{ \Illuminate\Support\Str::limit(strip_tags($project->description), 100) }}</p>
+                        <span class="text-purple-400 group-hover:text-purple-300 font-semibold text-sm sm:text-base transition-colors duration-300 inline-flex items-center">
                             View Project <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
+                        </span>
                     </div>
-                </div>
+                </a>
             @empty
                 <div class="col-span-full text-center py-12">
                     <p class="text-gray-400 text-lg">No projects available at the moment.</p>
