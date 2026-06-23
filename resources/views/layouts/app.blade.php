@@ -68,6 +68,8 @@
 
     @include('partials.footer')
 
+    @stack('modals')
+
     <script>
         // Defer JS until DOM is ready
         document.addEventListener('DOMContentLoaded', () => {

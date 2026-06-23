@@ -2,6 +2,12 @@
 
 @section('title', $project->name . ' - Chamikara Bandara')
 
+@php
+    $galleryImages = $project->images->isNotEmpty()
+        ? $project->images
+        : collect([(object)['image_url' => $project->image_url]]);
+@endphp
+
 @section('content')
 
 <section class="pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 md:pb-20 min-h-screen">
@@ -22,11 +28,6 @@
             </div>
 
             <!-- Project Images -->
-            @php
-                $galleryImages = $project->images->isNotEmpty()
-                    ? $project->images
-                    : collect([(object)['image_url' => $project->image_url]]);
-            @endphp
             <div class="fade-in-up mb-8 sm:mb-10 md:mb-12">
                 <button
                     type="button"
@@ -68,27 +69,6 @@
                         @endforeach
                     </div>
                 @endif
-            </div>
-
-            {{-- Full-screen lightbox --}}
-            <div id="project-lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 p-4 sm:p-8" role="dialog" aria-modal="true" aria-label="Full size project image">
-                <button type="button" onclick="closeProjectLightbox()" class="absolute top-4 right-4 z-10 h-10 w-10 rounded-full bg-white/10 text-white hover:bg-white/20 transition" aria-label="Close">
-                    <i class="fas fa-times"></i>
-                </button>
-                @if($galleryImages->count() > 1)
-                    <button type="button" onclick="lightboxPrev()" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-white/10 text-white hover:bg-white/20 transition" aria-label="Previous image">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button type="button" onclick="lightboxNext()" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-white/10 text-white hover:bg-white/20 transition" aria-label="Next image">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                @endif
-                <img
-                    id="project-lightbox-image"
-                    src="{{ $galleryImages->first()->image_url }}"
-                    alt="{{ $project->name }}"
-                    class="max-w-full max-h-[90vh] w-auto h-auto object-contain"
-                >
             </div>
 
             <!-- Project Description -->
@@ -141,11 +121,13 @@
     function updateLightboxImage() {
         const lightboxImage = document.getElementById('project-lightbox-image');
         const mainImage = document.getElementById('project-main-image');
+        const counter = document.getElementById('project-lightbox-counter');
         if (!lightboxImage || !projectGalleryUrls.length) return;
 
         const url = projectGalleryUrls[projectGalleryIndex];
         lightboxImage.src = url;
         if (mainImage) mainImage.src = url;
+        if (counter) counter.textContent = `${projectGalleryIndex + 1} / ${projectGalleryUrls.length}`;
 
         document.querySelectorAll('.project-thumb').forEach((thumb, i) => {
             const isActive = i === projectGalleryIndex;
@@ -167,16 +149,14 @@
 
         updateLightboxImage();
         lightbox.classList.remove('hidden');
-        lightbox.classList.add('flex');
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('project-lightbox-open');
     }
 
     function closeProjectLightbox() {
         const lightbox = document.getElementById('project-lightbox');
         if (!lightbox) return;
         lightbox.classList.add('hidden');
-        lightbox.classList.remove('flex');
-        document.body.style.overflow = '';
+        document.body.classList.remove('project-lightbox-open');
     }
 
     function lightboxPrev() {
@@ -199,8 +179,12 @@
         if (e.key === 'ArrowRight') lightboxNext();
     });
 
-    document.getElementById('project-lightbox')?.addEventListener('click', (e) => {
-        if (e.target.id === 'project-lightbox') closeProjectLightbox();
+    // Move lightbox to body so fixed positioning works above navbar
+    document.addEventListener('DOMContentLoaded', () => {
+        const lightbox = document.getElementById('project-lightbox');
+        if (lightbox && lightbox.parentElement !== document.body) {
+            document.body.appendChild(lightbox);
+        }
     });
 
     // Fade in animation on scroll
@@ -245,3 +229,179 @@
 </script>
 
 @endsection
+
+@push('modals')
+    <div
+        id="project-lightbox"
+        class="project-lightbox hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Full size project image"
+    >
+        <div class="project-lightbox-backdrop" onclick="closeProjectLightbox()"></div>
+
+        <div class="project-lightbox-toolbar">
+            @if($galleryImages->count() > 1)
+                <span id="project-lightbox-counter" class="project-lightbox-counter">1 / {{ $galleryImages->count() }}</span>
+            @else
+                <span></span>
+            @endif
+            <button type="button" onclick="closeProjectLightbox()" class="project-lightbox-close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        @if($galleryImages->count() > 1)
+            <button type="button" onclick="lightboxPrev()" class="project-lightbox-nav project-lightbox-nav-prev" aria-label="Previous image">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button type="button" onclick="lightboxNext()" class="project-lightbox-nav project-lightbox-nav-next" aria-label="Next image">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        @endif
+
+        <div class="project-lightbox-stage">
+            <img
+                id="project-lightbox-image"
+                src="{{ $galleryImages->first()->image_url }}"
+                alt="{{ $project->name }}"
+                class="project-lightbox-image"
+            >
+        </div>
+    </div>
+
+    <style>
+        body.project-lightbox-open {
+            overflow: hidden !important;
+        }
+
+        body.project-lightbox-open #navbar,
+        body.project-lightbox-open #mobile-menu {
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        .project-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-lightbox.hidden {
+            display: none !important;
+        }
+
+        .project-lightbox-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.97);
+            backdrop-filter: blur(8px);
+        }
+
+        .project-lightbox-toolbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            pointer-events: none;
+        }
+
+        .project-lightbox-counter {
+            pointer-events: auto;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(226, 232, 240, 0.8);
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 9999px;
+            padding: 0.4rem 0.85rem;
+        }
+
+        .project-lightbox-close,
+        .project-lightbox-nav {
+            pointer-events: auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            background: rgba(15, 23, 42, 0.75);
+            color: #fff;
+            transition: background 0.2s ease;
+        }
+
+        .project-lightbox-close {
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 9999px;
+        }
+
+        .project-lightbox-close:hover,
+        .project-lightbox-nav:hover {
+            background: rgba(99, 102, 241, 0.35);
+        }
+
+        .project-lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 9999px;
+        }
+
+        .project-lightbox-nav-prev { left: 1rem; }
+        .project-lightbox-nav-next { right: 1rem; }
+
+        .project-lightbox-stage {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 4.5rem 3.5rem 2rem;
+            box-sizing: border-box;
+        }
+
+        .project-lightbox-image {
+            max-width: min(100%, 1200px);
+            max-height: calc(100vh - 6rem);
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 0.75rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
+        }
+
+        @media (max-width: 640px) {
+            .project-lightbox-stage {
+                padding: 4rem 1rem 1.5rem;
+            }
+
+            .project-lightbox-nav {
+                width: 2.25rem;
+                height: 2.25rem;
+            }
+
+            .project-lightbox-nav-prev { left: 0.5rem; }
+            .project-lightbox-nav-next { right: 0.5rem; }
+
+            .project-lightbox-image {
+                max-height: calc(100vh - 5rem);
+            }
+        }
+    </style>
+@endpush
