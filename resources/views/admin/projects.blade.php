@@ -27,23 +27,24 @@
                     @error('name') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-2">
-                        <label for="category" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Classification</label>
-                        <input type="text" name="category" id="category" value="{{ old('category') }}" placeholder="e.g. Web Architecture" class="admin-input-modern" required>
-                        @error('category') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
-                    </div>
-                    <div class="space-y-2">
-                        <label for="image" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Visual Asset</label>
+                <div class="space-y-2">
+                    <label for="category" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Classification</label>
+                    <input type="text" name="category" id="category" value="{{ old('category') }}" placeholder="e.g. Web Architecture" class="admin-input-modern" required>
+                    @error('category') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
+                </div>
+
+                <div class="space-y-2">
+                    <label for="images" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Visual Assets</label>
                         <div class="relative group">
-                            <input type="file" name="image" id="image" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" required onchange="updateFileName(this)">
-                            <div class="admin-input-modern flex items-center justify-between group-hover:border-white/20 transition">
-                                <span id="file-name" class="text-gray-500 truncate">Select image file...</span>
-                                <i class="fa-solid fa-cloud-arrow-up text-indigo-400"></i>
+                            <input type="file" name="images[]" id="images" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" required multiple accept="image/*" onchange="updateFileNames(this)">
+                            <div class="admin-input-modern flex items-center justify-between group-hover:border-white/20 transition min-h-[48px]">
+                                <span id="file-names" class="text-gray-500 truncate text-sm">Select one or more images...</span>
+                                <i class="fa-solid fa-cloud-arrow-up text-indigo-400 shrink-0 ml-2"></i>
                             </div>
                         </div>
-                        @error('image') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
-                    </div>
+                        <p class="text-[10px] text-gray-600 ml-1">First image is used as the cover. Max 10MB per file.</p>
+                        @error('images') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
+                        @error('images.*') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="space-y-2">
@@ -136,10 +137,18 @@
 </div>
 
 <script>
-    function updateFileName(input) {
-        const fileName = input.files[0] ? input.files[0].name : 'Select image file...';
-        const display = document.getElementById('file-name');
-        display.textContent = fileName;
+    function updateFileNames(input) {
+        const display = document.getElementById('file-names');
+        if (!input.files || input.files.length === 0) {
+            display.textContent = 'Select one or more images...';
+            display.classList.add('text-gray-500');
+            display.classList.remove('text-white');
+            return;
+        }
+        const count = input.files.length;
+        display.textContent = count === 1
+            ? input.files[0].name
+            : `${count} images selected`;
         display.classList.remove('text-gray-500');
         display.classList.add('text-white');
     }

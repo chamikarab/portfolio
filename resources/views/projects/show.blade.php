@@ -21,14 +21,41 @@
                 <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">{{ $project->name }}</h1>
             </div>
 
-            <!-- Project Image -->
-            <div class="glass rounded-2xl sm:rounded-3xl overflow-hidden mb-8 sm:mb-10 md:mb-12 fade-in-up">
-                <img
-                    src="{{ $project->image_url }}"
-                    alt="{{ $project->name }}"
-                    class="w-full h-40 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                    onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';"
-                >
+            <!-- Project Images -->
+            @php
+                $galleryImages = $project->images->isNotEmpty()
+                    ? $project->images
+                    : collect([(object)['image_url' => $project->image_url]]);
+            @endphp
+            <div class="fade-in-up mb-8 sm:mb-10 md:mb-12">
+                <div class="glass rounded-2xl sm:rounded-3xl overflow-hidden mb-4">
+                    <img
+                        id="project-main-image"
+                        src="{{ $galleryImages->first()->image_url }}"
+                        alt="{{ $project->name }}"
+                        class="w-full h-48 sm:h-64 md:h-80 object-cover transition-opacity duration-300"
+                        onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';"
+                    >
+                </div>
+                @if($galleryImages->count() > 1)
+                    <div class="flex gap-2 sm:gap-3 overflow-x-auto pb-1">
+                        @foreach($galleryImages as $index => $img)
+                            <button
+                                type="button"
+                                class="project-thumb shrink-0 rounded-xl overflow-hidden border-2 transition {{ $index === 0 ? 'border-purple-400' : 'border-transparent opacity-70 hover:opacity-100' }}"
+                                data-image="{{ $img->image_url }}"
+                                onclick="setProjectImage(this)"
+                            >
+                                <img
+                                    src="{{ $img->image_url }}"
+                                    alt="{{ $project->name }} thumbnail {{ $index + 1 }}"
+                                    class="w-20 h-14 sm:w-24 sm:h-16 object-cover"
+                                    onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';"
+                                >
+                            </button>
+                        @endforeach
+                    </div>
+                @endif
             </div>
 
             <!-- Project Description -->
@@ -53,6 +80,24 @@
 </section>
 
 <script>
+    function setProjectImage(button) {
+        const mainImage = document.getElementById('project-main-image');
+        if (!mainImage) return;
+
+        mainImage.style.opacity = '0';
+        setTimeout(() => {
+            mainImage.src = button.dataset.image;
+            mainImage.style.opacity = '1';
+        }, 150);
+
+        document.querySelectorAll('.project-thumb').forEach(thumb => {
+            thumb.classList.remove('border-purple-400');
+            thumb.classList.add('border-transparent', 'opacity-70');
+        });
+        button.classList.add('border-purple-400');
+        button.classList.remove('border-transparent', 'opacity-70');
+    }
+
     // Fade in animation on scroll
     const fadeElements = document.querySelectorAll('.fade-in-up');
     const fadeObserver = new IntersectionObserver((entries) => {

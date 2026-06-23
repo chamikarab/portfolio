@@ -124,6 +124,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/all-projects', [ProjectController::class, 'allProjects'])->name('admin.all-projects');
     Route::get('/admin/projects/{id}/edit', [ProjectController::class, 'edit'])->name('admin.projects.edit');
     Route::put('/admin/projects/{id}', [ProjectController::class, 'update'])->name('admin.projects.update');
+    Route::delete('/admin/projects/{projectId}/images/{imageId}', [ProjectController::class, 'destroyImage'])->name('admin.projects.images.destroy');
     Route::delete('/admin/projects/{id}', [ProjectController::class, 'destroy'])->name('admin.projects.destroy');
 
     // Testimonial routes
