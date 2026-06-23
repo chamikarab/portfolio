@@ -28,23 +28,24 @@
                     @error('name') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-2">
-                        <label for="category" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Classification</label>
-                        <input type="text" name="category" id="category" value="{{ old('category', $project->category) }}" class="admin-input-modern" required>
-                        @error('category') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
-                    </div>
-                    <div class="space-y-2">
-                        <label for="image" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Visual Update (Optional)</label>
+                <div class="space-y-2">
+                    <label for="category" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Classification</label>
+                    <input type="text" name="category" id="category" value="{{ old('category', $project->category) }}" class="admin-input-modern" required>
+                    @error('category') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
+                </div>
+
+                <div class="space-y-2">
+                    <label for="images" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">Add More Images (Optional)</label>
                         <div class="relative group">
-                            <input type="file" name="image" id="image" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" onchange="updateFileName(this)">
-                            <div class="admin-input-modern flex items-center justify-between group-hover:border-white/20 transition">
-                                <span id="file-name" class="text-gray-500 truncate">Replace visual frame...</span>
-                                <i class="fa-solid fa-camera text-indigo-400"></i>
+                            <input type="file" name="images[]" id="images" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" multiple accept="image/*" onchange="updateFileNames(this)">
+                            <div class="admin-input-modern flex items-center justify-between group-hover:border-white/20 transition min-h-[48px]">
+                                <span id="file-names" class="text-gray-500 truncate text-sm">Add additional images...</span>
+                                <i class="fa-solid fa-camera text-indigo-400 shrink-0 ml-2"></i>
                             </div>
                         </div>
-                        @error('image') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
-                    </div>
+                        <p class="text-[10px] text-gray-600 ml-1">Upload more images without removing existing ones. Max 10MB per file.</p>
+                        @error('images') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
+                        @error('images.*') <p class="text-red-400 text-[10px] font-bold uppercase mt-2 ml-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="space-y-2">
@@ -117,13 +118,39 @@
 
     <div class="space-y-8">
         <div class="admin-card p-8 border-indigo-500/10 bg-indigo-500/[0.02]">
-            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-6">Active Visual</h4>
-            <div class="aspect-video rounded-xl bg-white/5 overflow-hidden border border-white/5 mb-4">
-                <img src="{{ $project->image_url }}" 
-                     class="w-full h-full object-cover"
-                     onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
-            </div>
-            <p class="text-[10px] text-gray-600 font-bold uppercase tracking-[0.2em] text-center">Currently Deployed Frame</p>
+            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-6">Project Images ({{ $project->images->count() }})</h4>
+            @if($project->images->isEmpty())
+                <div class="aspect-video rounded-xl bg-white/5 overflow-hidden border border-white/5 mb-4 flex items-center justify-center">
+                    <img src="{{ $project->image_url }}" 
+                         class="w-full h-full object-cover"
+                         onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
+                </div>
+                <p class="text-[10px] text-gray-600 font-bold uppercase tracking-[0.2em] text-center">No gallery images yet</p>
+            @else
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    @foreach($project->images as $index => $projectImage)
+                        <div class="relative group rounded-xl overflow-hidden border border-white/10 bg-white/5">
+                            <img src="{{ $projectImage->image_url }}"
+                                 alt="{{ $project->name }} image {{ $index + 1 }}"
+                                 class="w-full aspect-video object-cover"
+                                 onerror="this.onerror=null; this.src='{{ asset('assets/placeholder.svg') }}';">
+                            @if($index === 0)
+                                <span class="absolute top-2 left-2 text-[9px] font-bold uppercase tracking-wider bg-indigo-500/90 text-white px-2 py-0.5 rounded">Cover</span>
+                            @endif
+                            <form action="{{ route('admin.projects.images.destroy', [$project->id, $projectImage->id]) }}" method="POST"
+                                  class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition"
+                                  onsubmit="return confirm('Remove this image?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="h-7 w-7 rounded-lg bg-red-500/90 text-white text-xs hover:bg-red-500" title="Remove image">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    @endforeach
+                </div>
+                <p class="text-[10px] text-gray-600 font-bold uppercase tracking-[0.2em] text-center">First image is the cover · Hover to remove</p>
+            @endif
         </div>
 
         <div class="admin-card p-8">
@@ -147,10 +174,18 @@
 </div>
 
 <script>
-    function updateFileName(input) {
-        const fileName = input.files[0] ? input.files[0].name : 'Replace visual frame...';
-        const display = document.getElementById('file-name');
-        display.textContent = fileName;
+    function updateFileNames(input) {
+        const display = document.getElementById('file-names');
+        if (!input.files || input.files.length === 0) {
+            display.textContent = 'Add additional images...';
+            display.classList.add('text-gray-500');
+            display.classList.remove('text-white');
+            return;
+        }
+        const count = input.files.length;
+        display.textContent = count === 1
+            ? input.files[0].name
+            : `${count} images selected`;
         display.classList.remove('text-gray-500');
         display.classList.add('text-white');
     }

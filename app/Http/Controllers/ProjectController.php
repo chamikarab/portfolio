@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\ProjectImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
@@ -14,25 +15,25 @@ class ProjectController extends Controller
 {
     public function allProjects()
     {
-        $projects = Project::all();
+        $projects = Project::with('images')->get();
         return view('admin.all-projects', compact('projects'));
     }
 
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::with('images')->get();
         return view('projects', compact('projects'));
     }
     
     public function show($id)
     {
-        $project = Project::findOrFail($id);
+        $project = Project::with('images')->findOrFail($id);
         return view('projects.show', compact('project'));
     }
 
     public function homeprojects()
     {
-        $projects = Project::latest()->limit(3)->get();
+        $projects = Project::with('images')->latest()->limit(3)->get();
         return view('home', compact('projects'));
     }
 
@@ -45,9 +46,13 @@ class ProjectController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'image' => 'required|image|max:10240', // Max 10MB
+            'images' => 'required|array|min:1',
+            'images.*' => 'image|max:10240',
             'category' => 'required',
             'description' => 'required',
+        ], [
+            'images.required' => 'Please upload at least one image.',
+            'images.min' => 'Please upload at least one image.',
         ]);
 
         if ($validator->fails()) {
@@ -57,76 +62,42 @@ class ProjectController extends Controller
         }
 
         try {
-            // Ensure uploads directory exists in public folder
-            $uploadPath = public_path('uploads');
-            if (!File::exists($uploadPath)) {
-                File::makeDirectory($uploadPath, 0755, true);
-            }
-
-            $file = $request->file('image');
-            $filename = null;
-
-            // Try Intervention/Image WebP conversion first
-            try {
-                $filename = time() . '_' . uniqid() . '.webp';
-                $filePath = $uploadPath . '/' . $filename;
-                $manager = new ImageManager(new GdDriver());
-                $image = $manager->read($file);
-                $image->toWebp(90)->save($filePath);
-            } catch (\Exception $e) {
-                Log::warning('WebP conversion failed, falling back to original format: ' . $e->getMessage());
-                // Fallback: save original file without conversion
-                $ext = strtolower($file->getClientOriginalExtension() ?: 'jpg');
-                $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-                if (!in_array($ext, $allowed)) {
-                    $ext = 'jpg';
-                }
-                $filename = time() . '_' . uniqid() . '.' . $ext;
-                $file->move($uploadPath, $filename);
-            }
-
-            $filePath = $uploadPath . '/' . $filename;
-
-            // Verify file was saved successfully
-            if (!File::exists($filePath)) {
-                return redirect()->route('admin.projects.create')
-                    ->withErrors(['image' => 'Failed to upload image. Please try again.'])
-                    ->withInput();
-            }
-
-            // Store ONLY the filename in database
-            Project::create([
+            $project = Project::create([
                 'name' => $request->name,
-                'image' => $filename,
+                'image' => '',
                 'category' => $request->category,
                 'description' => $request->description,
             ]);
+
+            $this->storeProjectImages($project, $request->file('images', []));
+            $project->syncCoverImage();
 
             return redirect()->route('admin.all-projects')->with('success', 'Project added successfully.');
         } catch (\Exception $e) {
             Log::error('Project creation failed: ' . $e->getMessage() . ' | Trace: ' . $e->getTraceAsString());
             $message = config('app.debug')
                 ? 'Upload failed: ' . $e->getMessage()
-                : 'An error occurred while uploading the image. Please try again.';
+                : 'An error occurred while uploading images. Please try again.';
             return redirect()->route('admin.projects.create')
-                ->withErrors(['image' => $message])
+                ->withErrors(['images' => $message])
                 ->withInput();
         }
     }
 
     public function edit($id)
     {
-        $project = Project::findOrFail($id);
+        $project = Project::with('images')->findOrFail($id);
         return view('admin.edit-project', compact('project'));
     }
 
     public function update(Request $request, $id)
     {
-        $project = Project::findOrFail($id);
+        $project = Project::with('images')->findOrFail($id);
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'image' => 'nullable|image',
+            'images' => 'nullable|array',
+            'images.*' => 'image|max:10240',
             'category' => 'required',
             'description' => 'required',
         ]);
@@ -137,86 +108,57 @@ class ProjectController extends Controller
                 ->withInput();
         }
 
-        $data = [
+        $project->update([
             'name' => $request->name,
             'category' => $request->category,
             'description' => $request->description,
-        ];
+        ]);
 
-        // Handle image upload if new image is provided
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('images')) {
             try {
-                // Delete old image from public/uploads
-                if ($project->image) {
-                    $oldImagePath = $this->getImagePath($project->image);
-                    if (File::exists($oldImagePath)) {
-                        File::delete($oldImagePath);
-                    }
-                }
-
-                // Ensure uploads directory exists
-                $uploadPath = public_path('uploads');
-                if (!File::exists($uploadPath)) {
-                    File::makeDirectory($uploadPath, 0755, true);
-                }
-
-                $file = $request->file('image');
-                $filename = null;
-
-                // Try Intervention/Image WebP conversion first
-                try {
-                    $filename = time() . '_' . uniqid() . '.webp';
-                    $filePath = $uploadPath . '/' . $filename;
-                    $manager = new ImageManager(new GdDriver());
-                    $image = $manager->read($file);
-                    $image->toWebp(90)->save($filePath);
-                } catch (\Exception $e) {
-                    Log::warning('WebP conversion failed on update, falling back to original: ' . $e->getMessage());
-                    $ext = strtolower($file->getClientOriginalExtension() ?: 'jpg');
-                    $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-                    if (!in_array($ext, $allowed)) {
-                        $ext = 'jpg';
-                    }
-                    $filename = time() . '_' . uniqid() . '.' . $ext;
-                    $file->move($uploadPath, $filename);
-                }
-
-                $filePath = $uploadPath . '/' . $filename;
-
-                // Verify file was saved successfully
-                if (!File::exists($filePath)) {
-                    return redirect()->route('admin.projects.edit', $id)
-                        ->withErrors(['image' => 'Failed to upload image. Please try again.'])
-                        ->withInput();
-                }
-
-                $data['image'] = $filename;
+                $this->storeProjectImages(
+                    $project,
+                    $request->file('images', []),
+                    $project->images()->max('sort_order') ?? -1
+                );
             } catch (\Exception $e) {
-                Log::error('Project image update failed: ' . $e->getMessage() . ' | Trace: ' . $e->getTraceAsString());
+                Log::error('Project image update failed: ' . $e->getMessage());
                 $message = config('app.debug')
                     ? 'Upload failed: ' . $e->getMessage()
-                    : 'An error occurred while uploading the image. Please try again.';
+                    : 'An error occurred while uploading images. Please try again.';
                 return redirect()->route('admin.projects.edit', $id)
-                    ->withErrors(['image' => $message])
+                    ->withErrors(['images' => $message])
                     ->withInput();
             }
         }
 
-        $project->update($data);
+        $project->syncCoverImage();
 
         return redirect()->route('admin.all-projects')->with('success', 'Project updated successfully.');
     }
 
+    public function destroyImage($projectId, $imageId)
+    {
+        $project = Project::findOrFail($projectId);
+        $projectImage = $project->images()->findOrFail($imageId);
+
+        $this->deleteImageFile($projectImage->image);
+        $projectImage->delete();
+        $project->syncCoverImage();
+
+        return back()->with('success', 'Image removed successfully.');
+    }
+
     public function destroy($id)
     {
-        $project = Project::findOrFail($id);
+        $project = Project::with('images')->findOrFail($id);
 
-        // Delete image file from public/uploads
+        foreach ($project->images as $projectImage) {
+            $this->deleteImageFile($projectImage->image);
+        }
+
         if ($project->image) {
-            $imagePath = $this->getImagePath($project->image);
-            if (File::exists($imagePath)) {
-                File::delete($imagePath);
-            }
+            $this->deleteImageFile($project->image);
         }
 
         $project->delete();
@@ -224,19 +166,66 @@ class ProjectController extends Controller
         return redirect()->route('admin.all-projects')->with('success', 'Project deleted successfully.');
     }
 
-    /**
-     * Get the full filesystem path for an image
-     * Handles both old format (with path) and new format (filename only)
-     */
-    private function getImagePath($image)
+    private function storeProjectImages(Project $project, array $files, int $startOrder = -1): void
     {
-        // If image contains a path (old format), extract filename
-        if (strpos($image, '/') !== false) {
-            $filename = basename($image);
-        } else {
-            $filename = $image;
+        $uploadPath = public_path('uploads');
+        if (!File::exists($uploadPath)) {
+            File::makeDirectory($uploadPath, 0755, true);
         }
-        
-        return public_path('uploads/' . $filename);
+
+        $sortOrder = $startOrder + 1;
+
+        foreach ($files as $file) {
+            if (!$file || !$file->isValid()) {
+                continue;
+            }
+
+            $filename = $this->uploadImageFile($file, $uploadPath);
+
+            ProjectImage::create([
+                'project_id' => $project->id,
+                'image' => $filename,
+                'sort_order' => $sortOrder++,
+            ]);
+        }
+    }
+
+    private function uploadImageFile($file, string $uploadPath): string
+    {
+        try {
+            $filename = time() . '_' . uniqid() . '.webp';
+            $filePath = $uploadPath . '/' . $filename;
+            $manager = new ImageManager(new GdDriver());
+            $image = $manager->read($file);
+            $image->toWebp(90)->save($filePath);
+        } catch (\Exception $e) {
+            Log::warning('WebP conversion failed, falling back to original format: ' . $e->getMessage());
+            $ext = strtolower($file->getClientOriginalExtension() ?: 'jpg');
+            $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+            if (!in_array($ext, $allowed)) {
+                $ext = 'jpg';
+            }
+            $filename = time() . '_' . uniqid() . '.' . $ext;
+            $file->move($uploadPath, $filename);
+            $filePath = $uploadPath . '/' . $filename;
+        }
+
+        if (!File::exists($filePath)) {
+            throw new \RuntimeException('Failed to save uploaded image.');
+        }
+
+        return $filename;
+    }
+
+    private function deleteImageFile(?string $image): void
+    {
+        if (!$image) {
+            return;
+        }
+
+        $path = public_path('uploads/' . basename($image));
+        if (File::exists($path)) {
+            File::delete($path);
+        }
     }
 }
