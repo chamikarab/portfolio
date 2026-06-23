@@ -52,11 +52,12 @@
             {{-- Project cards --}}
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 @foreach ($projects as $project)
-                    <div 
-                        class="project-card-modern fade-in-up"
+                    <a
+                        href="{{ route('projects.show', $project->id) }}"
+                        class="project-card-modern fade-in-up block no-underline text-inherit group"
                         data-project-category="{{ \Illuminate\Support\Str::slug($project->category ?? 'Other') }}"
                     >
-                        <div class="overflow-hidden rounded-t-2xl relative group">
+                        <div class="overflow-hidden rounded-t-2xl relative">
                             <img
                                 src="{{ $project->image_url }}"
                                 alt="{{ $project->name }}"
@@ -73,12 +74,11 @@
                             <p class="text-gray-400 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">
                                 {{ \Illuminate\Support\Str::limit(strip_tags($project->description), 100) }}
                             </p>
-                            <a href="{{ route('projects.show', $project->id) }}" 
-                               class="inline-flex items-center text-purple-400 hover:text-purple-300 font-semibold text-sm sm:text-base transition-colors duration-300">
+                            <span class="inline-flex items-center text-purple-400 group-hover:text-purple-300 font-semibold text-sm sm:text-base transition-colors duration-300">
                                 View Project <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
+                            </span>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         @endif
