@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1">
-                    <a href="{{ route('contact') }}" class="glow-button group relative px-6 py-3 bg-indigo-600 rounded-xl overflow-hidden transition-all hover:scale-105 hover:shadow-[0_20px_40px_rgba(79,70,229,0.3)]">
+                    <a href="https://wa.me/message/6FVXAKN5IUQEJ1" target="_blank" rel="noopener noreferrer" class="glow-button group relative px-6 py-3 bg-indigo-600 rounded-xl overflow-hidden transition-all hover:scale-105 hover:shadow-[0_20px_40px_rgba(79,70,229,0.3)]">
                         <div class="relative z-10 flex items-center gap-2 text-white font-bold tracking-tight text-[10px] uppercase">
                             <span>Start a Project</span>
                             <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
