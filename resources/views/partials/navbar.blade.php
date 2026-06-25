@@ -43,7 +43,7 @@
 
             <!-- Action Hub -->
             <div class="flex items-center gap-2">
-                <a href="{{ route('contact') }}" class="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-white text-slate-950 text-[11px] font-black uppercase tracking-widest rounded-full hover:scale-105 transition-transform">
+                <a href="https://wa.me/message/6FVXAKN5IUQEJ1" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-white text-slate-950 text-[11px] font-black uppercase tracking-widest rounded-full hover:scale-105 transition-transform">
                     <span>Hire</span>
                     <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
                 </a>
