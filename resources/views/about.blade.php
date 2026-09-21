@@ -24,9 +24,13 @@
                     <div class="glass rounded-2xl sm:rounded-3xl p-6 sm:p-8">
                         <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">Hello! I'm <span class="gradient-text">Chamikara Bandara</span></h3>
                         <p class="text-gray-300 text-base sm:text-lg leading-relaxed mb-3 sm:mb-4" style="text-align: justify;">
-                            A passionate and dedicated <span class="gradient-text font-semibold">Software Developer</span> from Sri Lanka 
-                            with a deep love for technology. Currently, I'm pursuing my degree in <span class="text-white font-semibold">Information Technology</span> at 
-                            <span class="text-white font-semibold">SLIIT</span>, where I'm enhancing my skills in software engineering and full-stack development.
+                            I’m a <span class="gradient-text font-semibold">full-stack developer</span> from Sri Lanka who cares about building software
+                            that feels calm to use and solid under the hood. I recently graduated with a
+                            <span class="text-white font-semibold">BSc (Hons) in Information Technology specialized in Information Technology,</span> from
+                            <span class="text-white font-semibold">SLIIT</span> — and now work as a Junior Software Engineer at
+                            <span class="text-white font-semibold">X4 Digital</span>, shipping production systems with
+                            <span class="text-white font-semibold">Next.js</span>, <span class="text-white font-semibold">NestJS</span>, and
+                            <span class="text-white font-semibold">PostgreSQL</span>.
                         </p>
                     </div>
                 </div>
@@ -38,11 +42,15 @@
                         <i class="fas fa-code gradient-text mr-2 sm:mr-3"></i>My Journey
                     </h3>
                     <p class="text-gray-300 text-lg leading-relaxed mb-4" style="text-align: justify;">
-                        I have been developing websites and applications for over <span class="gradient-text font-semibold">six years</span>. My journey started with 
-                        <span class="text-white font-semibold">WordPress</span> development and has grown through <span class="text-white font-semibold">university projects</span> and real-world client work, 
-                        where I’ve built full-stack solutions with <span class="text-white font-semibold">Laravel</span>, <span class="text-white font-semibold">React</span>, <span class="text-white font-semibold">Node.js</span>, and 
-                        <span class="text-white font-semibold">MongoDB</span>. Recently, I’ve also expanded into <span class="text-white font-semibold">mobile app development with Flutter</span>, bringing my web experience into 
-                        cross‑platform apps. I’m particularly enthusiastic about creating efficient, scalable, and user-friendly digital experiences.
+                        I’ve been building for the web for over <span class="gradient-text font-semibold">six years</span> — starting with
+                        <span class="text-white font-semibold">WordPress</span> and freelance client work, then growing through university projects, agency roles, and
+                        infrastructure work managing servers and deployments. That mix of development and ops shaped how I think about software today.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed" style="text-align: justify;">
+                        My current stack centers on <span class="text-white font-semibold">Next.js</span> and <span class="text-white font-semibold">React</span> on the frontend,
+                        <span class="text-white font-semibold">NestJS</span> and <span class="text-white font-semibold">Laravel</span> on the backend, and
+                        <span class="text-white font-semibold">PostgreSQL</span> for data — with <span class="text-white font-semibold">VPS</span> hosting and deployment
+                        as part of the day-to-day workflow. I enjoy taking features from idea to production and making sure they stay fast, reliable, and easy to maintain.
                     </p>
                 </div>
 
@@ -51,8 +59,9 @@
                         <i class="fas fa-palette gradient-text mr-2 sm:mr-3"></i>Creative Skills
                     </h3>
                     <p class="text-gray-300 text-base sm:text-lg leading-relaxed" style="text-align: justify;">
-                        In addition to my technical skills, I have a strong background in <span class="gradient-text font-semibold">graphic design</span>, and I enjoy using my creative 
-                        abilities to build visually appealing interfaces. I am also constantly learning new tools and frameworks to stay ahead in this ever-evolving field.
+                        Alongside development, I bring a <span class="gradient-text font-semibold">design background</span> in graphic design and video editing.
+                        That helps me think about layout, typography, and visual hierarchy when building interfaces — not just how something works,
+                        but how it should feel. I like bridging design intent and implementation so the final product looks as good as it functions.
                     </p>
                 </div>
 
@@ -61,11 +70,12 @@
                         <i class="fas fa-heart gradient-text mr-2 sm:mr-3"></i>Beyond Code
                     </h3>
                     <p class="text-gray-300 text-base sm:text-lg leading-relaxed mb-3 sm:mb-4" style="text-align: justify;">
-                        In my free time, I love experimenting with new technologies, working on personal projects, and contributing to open-source projects. When I'm not coding, 
-                        you can find me enjoying a good book or practicing video editing.
+                        When I’m not shipping code, I’m usually tinkering with side projects, exploring new tools, or refining something I’ve already built.
+                        I also enjoy reading, video editing, and staying curious about how other teams solve hard engineering problems.
                     </p>
                     <p class="text-gray-300 text-base sm:text-lg leading-relaxed" style="text-align: justify;">
-                        Feel free to reach out to me for collaborations, freelance projects, or just to talk about tech and development!
+                        I’m open to freelance work, collaborations, and conversations about full-stack development, DevOps, or product design —
+                        feel free to <a href="/contact" class="text-purple-400 hover:text-purple-300 transition-colors">get in touch</a>.
                     </p>
                 </div>
             </div>
