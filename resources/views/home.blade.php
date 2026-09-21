@@ -207,14 +207,16 @@
                             for clean UI and calm experiences. I enjoy turning messy ideas into products that feel obvious to use.
                         </p>
                         <p class="text-slate-300/90 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-5">
-                            I’ve worked with agencies and product teams on websites, dashboards, and internal tools using
-                            Laravel, React, Node, and modern CSS. My favorite projects live at the intersection of brand,
-                            interaction, and performance.
+                            I’ve worked with agencies and product teams on websites, dashboards, and internal tools. Today my main stack
+                            is <span class="text-white font-semibold">Next.js</span>, <span class="text-white font-semibold">NestJS</span>, and
+                            <span class="text-white font-semibold">PostgreSQL</span> — alongside <span class="text-white font-semibold">Laravel</span> and
+                            <span class="text-white font-semibold">React</span> when the project calls for it. My favorite work sits at the intersection of
+                            brand, interaction, and performance.
                         </p>
                         <p class="text-slate-300/90 text-sm sm:text-base md:text-lg leading-relaxed">
-                            Outside of client work, I’m usually refining components, exploring new design patterns, or learning
-                            how other teams ship great products. I’m currently open to **remote roles, freelance projects, and long‑term
-                            collaborations**.
+                            I recently graduated with a BSc (Hons) in Information Technology Specialized in Information Technology from SLIIT and now build production systems
+                            full time. Outside of work, I’m usually refining components, exploring new patterns, or learning how other
+                            teams ship great products. I’m open to <span class="text-white font-semibold">remote roles, freelance projects, and long‑term collaborations</span>.
                         </p>
                         <div class="mt-6 flex flex-wrap gap-3 text-[11px] sm:text-xs text-slate-300/90">
                             <span class="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-3 py-1.5">
@@ -260,9 +262,9 @@
                                     </p>
                                 </div>
                                 <div class="rounded-xl bg-slate-900/80 p-3 sm:p-4 border border-white/5">
-                                    <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-slate-400 mb-1.5">Working with</p>
+                                    <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-slate-400 mb-1.5">Main stack</p>
                                     <p class="text-xs text-slate-200">
-                                        Laravel, React, Tailwind, Node.js, WordPress.
+                                        Next.js, NestJS, PostgreSQL, Laravel & React.
                                     </p>
                                 </div>
                             </div>
@@ -270,7 +272,7 @@
                             <div class="rounded-xl bg-slate-900/80 p-3 sm:p-4 border border-white/5 mb-4">
                                 <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-slate-400 mb-1.5">Currently</p>
                                 <p class="text-xs text-slate-200">
-                                    Undergraduate in Information Technology (SLIIT) and working on client projects and personal experiments.
+                                    Junior Software Engineer at X4 Digital — building full-stack systems, managing servers, and shipping to production.
                                 </p>
                             </div>
 
@@ -649,7 +651,7 @@
                     </p>
                 </article>
 
-                <!-- Undergraduate -->
+                <!-- SLIIT Degree -->
                 <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-white/10 fade-in-up">
                     <div class="flex items-center justify-between gap-3 mb-3">
                         <div class="flex items-center gap-3">
@@ -658,20 +660,20 @@
                             </span>
                             <div>
                                 <p class="text-xs sm:text-sm font-semibold text-slate-50">
-                                    BSc (Hons) in Information Technology · Undergraduate
+                                    BSc (Hons) in Information Technology Specialized in Information Technology
                                 </p>
                                 <p class="text-[11px] sm:text-xs text-slate-400">
                                     Sri Lanka Institute of Information Technology (SLIIT)
                                 </p>
                 </div>
             </div>
-                        <span class="inline-flex items-center rounded-full bg-emerald-500/15 px-2.5 py-1 text-[10px] font-medium text-emerald-200 border border-emerald-400/60 whitespace-nowrap">
-                            2022 – Present
+                        <span class="inline-flex items-center rounded-full bg-slate-800/80 px-2.5 py-1 text-[10px] font-medium text-slate-200 border border-slate-500/60 whitespace-nowrap">
+                            2022 – 2026
                         </span>
                     </div>
                     <p class="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
-                        Currently formalizing my knowledge across software engineering, networking, and modern technologies while
-                        building real‑world projects alongside my studies.
+                        Graduated with a specialization in Information Technology, building a strong foundation in software engineering,
+                        networking, and modern technologies through coursework and real‑world projects.
                     </p>
                 </article>
             </div>
@@ -693,12 +695,50 @@
             </div>
 
             <div class="space-y-5 sm:space-y-6 md:space-y-7">
+                <!-- X4 Digital -->
+                <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/10 fade-in-up">
+                    <div class="flex items-start justify-between gap-3 mb-3">
+                        <div class="flex items-start gap-3">
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-black overflow-hidden border border-white/10 shrink-0">
+                                <img
+                                    src="{{ asset('images/x4-digital-logo.jpg') }}"
+                                    alt="X4 Digital"
+                                    class="h-full w-full object-cover"
+                                >
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-100">Junior Software Engineer</p>
+                                <p class="text-[11px] sm:text-xs text-slate-400">
+                                    X4 Digital (Pvt) Ltd · Full Time
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[11px] font-medium text-slate-300">2026 – Present</p>
+                            <span class="mt-1 inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40 whitespace-nowrap">
+                                Software Development
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Building new systems end‑to‑end at X4 Digital — developing responsive frontends with
+                        <span class="font-semibold text-slate-100">Next.js</span> and <span class="font-semibold text-slate-100">React</span>,
+                        backend services in <span class="font-semibold text-slate-100">NestJS</span> and
+                        <span class="font-semibold text-slate-100">Laravel</span>, and managing the servers and deployments that keep everything
+                        running in production. I work across the full stack to ship reliable features from concept through to live release.
+                    </p>
+                </article>
+
                 <!-- Candea Digital -->
                 <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/10 fade-in-up">
                     <div class="flex items-start justify-between gap-3 mb-3">
                         <div class="flex items-start gap-3">
-                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-r from-emerald-500 to-sky-500 text-white">
-                                <i class="fas fa-network-wired text-sm"></i>
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-[#ef3340] overflow-hidden border border-white/10 shrink-0">
+                                <img
+                                    src="{{ asset('images/candea-digital-logo.jpg') }}"
+                                    alt="Candea Digital"
+                                    class="h-full w-full object-cover"
+                                >
                             </span>
                             <div>
                                 <p class="text-xs font-semibold text-slate-100">IT System Administrator</p>
@@ -708,7 +748,7 @@
                             </div>
                         </div>
                         <div class="text-right">
-                            <p class="text-[11px] font-medium text-slate-300">2024 – Present</p>
+                            <p class="text-[11px] font-medium text-slate-300">2024 – 2026</p>
                             <span class="mt-1 inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40 whitespace-nowrap">
                                 vahana.lk project
                             </span>
@@ -837,8 +877,8 @@
                                 <p class="text-[11px] text-slate-400">Semantic, accessible markup</p>
                             </div>
                         </div>
-                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
-                            Primary
+                        <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40 whitespace-nowrap">
+                            In production
                         </span>
                     </li>
 
@@ -854,8 +894,8 @@
                                 <p class="text-[11px] text-slate-400">Utility‑first, responsive, animations</p>
                             </div>
                         </div>
-                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
-                            Primary
+                        <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40 whitespace-nowrap">
+                            In production
                         </span>
                     </li>
 
@@ -871,8 +911,8 @@
                                 <p class="text-[11px] text-slate-400">Interactions, state, async flows</p>
                             </div>
                         </div>
-                        <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40 whitespace-nowrap">
-                            In production
+                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
+                            Primary
                         </span>
                     </li>
 
@@ -888,8 +928,25 @@
                                 <p class="text-[11px] text-slate-400">Component‑driven UIs</p>
                             </div>
                         </div>
-                        <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40 whitespace-nowrap">
-                            In production
+                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
+                            Primary
+                        </span>
+                    </li>
+
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-800/80">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                                     alt="Next.js"
+                                     class="h-5 w-5 sm:h-6 sm:w-6 invert">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">Next.js</p>
+                                <p class="text-[11px] text-slate-400">SSR, routing & full‑stack React apps</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
+                            Primary
                         </span>
                     </li>
 
@@ -945,13 +1002,30 @@
                     <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
                         <div class="flex items-center gap-3">
                             <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-red-500/15">
-                                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/laravel/laravel-plain.svg"
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg"
                                      alt="Laravel"
                                      class="h-5 w-5 sm:h-6 sm:w-6">
                             </span>
                             <div>
                                 <p class="text-xs font-semibold text-slate-50">Laravel</p>
                                 <p class="text-[11px] text-slate-400">REST APIs, auth, dashboards</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
+                            Primary
+                        </span>
+                    </li>
+
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-rose-500/15">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg"
+                                     alt="NestJS"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">NestJS</p>
+                                <p class="text-[11px] text-slate-400">TypeScript APIs & modular backends</p>
                             </div>
                         </div>
                         <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
@@ -990,6 +1064,23 @@
                         </div>
                         <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40">
                             In production
+                        </span>
+                    </li>
+
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-blue-500/15">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                                     alt="PostgreSQL"
+                                     class="h-5 w-5 sm:h-6 sm:w-6">
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">PostgreSQL</p>
+                                <p class="text-[11px] text-slate-400">Relational schema, queries & data integrity</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
+                            Primary
                         </span>
                     </li>
 
@@ -1076,6 +1167,21 @@
 
                     <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
                         <div class="flex items-center gap-3">
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-sky-500/20 text-sky-200">
+                                <i class="fas fa-server text-lg"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-50">VPS</p>
+                                <p class="text-[11px] text-slate-400">Server setup, hosting & deployments</p>
+            </div>
+            </div>
+                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
+                            Primary
+                        </span>
+                    </li>
+
+                    <li class="flex items-center justify-between gap-3 rounded-2xl bg-slate-950/40 px-3 py-2.5 border border-white/5">
+                        <div class="flex items-center gap-3">
                             <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-indigo-500/20 text-indigo-200">
                                 <i class="fas fa-layer-group text-lg"></i>
                             </span>
@@ -1099,8 +1205,8 @@
                                 <p class="text-[11px] text-slate-400">Lighthouse, bundle analysis</p>
             </div>
             </div>
-                        <span class="inline-flex items-center rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-400/40">
-                            Primary
+                        <span class="inline-flex items-center rounded-full bg-sky-400/10 px-2.5 py-1 text-[10px] font-medium text-sky-300 border border-sky-400/40 whitespace-nowrap">
+                            In production
                         </span>
                     </li>
                 </ul>
