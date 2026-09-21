@@ -2,7 +2,6 @@
 /node_modules
 /public/hot
 /public/storage
-/public/.htaccess
 /public/uploads/*
 !/public/uploads/.htaccess
 /storage/*.key
