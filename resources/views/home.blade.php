@@ -584,8 +584,12 @@
                 <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-white/10 fade-in-up">
                     <div class="flex items-center justify-between gap-3 mb-3">
                         <div class="flex items-center gap-3">
-                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-tr from-emerald-500 to-sky-500 text-white">
-                                <i class="fas fa-certificate text-xs sm:text-sm"></i>
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-white overflow-hidden border border-white/10 shrink-0 p-0.5">
+                                <img
+                                    src="{{ asset('images/kingswood-college-logo.webp') }}"
+                                    alt="Kingswood College"
+                                    class="h-full w-full object-contain"
+                                >
                             </span>
                             <div>
                                 <p class="text-xs sm:text-sm font-semibold text-slate-50">G.C.E Ordinary Level</p>
@@ -607,8 +611,12 @@
                 <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-white/10 fade-in-up">
                     <div class="flex items-center justify-between gap-3 mb-3">
                         <div class="flex items-center gap-3">
-                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-500 text-white">
-                                <i class="fas fa-graduation-cap text-xs sm:text-sm"></i>
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-white overflow-hidden border border-white/10 shrink-0 p-0.5">
+                                <img
+                                    src="{{ asset('images/esoft-uni-logo.jpg') }}"
+                                    alt="ESOFT Metro Campus"
+                                    class="h-full w-full object-contain"
+                                >
                             </span>
                             <div>
                                 <p class="text-xs sm:text-sm font-semibold text-slate-50">
@@ -632,8 +640,12 @@
                 <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-white/10 fade-in-up">
                     <div class="flex items-center justify-between gap-3 mb-3">
                         <div class="flex items-center gap-3">
-                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-tr from-amber-500 to-rose-500 text-white">
-                                <i class="fas fa-certificate text-xs sm:text-sm"></i>
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-white overflow-hidden border border-white/10 shrink-0 p-0.5">
+                                <img
+                                    src="{{ asset('images/kingswood-college-logo.webp') }}"
+                                    alt="Kingswood College"
+                                    class="h-full w-full object-contain"
+                                >
                             </span>
                             <div>
                                 <p class="text-xs sm:text-sm font-semibold text-slate-50">G.C.E Advanced Level</p>
@@ -655,8 +667,12 @@
                 <article class="timeline-item glass-dark rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-white/10 fade-in-up">
                     <div class="flex items-center justify-between gap-3 mb-3">
                         <div class="flex items-center gap-3">
-                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-tr from-purple-500 to-indigo-500 text-white">
-                                <i class="fas fa-user-graduate text-xs sm:text-sm"></i>
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-white overflow-hidden border border-white/10 shrink-0 p-0.5">
+                                <img
+                                    src="{{ asset('images/sliit-logo.jpg') }}"
+                                    alt="SLIIT"
+                                    class="h-full w-full object-contain"
+                                >
                             </span>
                             <div>
                                 <p class="text-xs sm:text-sm font-semibold text-slate-50">
